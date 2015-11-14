@@ -1,0 +1,13 @@
+@keyframes flash {
+  from, 50%, to {
+    opacity: 1;
+  }
+
+  25%, 75% {
+    opacity: 0;
+  }
+}
+
+.animate_attention_flash {
+  animation-name: flash;
+}

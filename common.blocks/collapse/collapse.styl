@@ -1,0 +1,32 @@
+.collapse
+    &__content
+        position: relative
+        overflow: hidden
+        max-height: 0;
+        transition: max-height 0.5s ease-out;
+    &__header
+        position: relative
+        overflow: hidden
+        padding: 10px
+        min-height: 26px
+        border-top: 1px solid transparent
+        border-bottom: 1px solid $base_grey
+        cursor: default
+    &__tick
+        cursor: pointer
+        position: absolute;
+        right: 10px
+        top: 10px
+        transition: transform 0.1s ease-out 0s;
+        font-size: 1.3rem;
+        line-height: 26px;
+    &_opened
+        .collapse
+            &__header
+                border-top: 1px solid $base_grey
+                border-bottom: 1px solid transparent
+            &__content
+                max-height: 1000px;
+                transition: max-height 0.5s ease-out;
+            &__tick
+                transform: rotate(-180deg);

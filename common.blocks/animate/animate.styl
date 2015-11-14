@@ -1,0 +1,28 @@
+.animate
+    animation-play-state: paused;
+    &_infinite
+      animation-iteration-count: infinite;
+    &_speed
+        &_slow
+          animation-duration: 2s;
+    &_state
+        &_started
+          animation-duration: 1s;
+          animation-fill-mode: both;
+          animation-play-state: running;
+        &_paused
+            animation-play-state: paused;
+        &_stopped
+            animation-name: none!important
+    &_flip
+        &_outx,
+        &_outy
+            &.animate_state_started
+                animation-duration: .75s;
+    &_bounce
+        &_in,
+        &_out
+            &.animate_state_started
+                animation-duration: .75s;
+
+
