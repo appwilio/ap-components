@@ -1,9 +1,9 @@
 .collapse
     &__content
-        position: relative
         overflow: hidden
-        max-height: 0;
-        transition: max-height 0.5s ease-out;
+        height: 0;
+        opacity: 0
+        transition: all 0.5s ease-out;
     &__header
         position: relative
         overflow: hidden
@@ -19,7 +19,8 @@
     &_opened
         .collapse
             &__content
-                max-height: 1000px;
-                transition: max-height 0.5s ease-out;
+                visibility: visible
+                opacity: 1
+                height: auto;
             &__tick
                 transform: rotate(-180deg);
