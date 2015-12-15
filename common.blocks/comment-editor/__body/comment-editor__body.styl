@@ -1,0 +1,13 @@
+.comment-editor__body
+    overflow-y: auto
+    box-sizing: border-box
+    position: relative
+    &:empty::before
+        content: attr(placeholder)
+        color: $base_grey;
+        text-indent: 0;
+
+.comment-editor_focused .comment-editor__body:before,
+.comment-editor__body:focus:before
+    display: none
+
