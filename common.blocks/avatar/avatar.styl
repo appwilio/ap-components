@@ -1,0 +1,32 @@
+.avatar
+    display: flex;
+    align-items: center
+    justify-content: center
+    border-radius: 50%
+    overflow: hidden
+    background: $base_grey_light;
+    &__image
+        color: #fff;
+        width: 100%;
+        min-height: @width;
+        display: inline-block;
+        svg
+            height: auto;
+            width: 100%;
+            fill: currentColor;
+    &_transparent
+        .avatar__link
+            opacity: 0
+    &_size
+        &_w41
+            width: 41px
+            height: @width
+        &_w60
+            width: 60px
+            height: @width
+        &_w150
+            width: 150px
+            height: @width
+        &_w256
+            width: 256px
+            height: @width

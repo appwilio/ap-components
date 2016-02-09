@@ -1,0 +1,7 @@
+({
+    mustDeps: [
+    ],
+    shouldDeps: [
+       'gallery', 'lightbox'
+    ]
+})

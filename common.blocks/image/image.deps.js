@@ -7,7 +7,11 @@
         {
             block: 'image',
             mods: {
-                size: ['thumbnail', 'mini', 'middle', 'large']
+                size: ['thumbnail', 'mini', 'middle', 'large', 'w400'],
+                semantic : 'schema',
+                load: 'lazy',
+                lazy: 'scroll',
+                wrap: true,
             }
         }
     ]

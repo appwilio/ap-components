@@ -1,18 +1,23 @@
 .image_load_lazy
-    opacity: 0;
-    background: #f9f9f9
+    display: block
     overflow: hidden
+    transition: opacity 0.3s
+    position: relative
     &.image_state_loaded
-        transition: opacity 0.3s
         background: none
         opacity: 1
     &.image
-        display: inline-block
         &_state
           &_loading
             .image__spin
               display: block
+              opacity: .5
           &_loaded
             .image__spin
               display: block
               opacity: 0
+
+.ua_js_no
+    .image_load_lazy
+        .image__container
+            display: none

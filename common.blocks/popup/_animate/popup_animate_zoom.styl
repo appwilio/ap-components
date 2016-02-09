@@ -1,0 +1,15 @@
+.popup_theme_vr
+    &.popup_animate_zoom
+        visibility: visible
+        margin: 0
+        animation-duration: .3s;
+        animation-fill-mode: both;
+        animation-play-state: running;
+        &.popup_direction_bottom-center
+            animation-name: zoomOut
+            &.popup_visible
+                animation-name: zoomIn
+        &.popup_direction_top-center
+            animation-name: zoomOut
+            &.popup_visible
+                animation-name: zoomIn

@@ -1,0 +1,21 @@
+.button_progress_elastic
+    transition: all .3s ease
+    position: relative
+    text-overflow: ellipsis
+    &:before
+        transition: all .3s ease
+    .button
+        &__elastic-loader
+            fill: transparent
+    &.button
+        &_process
+            &_started,
+            &_started:before
+                border-radius : 50%
+                .button__text
+                    opacity: 0
+                .button__elastic-loader
+                    opacity: 1
+                    path
+                        stroke: #1ECD97;
+                        stroke-width: 5
