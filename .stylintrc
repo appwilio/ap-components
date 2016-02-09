@@ -1,0 +1,19 @@
+{
+    "blocks": false,
+    "brackets": "always",
+    "colons": "always",
+    "colors": "always",
+    "commaSpace": "always",
+    "commentSpace": "always",
+    "cssLiteral": "never",
+    "depthLimit": false,
+    "duplicates": true,
+    "efficient": "always",
+    "extendPref": false,
+    "globalDupe": false,
+    "indentPref": false,
+    "leadingZero": "never",
+    "maxErrors": false,
+    "maxWarnings": false,
+    "mixed": false
+}

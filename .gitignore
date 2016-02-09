@@ -1,0 +1,27 @@
+libs/
+node_modules/
+.DS_Store
+.idea
+.project
+.svn
+npm-debug.log
+composer.lock
+
+vendor
+tmp/
+
+# bem
+.bem/cache/
+.enb/tmp/
+
+# test results
+/coverage
+/coverage.json
+/gemini-report/
+
+/*.docs
+/*.examples
+/*.specs
+/*.tests
+/*.sets
+/*.tmpl-specs

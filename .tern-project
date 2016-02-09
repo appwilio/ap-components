@@ -1,0 +1,14 @@
+{
+    "libs": [
+        "browser",
+        "ecma5",
+        "ecma6",
+        "jquery"
+    ],
+    "loadEagerly" : [
+        "libs/bem-core/common.blocks/*.js"
+    ],
+    "dontLoad" : [
+        "*.spec.js"
+    ]
+}
