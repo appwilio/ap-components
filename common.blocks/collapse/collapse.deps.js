@@ -7,6 +7,14 @@
     ]
 },
 {
+    tech: 'tmpl-spec.js',
+    shouldDeps: [
+        {
+            mods : { 'has-header' : true }
+        }
+    ]
+},
+{
     tech: 'spec.js',
     mustDeps: [
         {

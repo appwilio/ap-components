@@ -67,7 +67,7 @@ module.exports = function (config) {
                 levels : getLibLevels(platform),
                 sourceLevels : getSpecLevels(platform),
                 jsSuffixes : ['vanilla.js', 'browser.js', 'js'],
-                depsTech : techs.bem.deps,
+                depsTech : techs.bem.depsOld,
                 engine: {
                     name: 'bh',
                     tech: 'enb-bh/techs/bh-bundle',
@@ -76,7 +76,7 @@ module.exports = function (config) {
                         mimic: 'BEMHTML',
                         bhOptions: BH_OPTIONS,
                     }
-                },
+                }
             });
 
             sets.tmplSpecs.configure({
@@ -187,7 +187,7 @@ module.exports = function (config) {
             ]);
 
             nodeConfig.addTargets([
-                '?.bh.php', '_?.css', '_?.js', '?.html'
+                '?.bh.php', '_?.css', '_?.js'
             ]);
         });
 
@@ -195,7 +195,6 @@ module.exports = function (config) {
             config.nodes(nodes, function(nodeConfig) {
                 nodeConfig.addTechs([
                     [techs.borschik, { source : '?.css', target : '_?.css', freeze : true, minify : false }],
-                    //[techs.borschik, { source : '?.ie.css', target : '_?.ie.css', freeze : true, minify : false }],
                     [techs.borschik, { source : '?.js', target : '_?.js', freeze : true, minify : false }]
                 ]);
             });
@@ -205,7 +204,6 @@ module.exports = function (config) {
             config.nodes(nodes, function(nodeConfig) {
                 nodeConfig.addTechs([
                     [techs.borschik, { source : '?.css', target : '_?.css', freeze : true, tech : 'cleancss', minify : true }],
-                    //[techs.borschik, { source : '?.ie.css', target : '_?.ie.css', freeze : true, tech : 'cleancss', minify : true }],
                     [techs.borschik, { source : '?.js', target : '_?.js', freeze : true, minify : true }]
                 ]);
             });
@@ -257,10 +255,6 @@ function getSourceLevels(platform) {
     platformNames.forEach(function(name) {
         levels.push({ path : name + '.blocks', check : true });
     });
-
-    //platformNames.forEach(function(name) {
-        //levels.push({ path : path.join('design', name + '.blocks'), check : true });
-    //});
 
     return levels;
 }
