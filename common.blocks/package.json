@@ -1,0 +1,69 @@
+{
+  "author": "",
+  "name": "ap-components",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/appwilio/ap-components.git"
+  },
+  "engines": {
+    "node": ">=0.10"
+  },
+  "dependencies": {
+    "bem-environ": "~1.4.0",
+    "enb-magic-factory": "^0.5.0"
+  },
+  "devDependencies": {
+    "bem": "~0.10.0",
+    "bem-tools-autoprefixer": "~0.0.3",
+    "borschik": "^1.0.5",
+    "borschik-tech-cleancss": "2.0.1",
+    "bower": "^1.7.0",
+    "bower-npm-install": "~0.5.4",
+    "enb": "0.17.0",
+    "enb-bem-docs": "^0.11.0",
+    "enb-bem-specs": "kompolom/enb-bem-specs#49c24ba80e7fa73688b421668f59f2062e0b7bb0",
+    "enb-bem-techs": "2.0.0",
+    "enb-bem-tmpl-specs": "~0.15.1",
+    "enb-bemxjst": "v2.0.0-rc",
+    "enb-bh": "1.0.0",
+    "enb-bh-php": "0.1.4",
+    "enb-borschik": "2.0.0",
+    "enb-js": "^1.1.0",
+    "enb-magic-factory": "^0.5.0",
+    "enb-magic-platform": "0.5.0",
+    "enb-modules": "0.2.0",
+    "enb-stylus": "2.2.0",
+    "git-hooks": "^1.0.0",
+    "http-server": "^0.7.2",
+    "istanbul": "0.3.5",
+    "jscs": "^1.11.2",
+    "jscs-bem": "^0.2.0",
+    "jshint": "2.6.0",
+    "jshint-groups": "0.7.0",
+    "stylus": "0.53.0",
+    "svgo": "0.5.0",
+    "vow": "~0.4.0",
+    "ym": "^0.1.0"
+  },
+  "scripts": {
+    "start": "magic server",
+    "build-specs": "npm run deps",
+    "build-tmpls": "npm run deps",
+    "build-gemini": "npm run deps && magic make desktop.tests",
+    "build": "npm run build-${TEST_SCOPE:-all}",
+    "test": "npm run build && npm run ${TEST_SCOPE:-test-all}",
+    "test-specs": "magic run specs",
+    "test-tmpls": "magic run tmpl-specs",
+    "lint": "jshint-groups && jscs . && csscomb -vl .",
+    "unit": "npm run test-specs",
+    "coverage": "ISTANBUL_COVERAGE=yes npm run specs && istanbul report text --include coverage.json",
+    "coverage-html": "npm run coverage && istanbul report html --include coverage.json && echo 'navigate to http://0.0.0.0:8080/coverage/index.html' && npm run start",
+    "specs": "npm run test-specs",
+    "tmpls": "npm run test-tmpls",
+    "postinstall": "bower-npm-install",
+    "clean": "rm -rf *.tmpl-specs && rm -rf *.specs && rm -rf .enb/tmp && rm -rf coverage.json && rm -rf coverage/ && rm -rf __coverage*.json",
+    "deps": "bower-npm-install --non-interactive"
+  },
+  "private": true
+}

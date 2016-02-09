@@ -1,0 +1,19 @@
+{
+  "name": "bem-blog-project",
+  "version": "1.0.0",
+  "description": "Blog BEM template",
+  "bugs": "https://github.com/bem/project-stub/issues",
+  "ignore": [
+    ".bem/cache",
+    "node_modules",
+    "libs"
+  ],
+  "dependencies": {
+    "bem-components": "~2.3.0",
+    "bem-social": "https://github.com/bem-incubator/bem-social.git#master",
+    "bem-scrollspy": "^v0.1.5"
+  },
+  "devDependencies": {
+    "bem-pr": "~0.12.0"
+  }
+}
