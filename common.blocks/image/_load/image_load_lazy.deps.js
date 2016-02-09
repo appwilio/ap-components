@@ -7,8 +7,8 @@
       {
         elem: 'container'
       },
-      {
-        elem: 'spin'
-      }
+      //{
+        //elem: 'spin'
+      //}
     ]
 })

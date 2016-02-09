@@ -3,7 +3,8 @@
     shouldDeps: [
         {
             mods: {
-                'toggleable': true
+                'toggleable': true,
+                disabled : true
             }
         },
         {block: 'button', mods: {theme: 'vr'}},

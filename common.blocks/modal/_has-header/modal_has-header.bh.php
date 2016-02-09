@@ -4,7 +4,10 @@ return function ($bh) {
         $ctx->content([
             [
                 'elem' => 'header',
-                'content' => $ctx->param('header')
+                'content' => [
+                    $ctx->param('header'),
+                    $ctx->mod('has-close')? ['elem' => 'close']:''
+                ]
             ],
             [
                 'elem' => 'container',

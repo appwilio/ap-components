@@ -4,18 +4,18 @@ modules.define('image_load_lazy', ['jquery', 'i-bem__dom'], function(provide, $,
 
     provide(BEMDOM.decl({ block : 'image', modName : 'load', modVal : 'lazy' }, {
         onSetMod : {
-            'state' : {
-                'loading' : function(){
-                    this
-                    .findBlockInside('spin')
-                    .setMod('visible');
-                },
-                'loaded' : function(){
-                    this
-                    .findBlockInside('spin')
-                    .delMod('visible');
-                }
-            }
+            //'state' : {
+                //'loading' : function(){
+                    //this
+                    //.findBlockInside('spin')
+                    //.setMod('visible');
+                //},
+                //'loaded' : function(){
+                    //this
+                    //.findBlockInside('spin')
+                    //.delMod('visible');
+                //}
+            //}
         },
         /**
         * load Image
@@ -39,6 +39,7 @@ modules.define('image_load_lazy', ['jquery', 'i-bem__dom'], function(provide, $,
             this.elem('img').attr('src', this.params.url);
             this.setMod('state', 'loaded');
             this.img = undefined;
+            BEMDOM.detach(this.domElem);
 
             /*
             FIXME: trigger recalculating offset to other images.
@@ -46,7 +47,7 @@ modules.define('image_load_lazy', ['jquery', 'i-bem__dom'], function(provide, $,
             So, we need to recalculate blocks postions.
             https://github.com/bem-incubator/bem-scrollspy/blob/master/common.blocks/scrollspy/scrollspy.browser.js#L21
             */
-            BEMDOM.win.resize();
+            //BEMDOM.win.resize();
         }
 
     }));

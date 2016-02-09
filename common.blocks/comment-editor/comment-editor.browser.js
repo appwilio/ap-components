@@ -14,10 +14,44 @@ provide(BEMDOM.decl({block: this.name, baseBlock: 'control'}, /** @lends comment
         js: {
             inited: function() {
                 this.__base.apply(this, arguments);
-                this.bindTo('body', 'keyup', this._onBodyChange);
-                this.bindTo('clear', 'click', this.clear);
+                !this.hasMod('disabled') && this._bindEvents();
             }
+        },
+        'focused' : {
+            'true' : function(){
+                var el = this.elem('body')[0];
+                var len = el.childNodes.length;
+                if(len){
+                    var range = document.createRange();
+                    var sel = window.getSelection();
+                    range.setEndAfter(el.childNodes[len - 1]);
+                    range.collapse();
+                    sel.removeAllRanges();
+                    sel.addRange(range);
+                }
+                this.__base.apply(this, arguments);
+            }
+        },
+        'disabled' : {
+            'true' : function(){
+                this._unbindEvents();
+                this.elem('control').attr('contenteditable', null);
+            },
+            '' : function(){
+                this._bindEvents();
+                this.elem('control').attr('contenteditable', '');
+            },
         }
+    },
+
+    _unbindEvents : function(){
+        this.unbindFrom('body', 'keyup', this._onBodyChange);
+        this.unbindFrom('clear', 'click', this.clear);
+    },
+
+    _bindEvents : function(){
+        this.bindTo('body', 'keyup', this._onBodyChange);
+        this.bindTo('clear', 'click', this.clear);
     },
 
     /**

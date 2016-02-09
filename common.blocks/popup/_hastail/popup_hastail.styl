@@ -1,0 +1,76 @@
+tailWidth = 12px
+.popup_hastail
+    &.popup
+        &_direction
+            &_bottom-left
+                .popup__tail
+                    top: - tailWidth
+                    left: 10%
+            &_bottom-right
+                .popup__tail
+                    top: - tailWidth
+                    right: 10%
+            &_bottom-center
+                .popup__tail
+                    top: - (tailWidth / 2)
+                    left: 50%
+                    margin-left: @top
+                    border-bottom-color: transparent
+                    border-right-color: transparent
+            &_top-left
+                .popup__tail
+                    bottom: - tailWidth
+                    left: 10%
+            &_top-right
+                .popup__tail
+                    bottom: - tailWidth
+                    right: 10%
+            &_top-center
+                .popup__tail
+                    bottom: - (tailWidth / 2)
+                    left: 50%
+                    margin-left: @bottom
+                    border-top-color: transparent
+                    border-left-color: transparent
+            &_right-top
+                .popup__tail
+                    left: - (tailWidth / 2)
+                    margin-top: @left
+                    top: tailWidth
+                    border-top-color: transparent
+                    border-right-color: transparent
+            &_right-bottom
+                .popup__tail
+                    left: - (tailWidth / 2)
+                    margin-bottom: @left
+                    bottom: tailWidth
+                    border-top-color: transparent
+                    border-right-color: transparent
+            &_right-center
+                .popup__tail
+                    left: - (tailWidth / 2)
+                    top: 50%
+                    margin-top: @left
+                    border-top-color: transparent
+                    border-right-color: transparent
+            &_left-top
+                .popup__tail
+                    right: - (tailWidth / 2)
+                    top: tailWidth
+                    margin-top: @right
+                    border-bottom-color: transparent
+                    border-left-color: transparent
+            &_left-bottom
+                .popup__tail
+                    right: - (tailWidth / 2)
+                    bottom: tailWidth
+                    margin-bottom: @right
+                    border-bottom-color: transparent
+                    border-left-color: transparent
+            &_left-center
+                .popup__tail
+                    right: - (tailWidth / 2)
+                    top: 50%
+                    margin-top: @right
+                    border-bottom-color: transparent
+                    border-left-color: transparent

@@ -2,6 +2,15 @@
 
 return function ($bh) {
     $bh->match('image_load_lazy', function ($ctx, $json) {
+
+        if($ctx->mod('semantic')){
+            $ctx->attrs([
+                'itemprop' => false,
+                'itemscope' => true,
+                'itemtype' => 'http://schema.org/ImageObject'
+            ], true);
+        }
+
         $ctx
             ->tag('span')
             ->js(['url' => $json->url])
@@ -18,7 +27,6 @@ return function ($bh) {
                             'title' => $json->title,
                             'width' => $json->width,
                             'height' => $json->height,
-                            'attr' => ['src' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAGXRFWHRDb21tZW50AENyZWF0ZWQgd2l0aCBHSU1QV4EOFwAAAA1JREFUCNdjYGBgYAAAAAUAAV7zKjoAAAAASUVORK5CYII='],
                         ],
                         [
                             'elem' => 'spin',
@@ -26,14 +34,15 @@ return function ($bh) {
                         ],
                     ],
                 ],
-//                [
-//                    'elem' => 'fallback',
-//                    'content' => [
-//                        'block' => 'image',
-//                        'url' => $json->url,
-//                        'alt' => $json->alt,
-//                    ]
-//                ]
+                [
+                    'elem' => 'fallback',
+                    'content' => [
+                        'block' => 'image',
+                        'mods' => ['semantic' => $json->mods->semantic],
+                        'url' => $json->url,
+                        'alt' => $json->alt,
+                    ]
+                ]
             ]);
     });
 };
