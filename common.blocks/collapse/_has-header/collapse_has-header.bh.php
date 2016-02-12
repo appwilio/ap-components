@@ -2,6 +2,7 @@
 
 return function ($bh) {
     $bh->match('collapse_has-header', function ($ctx, $json) {
+        $ctx->applyBase();
         $ctx
             ->content([
                 [
@@ -14,10 +15,7 @@ return function ($bh) {
                         ],
                     ],
                 ],
-                [
-                    'elem' => 'content',
-                    'content' => $json->content
-                ],
+                $ctx->content()
             ], true);
     });
 };

@@ -5,8 +5,8 @@ module.exports = function(bh) {
         .js(true)
         .content([
             {
-                elem: 'content',
-                content: json.content
+                elem : 'content',
+                content : json.content
             }
         ], true);
   });

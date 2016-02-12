@@ -1,21 +1,19 @@
 module.exports = function (bh) {
     bh.match('collapse_has-header', function (ctx, json) {
+        ctx.applyBase();
         ctx
             .content([
                 {
                     'elem' : 'header',
-                    'mix' : {'elem' : 'switcher'},
+                    'mix' : { 'elem' : 'switcher' },
                     'content' : [
-                        json.preview,
+                        ctx.param('preview'),
                         {
                             'elem' : 'switcher'
-                        },
-                    ],
+                        }
+                    ]
                 },
-                {
-                    'elem' : 'content',
-                    'content' : json.content
-                },
+                ctx.content()
             ], true);
     });
 };

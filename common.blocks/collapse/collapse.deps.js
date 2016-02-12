@@ -7,19 +7,19 @@
     ]
 },
 {
-    tech: 'tmpl-spec.js',
-    shouldDeps: [
+    tech : 'tmpl-spec.js',
+    mustDeps : [
         {
             mods : { 'has-header' : true }
         }
     ]
 },
 {
-    tech: 'spec.js',
-    mustDeps: [
+    tech : 'spec.js',
+    mustDeps : [
         {
-            block: 'collapse',
-            tech: 'bemhtml'
+            block : 'collapse',
+            tech : 'bemhtml'
         }
     ]
 }])
