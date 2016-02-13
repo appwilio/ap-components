@@ -1,6 +1,6 @@
 modules.define('image__config', function(provide){
     var sizes = {
-        post : [
+        /* post : [
             { id: 'w91',  width: 91,  height : 91,     title : 'Миниатюра'},
             { id: 'w200', width: 200, height : 130,    title : 'Маленький'},
             { id: 'w370', width: 370, height : 300,    title : 'Средний'},
@@ -16,7 +16,7 @@ modules.define('image__config', function(provide){
             { id: 'w60',  width: 60,  height : 60  , title : 'Миниатюра'},
             { id: 'w150', width: 150, height : 150 , title : 'Миниатюра'},
             { id: 'w256', width: 256, height : 256 , title : 'Миниатюра'},
-        ]
+        ] */
     };
     provide(sizes);
 });
