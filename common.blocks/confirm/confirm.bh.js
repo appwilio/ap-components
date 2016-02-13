@@ -3,4 +3,4 @@ module.exports = function(bh){
         ctx.tParam('style', ctx.mod('style') || 'error');
 		ctx.js(true);
 	});
-}
+};

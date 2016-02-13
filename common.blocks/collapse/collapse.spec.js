@@ -1,11 +1,11 @@
 modules.define(
     'spec',
-    ['collapse', 'i-bem__dom', 'jquery', 'BEMHTML', 'sinon'],
-    function(provide, collapse, BEMDOM, $, BEMHTML, sinon) {
+    ['collapse', 'i-bem__dom', 'jquery', 'BEMHTML'],
+    function(provide, collapse, BEMDOM, $, BEMHTML) {
 
 describe('collapse', function() {
-    var collapse;
-
+    var collapse,
+        sw;
 
     beforeEach(function() {
         collapse = buildCollapse({ block : 'collapse', mods : { 'has-header' : true } });
@@ -14,7 +14,6 @@ describe('collapse', function() {
     afterEach(function() {
         BEMDOM.destruct(collapse.domElem);
     });
-
 
     describe('show/hide', function(){
         it('should toggle opened mod on switcher click', function(){
@@ -51,10 +50,9 @@ describe('collapse', function() {
         });
     });
 
-
 });
 
-function buildCollapse(bemjson){
+function buildCollapse(bemjson) {
     return BEMDOM.init($(BEMHTML.apply(bemjson)).appendTo('body'))
         .bem('collapse');
 }

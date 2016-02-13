@@ -1,12 +1,12 @@
 ({
-    mustDeps: [],
-    shouldDeps: [
+    mustDeps : [],
+    shouldDeps : [
         {
             block : 'posts',
             mods : {
                 type : 'article',
                 layout : ['list', 'grid'],
-                lazy: 'scroll'
+                lazy : 'scroll'
             }
         }
     ]

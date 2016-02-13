@@ -14,8 +14,8 @@ provide(BEMDOM.decl(this.name, /** @lends form.prototype */{
      * @type {FormField[]}
      */
     getFieldByName : function(name) {
-        var needleDom = this.domElem.find('[data-name='+name+']');
-        return this.findBlockOn(needleDom, {block : 'form-field'});
+        var needleDom = this.domElem.find('[data-name=' + name + ']');
+        return this.findBlockOn(needleDom, { block : 'form-field' });
     },
 }));
 

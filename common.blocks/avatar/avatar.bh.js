@@ -4,7 +4,7 @@ module.exports = function (bh) {
         ctx.content([
             {
                 'elem' : 'link',
-                'attrs' : {'href' : json.url},
+                'attrs' : { 'href' : json.url },
                 'content' :
                         {
                             'elem' : 'image',

@@ -4,25 +4,25 @@ modules.define('animate',
     ['i-bem__dom'],
     function (provide, BEMDOM) {
         BEMDOM.decl('animate', {
-            onSetMod: {
-                'js': {
-                    'inited': function () {
+            onSetMod : {
+                'js' : {
+                    'inited' : function () {
                         this.bindTo(this.__self.stopEvents, this.stop);
                     }
                 },
             },
 
-            start: function () {
+            start : function () {
                 this.setMod('state', 'started');
             },
-            stop: function () {
+            stop : function () {
                 this.setMod('state', 'stopped');
             },
-            pause: function () {
+            pause : function () {
                 this.setMod('state', 'paused');
             }
         }, {
-            stopEvents: 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+            stopEvents : 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
         });
         provide(BEMDOM);
 

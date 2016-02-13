@@ -5,17 +5,17 @@ var BEM_TEMPLATE_ENGINE = process.env.BEM_TEMPLATE_ENGINE || 'BH',
     techs = require('./techs'),
     PLATFORMS = {
         'desktop' : ['common'],
-        //'mobile' : ['common', 'touch'],
-        //'tablet' : ['common', 'touch'],
+        // 'mobile' : ['common', 'touch'],
+        // 'tablet' : ['common', 'touch'],
     },
 
     SETS = {
         'desktop' : ['common'],
-        //'touch' : ['common', 'touch']
+        // 'touch' : ['common', 'touch']
     },
     BH_OPTIONS = {
-        jsAttrName: "data-bem",
-        jsAttrScheme: "json"
+        jsAttrName : 'data-bem',
+        jsAttrScheme : 'json'
     };
 
 module.exports = function (config) {
@@ -23,15 +23,15 @@ module.exports = function (config) {
     var platforms = Object.keys(PLATFORMS),
         sets = Object.keys(SETS);
 
-    //config.includeConfig('enb-bem-examples');
-    //config.includeConfig('enb-bem-docs');
+    // config.includeConfig('enb-bem-examples');
+    // config.includeConfig('enb-bem-docs');
     config.includeConfig('enb-bem-specs');
     config.includeConfig('enb-bem-tmpl-specs');
 
     configureSets(sets, {
-        //tests : config.module('enb-bem-examples').createConfigurator('tests'),
-        //examples : config.module('enb-bem-examples').createConfigurator('examples'),
-        //docs : config.module('enb-bem-docs').createConfigurator('docs', 'examples'),
+        // tests : config.module('enb-bem-examples').createConfigurator('tests'),
+        // examples : config.module('enb-bem-examples').createConfigurator('examples'),
+        // docs : config.module('enb-bem-docs').createConfigurator('docs', 'examples'),
         specs : config.module('enb-bem-specs').createConfigurator('specs'),
         tmplSpecs : config.module('enb-bem-tmpl-specs').createConfigurator('tmpl-specs')
     });
@@ -68,13 +68,13 @@ module.exports = function (config) {
                 sourceLevels : getSpecLevels(platform),
                 jsSuffixes : ['vanilla.js', 'browser.js', 'js'],
                 depsTech : techs.bem.depsOld,
-                engine: {
-                    name: 'bh',
-                    tech: 'enb-bh/techs/bh-bundle',
-                    bemjsonTech: 'enb-bh/techs/bemjson-to-html',
-                    options: {
-                        mimic: 'BEMHTML',
-                        bhOptions: BH_OPTIONS,
+                engine : {
+                    name : 'bh',
+                    tech : 'enb-bh/techs/bh-bundle',
+                    bemjsonTech : 'enb-bh/techs/bemjson-to-html',
+                    options : {
+                        mimic : 'BEMHTML',
+                        bhOptions : BH_OPTIONS
                     }
                 }
             });
@@ -84,24 +84,26 @@ module.exports = function (config) {
                 levels : getLibLevels(platform),
                 sourceLevels : getSpecLevels(platform),
                 engines : {
-                    'BH.php': {
-                        tech: 'enb-bh-php/techs/bh-php-test',
-                        async: true,
-                        options: BH_OPTIONS,
+                    'BH.php' : {
+                        tech : 'enb-bh-php/techs/bh-php-test',
+                        async : true,
+                        options : BH_OPTIONS
                     },
-                    'BH.js': {
-                        tech: 'enb-bh/techs/bh-commonjs',
-                        options: {
-                            bhOptions: BH_OPTIONS,
+                    'BH.js' : {
+                        tech : 'enb-bh/techs/bh-commonjs',
+                        options : {
+                            bhOptions : BH_OPTIONS
                         }
-                    },
+                    }
                 },
                 depsTech : techs.bem.depsOld
             });
 
             configureNodes(platform, [platform + '.tests/*/*', platform + '.examples/*/*']);
         });
-    }function configureNodes(platform, nodes) {
+    }
+
+    function configureNodes(platform, nodes) {
         configureLevels(platform, nodes);
 
         config.nodes(nodes, function(nodeConfig) {
@@ -117,16 +119,16 @@ module.exports = function (config) {
             nodeConfig.addTechs([
                 [techs.css.stylus, {
                     target : '?.css',
-                    autoprefixer : { browsers : getBrowsers(platform) },
+                    autoprefixer : { browsers : getBrowsers(platform) }
                 }],
                 [techs.js, {
                     filesTarget : '?.js.files',
-                    includeYM : true,
+                    includeYM : true
                 }],
                 [techs.files.merge, {
                     target : '?.js',
                     sources : ['?.browser.js', '?.browser.bh.js']
-                }],
+                }]
             ]);
 
             // js techs
@@ -178,10 +180,10 @@ module.exports = function (config) {
             // Server template engine
             nodeConfig.addTechs([
                 [techs.engines.bhPhp, {
-                    phpBootstrap: PRODUCTION ? false : "../../vendor/bem/bh/index.php",
-                    devMode: false,// !PRODUCTION,
-                    jsAttrName: "data-bem",
-                    jsAttrScheme: "json"
+                    phpBootstrap : PRODUCTION? false : '../../vendor/bem/bh/index.php',
+                    devMode : false,// !PRODUCTION,
+                    jsAttrName : 'data-bem',
+                    jsAttrScheme : 'json'
                 }],
                 [techs.html.bhPhp]
             ]);
@@ -250,7 +252,6 @@ function getSourceLevels(platform) {
         levels.push({ path : path.join('libs', 'bem-components-php', name + '.blocks'), check : false });
         levels.push({ path : path.join('libs', 'bem-scrollspy', name + '.blocks'), check : false });
     });
-
 
     platformNames.forEach(function(name) {
         levels.push({ path : name + '.blocks', check : true });

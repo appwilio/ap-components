@@ -1,9 +1,9 @@
 module.exports = function (bh) {
-     bh.match("upward", function (ctx, json){
+     bh.match('upward', function (ctx){
          ctx
              .mix({
                  'block' : 'scrollto',
-                 'mods' : {'target' : 'position'},
+                 'mods' : { target : 'position' },
                  'js' : true
              })
              .content({

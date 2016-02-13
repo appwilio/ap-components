@@ -1,4 +1,4 @@
-block('list') (
+block('list')(
     tag()('ul'),
 
     content()(function() {

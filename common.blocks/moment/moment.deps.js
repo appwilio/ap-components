@@ -1,7 +1,7 @@
 ({
-    mustDeps: [
-        {block: 'loader', mods: {type: 'js'}},
-        {elem: 'config'}
+    mustDeps : [
+        { block : 'loader', mods : { type : 'js' } },
+        { elem : 'config' }
     ],
-    shouldDeps: []
+    shouldDeps : []
 })

@@ -1,7 +1,7 @@
 ({
-    mustDeps: [],
-    shouldDeps: [
-        {elem: 'item'},
-        {block: 'dom'}
+    mustDeps : [],
+    shouldDeps : [
+        { elem : 'item' },
+        { block : 'dom' }
     ]
 })

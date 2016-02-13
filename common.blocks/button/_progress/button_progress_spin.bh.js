@@ -1,5 +1,5 @@
 module.exports = function (bh) {
- bh.match("button_progress_spin", function (ctx){
+ bh.match('button_progress_spin', function (ctx){
         ctx.applyBase();
         ctx.content([
             {
@@ -12,11 +12,11 @@ module.exports = function (bh) {
                     'elem' : 'loader-path',
                     'tag' : 'path',
                     'attrs' : {
-                        'd' : 'M40 68c-15.4 0-28-12.6-28-28s12.6-28 28-28 28 12.6 28 28h4c0-17.6-14.4-32-32-32s-32 14.4-32 32 14.4 32 32 32v-4z',
-                    },
+                        'd' : 'M40 68c-15.4 0-28-12.6-28-28s12.6-28 28-28 28 12.6 28 28h4c0-17.6-14.4-32-32-32s-32 14.4-32 32 14.4 32 32 32v-4z'
+                    }
                 }
             },
-            ctx.content(),
+            ctx.content()
         ], true);
  });
 };

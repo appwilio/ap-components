@@ -1,48 +1,46 @@
 ([{
-    mustDeps: [
-    ],
-    shouldDeps: [
+    shouldDeps : [
         {
-            block: 'typehead',
+            block : 'typehead',
         },
         {
-            block: 'functions',
-            elem: 'throttle'
+            block : 'functions',
+            elem : 'throttle'
         },
         {
-            block: 'popup',
-            mods: {
-                theme: 'vr',
-                target: 'anchor',
-                autoclosable: true,
-                visible: true
+            block : 'popup',
+            mods : {
+                theme : 'vr',
+                target : 'anchor',
+                autoclosable : true,
+                visible : true
             }
         },
         {
-            block: 'input',
-            mods: {
-                type: 'text',
-                'has-spin': true
+            block : 'input',
+            mods : {
+                type : 'text',
+                'has-spin' : true
             },
-            elems: [
+            elems : [
                 'hint'
             ]
         },
         {
-            block: 'menu',
+            block : 'menu',
         },
         {
-            block: 'menu-item',
-            mods: {hovered: true}
+            block : 'menu-item',
+            mods : { hovered : true }
         }
     ]
 },
 {
-    tech: 'js',
-    shouldDeps: [
+    tech : 'js',
+    shouldDeps : [
         {
-            block: 'menu-item',
-            tech: 'bemhtml'
+            block : 'menu-item',
+            tech : 'bemhtml'
         }
     ]
 }

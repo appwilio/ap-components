@@ -1,4 +1,4 @@
-modules.define('input',['i-bem__dom','BEMHTML'], function(provide, BEMDOM, BEMHTML, Input) {
+modules.define('input', ['i-bem__dom', 'BEMHTML'], function(provide, BEMDOM, BEMHTML, Input) {
 
 provide(Input.decl({ modName : 'type', modVal : 'datepicker' }, {
 
@@ -21,24 +21,24 @@ provide(Input.decl({ modName : 'type', modVal : 'datepicker' }, {
         }
     },
 
-    _getPopup: function(){
+    _getPopup : function(){
         return this._popup || (this._popup = this.findBlockInside('popup'));
     },
 
-    getCalendar: function(){
+    getCalendar : function(){
         return this._calendar || (this._calendar = this.findBlockInside('calendar'));
     },
 
-    _formatDate: function(date){
+    _formatDate : function(date){
         var day = date.getDate(),
-            month = date.getMonth()+1;
+            month = date.getMonth() + 1;
         return [day < 10? '0' + day : day,
                 month < 10? '0' + month : month,
                 date.getFullYear()
                 ].join('.');
     },
 
-    getVal: function(obj){
+    getVal : function(obj){
         return obj? this.getCalendar().getDate(): this._val;
     }
 

@@ -3,8 +3,8 @@
     ],
     shouldDeps : [
         {
-            block: 'functions',
-            elem: 'date',        },
+            block : 'functions',
+            elem : 'date', },
         {
             block : 'calendar',
             elems : ['content', 'title', 'grid', 'row', 'cell', 'switcher']
@@ -16,12 +16,12 @@
         { block : 'i-bem', tech : 'bemhtml' },
         {
             block : 'calendar',
-            tech : 'bemhtml' 
+            tech : 'bemhtml'
         },
         {
             block : 'calendar',
             elems : ['content', 'title', 'grid', 'row', 'cell', 'switcher'],
-            tech : 'bemhtml' 
+            tech : 'bemhtml'
         }
     ]
 }])

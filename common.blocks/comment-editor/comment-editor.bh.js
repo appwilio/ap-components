@@ -1,5 +1,5 @@
 module.exports = function (bh) {
- bh.match("comment-editor", function (ctx, json){
+ bh.match('comment-editor', function (ctx, json){
      ctx.tParam('val', ctx.content());
      ctx.content([
          {
@@ -7,18 +7,18 @@ module.exports = function (bh) {
          },
          {
              elem : 'body',
-             placeholder: ctx.param('placeholder'),
+             placeholder : ctx.param('placeholder'),
              content : ctx.content()
          },
          {
              elem : 'tools',
-             content: [
+             content : [
                  {
-                     block: 'input',
-                     elem: 'clear',
-                     mix: {
-                         block: json.block,
-                         elem: 'clear'
+                     block : 'input',
+                     elem : 'clear',
+                     mix : {
+                         block : json.block,
+                         elem : 'clear'
                      }
                  }
              ]

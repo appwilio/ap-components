@@ -6,8 +6,8 @@ modules.define('counter',
 
 BEMDOM.decl('counter', {
 
-    onSetMod: {
-        'js': {
+    onSetMod : {
+        'js' : {
             'inited' : function() {
                 this._val = this.params.val || 0;
                 this._action = this.params.action || 'click';
@@ -20,8 +20,8 @@ BEMDOM.decl('counter', {
      * @public
      * @param {Integer} val new value
      */
-    update: function(val) {
-        if (isNaN(parseInt(val, 10))) {
+    update : function(val) {
+        if(isNaN(parseInt(val, 10))) {
             return;
         }
 
@@ -35,19 +35,19 @@ BEMDOM.decl('counter', {
      * @public
      * @returns {Integer} value
      */
-    getVal: function() {
+    getVal : function() {
         return this._val;
     },
 
     /**
      * onclick callback
      */
-    _onButtonClick: function() {
+    _onButtonClick : function() {
         this.emit(this._action);
-    },
+    }
 
 }, { /** @lends counter */
-    live: function () {
+    live : function () {
         this
             .liveInitOnBlockInsideEvent('click', 'button', function(){
                 this._onButtonClick();

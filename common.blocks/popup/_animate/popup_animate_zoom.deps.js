@@ -1,6 +1,6 @@
 ({
-    mustDeps: [
-        {block : 'animate', mods : {
+    mustDeps : [
+        { block : 'animate', mods : {
             zoom : [
                 'in',
                 'out',
@@ -13,5 +13,5 @@
             ]
         } }
     ],
-    shouldDeps: []
+    shouldDeps : []
 })

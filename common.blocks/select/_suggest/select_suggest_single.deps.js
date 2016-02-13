@@ -1,6 +1,6 @@
 ({
-    mustDeps: [],
-    shouldDeps: [
-        {block: 'control-group'}
+    mustDeps : [],
+    shouldDeps : [
+        { block : 'control-group' }
     ]
 })

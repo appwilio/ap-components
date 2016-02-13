@@ -1,9 +1,9 @@
 ({
-    block: 'alert',
-    mods: {
-        'has-icon': true,
-        size: 'l',
-        status: 'error'
+    block : 'alert',
+    mods : {
+        'has-icon' : true,
+        size : 'l',
+        status : 'error'
     },
-    content: 'some text'
+    content : 'some text'
 })

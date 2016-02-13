@@ -16,10 +16,9 @@ module.exports = function(bh) {
                 'Ноябрь',
                 'Декабрь'
             ][n];
-        };
-
-        var date = ctx.tParam('date');
-        var title = getMonthName(date.getMonth()) + ' '  + date.getFullYear();
+        },
+        date = ctx.tParam('date'),
+        title = getMonthName(date.getMonth()) + ' '  + date.getFullYear();
 
         ctx.content(title, true);
     });

@@ -1,4 +1,4 @@
 ({
-    block: 'alert',
-    content: 'some text'
+    block : 'alert',
+    content : 'some text'
 })

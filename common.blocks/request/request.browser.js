@@ -13,23 +13,23 @@ modules.define('request',
    * @returns object promise
    */
   var req = function(method, url, data, headers, format){
-    var deferred = Vow.defer();
-    var isFd = data instanceof FormData;
+    var deferred = Vow.defer(),
+        isFd = data instanceof FormData;
     $.ajax({
-      method: method,
-      url: url,
-      dataType: format || 'json',
-      processData: !isFd,
-      contentType: isFd? false :'application/x-www-form-urlencoded',
-      data: data,
-      headers: headers,
-      success: function(res, status, xhr) {
+      method : method,
+      url : url,
+      dataType : format || 'json',
+      processData : !isFd,
+      contentType : isFd? false :'application/x-www-form-urlencoded',
+      data : data,
+      headers : headers,
+      success : function(res, status, xhr) {
         deferred.resolve(_formatRes(res, status, xhr), this);
       },
-      error: function(err, status, xhr){
+      error : function(err, status, xhr){
         deferred.reject(_formatRes(err, status, xhr), this);
       },
-      context: this
+      context : this
     });
     return deferred.promise();
   };
@@ -40,14 +40,14 @@ modules.define('request',
    *    message: 'string'
    *  }
    */
-  function _formatRes(res, status, xhr){
+  function _formatRes(res, status) {
     var fRes = {};
     if(typeof res === 'object') {
       if(status !== 'success') {
-        res = res.responseJSON ? res.responseJSON : res;
+        res = res.responseJSON? res.responseJSON : res;
       }
 
-      res.message = res.message ? res.message : status;
+      res.message = res.message? res.message : status;
 
        fRes = res;
     } else {

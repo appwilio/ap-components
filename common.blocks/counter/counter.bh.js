@@ -4,7 +4,7 @@ module.exports = function(bh) {
 
         ctx.js({
             'val' : json.count || 0,
-            'action': json.action || false,
+            'action' : json.action || false,
         })
             .mod('action', ctx.param('action'))
             .tag('span')
@@ -21,7 +21,7 @@ module.exports = function(bh) {
                 'content' : [
                     {
                         'block' : 'icon',
-                        'mods' : {'font' : true, 'type' : icon},
+                        'mods' : { 'font' : true, 'type' : icon },
                     },
                     {
                         'elem' : 'text',

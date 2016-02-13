@@ -1,5 +1,5 @@
 ({
-    block: 'collapse',
-    preview: 'Collapse header',
-    content: 'Collapse content'
+    block : 'collapse',
+    preview : 'Collapse header',
+    content : 'Collapse content'
 })

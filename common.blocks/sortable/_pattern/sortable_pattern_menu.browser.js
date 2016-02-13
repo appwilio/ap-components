@@ -1,9 +1,9 @@
 modules.define('sortable', ['i-bem__dom', 'jquery'], function(provide, BEMDOM, $) {
 
-provide(BEMDOM.decl({block: 'sortable', modName : 'pattern', modVal : 'menu' }, {
-    onSetMod: {
-        js: {
-            inited: function(){
+provide(BEMDOM.decl({ block : 'sortable', modName : 'pattern', modVal : 'menu' }, {
+    onSetMod : {
+        js : {
+            inited : function(){
                 this.__base.apply(this, arguments);
                 this.on('sort', this.resetDistance);
             }
@@ -19,15 +19,15 @@ provide(BEMDOM.decl({block: 'sortable', modName : 'pattern', modVal : 'menu' }, 
         var w = this._dragingElem.width(),
             h = this._dragingElem.height();
 
-        this.elem('placeholder').css({width: w, height : h});
+        this.elem('placeholder').css({ width : w, height : h });
         this._movePlaceholder(this._dragingElem.offset());
     },
 
-    _movePlaceholder: function(offset){
+    _movePlaceholder : function(offset){
         this.elem('placeholder').css(offset);
     },
 
-    _sortInsert: function(source){
+    _sortInsert : function(source){
         BEMDOM.replace(this.elem('placeholder'), source);
     },
 
@@ -40,7 +40,7 @@ provide(BEMDOM.decl({block: 'sortable', modName : 'pattern', modVal : 'menu' }, 
         var X = e.originalEvent.screenX,
             Y = e.originalEvent.screenY;
 
-        //Object not moved?
+        // Object not moved?
         if(this._dragPos.x === X && this._dragPos.y === Y){
             return;
         }
@@ -48,40 +48,38 @@ provide(BEMDOM.decl({block: 'sortable', modName : 'pattern', modVal : 'menu' }, 
         this.emit('over', this._lastMoveDir);
 
         this._moveElem(this.elem('placeholder'), this._getRealTarget(e));
-        //this.resetDistance(X, Y);
         var isPlaceholder = this.elem('placeholder').is($(e.target));
-        if (!isPlaceholder) {
+        if(!isPlaceholder) {
             this.elem('placeholder').css('position', 'static');
         }
 
     },
 
-    resetDistance: function(){
-        var X = this._dragPos.x;
-        var Y = this._dragPos.y;
+    resetDistance : function(){
+        var X = this._dragPos.x,
+            Y = this._dragPos.y;
         this._startPos = { x : X, y : Y };
     },
 
-    getDistance: function(){
+    getDistance : function(){
         return {
             x : Math.abs(this._dragPos.x - this._startPos.x),
             y : Math.abs(this._dragPos.y - this._startPos.y)
         };
     },
 
-    _onDragStart: function(e){
+    _onDragStart : function(e){
         this._initDrag(e);
         this.resetDistance(e.originalEvent.screenX, e.originalEvent.screenY);
         this._buildPlaceholder();
-        //this._dragingElem.detach();
         this.emit('start', this._dragingElem);
     },
 
-    getSiblings: function(block, placeholder){
+    getSiblings : function(block, placeholder){
         if(placeholder) {
             return {
                 prev : this.findBlockOn(this.elem('placeholder').prev(), block),
-                next : this.findBlockOn(this.elem('placeholder').next(), block),
+                next : this.findBlockOn(this.elem('placeholder').next(), block)
             };
         }
         return this.__base.apply(this, arguments);
@@ -91,10 +89,10 @@ provide(BEMDOM.decl({block: 'sortable', modName : 'pattern', modVal : 'menu' }, 
      * @callback
      * @emits end
      */
-    _onDragEnd : function(e){
+    _onDragEnd : function(){
         this.__base.apply(this, arguments);
         this.nextTick(function(){BEMDOM.destruct(this.findElem('placeholder'));});
-    },
+    }
 
 }));
 

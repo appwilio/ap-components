@@ -1,6 +1,6 @@
 ({
-    mustDeps: [],
-    shouldDeps: [
-        {block: 'functions', elem: 'timeout'}
+    mustDeps : [],
+    shouldDeps : [
+        { block : 'functions', elem : 'timeout' }
     ]
 })

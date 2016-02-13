@@ -1,8 +1,8 @@
 module.exports = function (bh) {
- bh.match("alert_dismissible", function (ctx){
+ bh.match('alert_dismissible', function (ctx){
      ctx.content([
          {
-             'elem' : 'dismiss',
+             'elem' : 'dismiss'
          },
          ctx.content()
      ], true);

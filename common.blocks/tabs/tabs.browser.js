@@ -33,7 +33,7 @@ provide(BEMDOM.decl(this.name,  /** @lends tabs.prototype */{
      * @returns {tabs} this
      */
     changeTab : function(index) {
--       this._radioGroup.setVal(index);
+-this._radioGroup.setVal(index);
         return this;
     }
 },  /** @lends tabs */{

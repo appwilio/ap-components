@@ -10,7 +10,7 @@ provide(Textarea.decl({ block : this.name, modName : 'height', modVal : 'auto' }
         });
     }
 }, {
-    live: function(){
+    live : function(){
         this.liveBindTo('control', 'keydown change focusin cut paste', this.prototype._updateHeight);
         this.liveBindTo('control', 'cut', this.prototype._updateHeight);
         this.liveBindTo('control', 'paste', this.prototype._updateHeight);
@@ -20,4 +20,4 @@ provide(Textarea.decl({ block : this.name, modName : 'height', modVal : 'auto' }
     }
 }));
 
-})
+});

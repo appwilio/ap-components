@@ -1,18 +1,18 @@
 ({
-    mustDeps: [
+    mustDeps : [
         {
-            block: 'control-group'
+            block : 'control-group'
         }
     ],
-    shouldDeps: [
+    shouldDeps : [
         {
-            block: 'inpput',
-            mods: {
-                type: 'datepicker',
+            block : 'inpput',
+            mods : {
+                type : 'datepicker',
             }
         },
         {
-            block: 'select'
+            block : 'select'
         }
     ]
 })

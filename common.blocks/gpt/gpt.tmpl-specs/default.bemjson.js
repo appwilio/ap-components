@@ -1,4 +1,4 @@
 ({
     block : 'gpt',
-    slot: 'sidebar'
+    slot : 'sidebar'
 });

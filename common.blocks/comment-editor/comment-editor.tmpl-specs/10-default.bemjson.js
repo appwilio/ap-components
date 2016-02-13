@@ -1,5 +1,5 @@
 ({
-    block: 'comment-editor',
-    mods: {theme: 'vr'},
-    content: 'abc'
+    block : 'comment-editor',
+    mods : { theme : 'vr' },
+    content : 'abc'
 })

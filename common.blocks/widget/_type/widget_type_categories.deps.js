@@ -1,7 +1,7 @@
 ({
-    mustDeps: [],
-    shouldDeps: [
-        { mods : { colored : true }},
+    mustDeps : [],
+    shouldDeps : [
+        { mods : { colored : true } },
         {
             block : 'categories'
         }

@@ -8,9 +8,8 @@ modules.define(
     ['loader_type_js', 'dfp__config'],
     function(provide, loader, cfg) {
 
-/* global jQuery */
-
-function doProvide(preserveGlobal) {
+/* global googletag */
+function doProvide() {
     /**
      * @exports
      * @type Function
@@ -24,6 +23,6 @@ function doProvide(preserveGlobal) {
 }
 
 typeof googletag !== 'undefined'?
-    doProvide(true) :
+    doProvide() :
     loader('//www.googletagservices.com/tag/js/gpt.js', doProvide);
 });

@@ -3,19 +3,19 @@
 modules.define('link',
                ['events__channels'],
                function(provide, Channel, Link) {
-Link.decl({block: 'link', modName: 'action', modVal: 'event'},{
+Link.decl({ block : 'link', modName : 'action', modVal : 'event' }, {
     onSetMod : {
         'js' : {
-            'inited': function(){
+            'inited' : function(){
                 this.__base.apply(this, arguments);
                 this._event = this.params.event;
             }
         }
     },
-    _onPointerClick : function(e){
+    _onPointerClick : function(){
         this.__base.apply(this, arguments);
 
-        if (this.hasMod('disabled') || !this._event) {
+        if(this.hasMod('disabled') || !this._event) {
             return;
         }
 

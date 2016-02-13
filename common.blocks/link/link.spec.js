@@ -13,7 +13,7 @@ describe('link', function() {
     describe('link_action_event', function() {
 
         it('should emit custom event', function() {
-            var bemjson = {block: 'link', mods: {action: 'event'}, url: '/', js: {event: 'customevent'}};
+            var bemjson = { block : 'link', mods : { action : 'event' }, url : '/', js : { event : 'customevent' } };
             link = BEMDOM.init($(BEMHTML.apply(bemjson)).appendTo('body')).bem('link');
 
             var spy = sinon.spy(),
@@ -25,7 +25,7 @@ describe('link', function() {
         });
 
         it('should not emit custom event on channel', function() {
-            var bemjson = {block: 'link', mods: {action: 'event'}, url: '/', js: {event: {e : 'customevent', channel: 'ch'}}};
+            var bemjson = { block : 'link', mods : { action : 'event' }, url : '/', js : { event : { e : 'customevent', channel : 'ch' } } };
             link = BEMDOM.init($(BEMHTML.apply(bemjson)).appendTo('body')).bem('link');
 
             var spy = sinon.spy(),

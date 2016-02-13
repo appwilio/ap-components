@@ -33,7 +33,8 @@ module.exports = {
                 '**/*.bh.js',
                 '**/*.spec.js',
                 '**/*.deps.js',
-                '**/*.bemjson.js'
+                '**/*.bemjson.js',
+                'common.blocks/fancybox/**'
             ]
         },
 
@@ -81,7 +82,8 @@ module.exports = {
 
         bhjs : {
             options : {
-                node : true
+                node : true,
+                maxlen : 250
             },
             includes : [
                 '*.blocks/**/*.bh.js',
@@ -94,18 +96,6 @@ module.exports = {
                 asi : true
             },
             includes : ['*.pages/**/*.bemjson.js']
-        },
-
-        //nodejs : {
-            //options : {
-                //node : true
-            //},
-            //includes : ['**/.bem/**/*.js'],
-            //excludes : [
-                //'.bem/cache/**',
-                //'libs/**',
-                //'node_modules/**'
-            //]
-        //}
+        }
     }
 };

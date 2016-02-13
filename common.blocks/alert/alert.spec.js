@@ -1,8 +1,8 @@
 /* global modules:false */
 
 modules.define('spec',
-               ['alert', 'i-bem__dom', 'jquery', 'BEMHTML', 'sinon'],
-               function(provide, Alert, BEMDOM, $, BEMHTML, sinon) {
+               ['alert', 'i-bem__dom', 'jquery', 'BEMHTML'],
+               function(provide, Alert, BEMDOM, $, BEMHTML) {
 
 describe('alert', function(){
     var alert;
@@ -10,10 +10,10 @@ describe('alert', function(){
     beforeEach(function() {
         alert = BEMDOM.init($(BEMHTML.apply({
             block : 'alert',
-            mods: {
-                dismissible: true
+            mods : {
+                dismissible : true
             },
-            content: 'some text'
+            content : 'some text'
         })).appendTo('body'))
                     .bem('alert');
     });
@@ -21,7 +21,6 @@ describe('alert', function(){
     afterEach(function() {
         BEMDOM.destruct(alert.domElem);
     });
-
 
     it('Should hide by dismiss method', function(){
         alert.dismiss();
@@ -43,7 +42,6 @@ describe('alert', function(){
         alert.elem('dismiss').trigger('click');
         alert.hasMod('hidden').should.be.true;
     });
-
 
 });
 provide();

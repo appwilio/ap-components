@@ -3,9 +3,9 @@
 modules.define('counter',
                ['i-bem__dom'], function(provide, BEMDOM) {
 
-BEMDOM.decl({block: 'counter', modName: 'toggleable', modVal: true },{
+BEMDOM.decl({ block : 'counter', modName : 'toggleable', modVal : true }, {
 
-    onSetMod: {
+    onSetMod : {
         'toggled' : function(modName, modVal) {
             this
                 .findBlockInside('button')
@@ -19,7 +19,7 @@ BEMDOM.decl({block: 'counter', modName: 'toggleable', modVal: true },{
      * @param {Integer} val new value
      * @param {Boolean} state toggled
      */
-    update: function(val, state) {
+    update : function(val, state) {
         this.setMod('toggled', !!state);
         this.__base.apply(this, arguments);
     }
