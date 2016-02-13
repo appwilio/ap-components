@@ -6,6 +6,14 @@ return function ($bh) {
             ->js(true)
             ->content([
                 [
+                    'elem' => 'header',
+                    'mix' => [ 'elem' => 'switcher' ],
+                    'content' => [
+                        $ctx->param('preview'),
+                        [ 'elem' => 'switcher' ]
+                    ]
+                ],
+                [
                     'elem' => 'content',
                     'content' => $json->content
                 ],

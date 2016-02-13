@@ -8,7 +8,7 @@ describe('collapse', function() {
 
 
     beforeEach(function() {
-        collapse = buildCollapse({block: 'collapse'});
+        collapse = buildCollapse({ block : 'collapse', mods : { 'has-header' : true } });
     });
 
     afterEach(function() {
