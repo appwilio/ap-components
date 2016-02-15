@@ -14,7 +14,8 @@
         "*.pages/**",
         "**/*.i18n/**",
         "libs/**",
-        "node_modules/**"
+        "node_modules/**",
+        "common.blocks/fancybox/**"
     ],
     "fileExtensions": [".js", ".bemtree", ".bemhtml"]
 }

@@ -1,11 +1,11 @@
 ([{
-    mustDeps: [
-        {block: 'i-bem', elem: 'dom'},
-        {block: 'control'}
+    mustDeps : [
+        { block : 'i-bem', elem : 'dom' },
+        { block : 'control' }
     ],
-    shouldDeps: [
+    shouldDeps : [
         {
-            elems: [
+            elems : [
                 'body',
                 'control',
                 'tools'
@@ -14,11 +14,11 @@
     ]
 },
 {
-    tech: 'spec.js',
-    mustDeps: [
+    tech : 'spec.js',
+    mustDeps : [
         {
-            block: 'comment-editor',
-            tech: 'bemhtml'
+            block : 'comment-editor',
+            tech : 'bemhtml'
         }
     ]
 }])

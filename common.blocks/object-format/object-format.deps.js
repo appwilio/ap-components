@@ -1,18 +1,18 @@
 ([{
-    mustDeps: [
-        {block: 'i-bem'},
+    mustDeps : [
+        { block : 'i-bem' },
     ],
-    shouldDeps: [
+    shouldDeps : [
         {
-            block: 'object-format',
-            mods: {author: true}
+            block : 'object-format',
+            mods : { author : true }
         }
     ]
 },
 {
     tech : 'spec.js',
-    mustDeps: [
+    mustDeps : [
     ],
-    shouldDeps: [
+    shouldDeps : [
     ]
 }])

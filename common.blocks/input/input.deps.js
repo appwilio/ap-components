@@ -1,15 +1,15 @@
 ({
-    tech: 'tmpl-spec.js',
-    mustDeps: [
+    tech : 'tmpl-spec.js',
+    mustDeps : [
         {
-            block: 'input',
-            mods: {
-                type: [
+            block : 'input',
+            mods : {
+                type : [
                     'datepicker',
                     'datetime',
                 ]
             }
         }
     ],
-    shouldDeps: []
+    shouldDeps : []
 })

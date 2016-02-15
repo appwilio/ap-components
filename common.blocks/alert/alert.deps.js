@@ -1,50 +1,50 @@
 ([
     {
-        mustDeps: [
+        mustDeps : [
             {
-                block: 'i-bem',
-                elem: 'dom'
+                block : 'i-bem',
+                elem : 'dom'
             },
         ]
     },
     {
-        tech: 'tmpl-spec.js',
-        shouldDeps: [
+        tech : 'tmpl-spec.js',
+        shouldDeps : [
             {
-                block: 'alert',
-                mods: {
-                    dismissible: true,
-                    dismiss: 'auto',
-                    'has-icon': true
+                block : 'alert',
+                mods : {
+                    dismissible : true,
+                    dismiss : 'auto',
+                    'has-icon' : true
                 }
             }
         ]
     },
     {
-        tech: 'spec.js',
-        mustDeps: [
+        tech : 'spec.js',
+        mustDeps : [
             {
-                block: 'alert',
-                mods: {
-                    dismissible: true,
+                block : 'alert',
+                mods : {
+                    dismissible : true,
                 },
-                tech: 'js'
+                tech : 'js'
             },
             {
-                block: 'alert',
-                mods: {
-                    dismissible: true,
-                    dismiss: 'auto'
+                block : 'alert',
+                mods : {
+                    dismissible : true,
+                    dismiss : 'auto'
                 },
-                tech: 'bemhtml'
+                tech : 'bemhtml'
             },
             {
-                block: 'alert',
-                elem: 'dismiss',
-                tech: 'bemhtml'
+                block : 'alert',
+                elem : 'dismiss',
+                tech : 'bemhtml'
             },
             {
-                block: 'jquery'
+                block : 'jquery'
             }
         ]
     }

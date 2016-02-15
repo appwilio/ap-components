@@ -1,7 +1,7 @@
 ([{
-    mustDeps: [],
-    shouldDeps: [
-        {elem : 'elastic-loader'},
+    mustDeps : [],
+    shouldDeps : [
+        { elem : 'elastic-loader' },
         {
             block : 'functions',
             elem : 'timeout'
@@ -12,30 +12,30 @@
             }
         },
         {
-            block: 'popup',
+            block : 'popup',
             mods : {
                 theme : 'vr',
-                target: 'anchor',
+                target : 'anchor',
                 autoclosable : true,
-                hastail: true,
-                padding: 'l',
-                animate: 'zoom'
+                hastail : true,
+                padding : 'l',
+                animate : 'zoom'
             }
         }
     ]
 },
 {
     tech : 'js',
-    shouldDeps: [
+    shouldDeps : [
         {
-            block: 'popup',
+            block : 'popup',
             mods : {
                 theme : 'vr',
-                target: 'anchor',
+                target : 'anchor',
                 autoclosable : true,
-                hastail: true
+                hastail : true
             },
-            tech: 'bemhtml'
+            tech : 'bemhtml'
         }
     ]
 }])

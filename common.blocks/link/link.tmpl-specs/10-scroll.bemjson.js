@@ -1,6 +1,6 @@
 ({
-    block: 'link',
-    mods: {action: 'scroll'},
-    url: '#anchor',
-    content: 'abc'
+    block : 'link',
+    mods : { action : 'scroll' },
+    url : '#anchor',
+    content : 'abc'
 })

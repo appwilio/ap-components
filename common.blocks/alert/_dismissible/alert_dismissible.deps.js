@@ -1,6 +1,6 @@
 ({
-    mustDeps: [],
-    shouldDeps: [
-        {elem: 'dismiss'}
+    mustDeps : [],
+    shouldDeps : [
+        { elem : 'dismiss' }
     ]
 })

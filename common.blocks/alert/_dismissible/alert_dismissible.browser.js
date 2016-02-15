@@ -3,17 +3,17 @@
 modules.define('alert',
                ['i-bem__dom'], function(provide, BEMDOM) {
 
-BEMDOM.decl({block: 'alert', modName: 'dismissible', modVal: true},{
-    onSetMod: {
-        'js': {
-            'inited': function(){
+BEMDOM.decl({ block : 'alert', modName : 'dismissible', modVal : true }, {
+    onSetMod : {
+        'js' : {
+            'inited' : function(){
                 this.__base.apply(this, arguments);
             }
         }
     },
 
-},{
-    live: function(){
+}, {
+    live : function(){
         this.__base.apply(this, arguments);
         this.liveBindTo('dismiss', 'click', function(){
             this.delMod('hovered');

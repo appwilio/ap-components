@@ -1,9 +1,8 @@
 ({
-    mustDeps: [],
-    shouldDeps: [
+    shouldDeps : [
         {
-            block: 'events',
-            elem: 'channels'
+            block : 'events',
+            elem : 'channels'
         }
     ]
 })

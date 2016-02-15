@@ -1,7 +1,7 @@
 ({
-    block: 'alert',
-    mods: {
-        dismissible: true
+    block : 'alert',
+    mods : {
+        dismissible : true
     },
-    content: 'some text'
+    content : 'some text'
 })

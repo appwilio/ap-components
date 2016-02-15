@@ -1,8 +1,8 @@
 ({
-    mustDeps: [],
-    shouldDeps: [
-        {block: 'scrollto', mods: {
-            target: 'anchor'
-        }}
+    shouldDeps : [
+        {
+            block : 'scrollto',
+            mods : { target : 'anchor' }
+        }
     ]
 })

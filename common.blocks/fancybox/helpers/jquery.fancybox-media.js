@@ -67,19 +67,19 @@
 
 	//Shortcut for fancyBox object
 	var F = $.fancybox,
-		format = function( url, rez, params ) {
+		format = function(url, rez, params) {
 			params = params || '';
 
-			if ( $.type( params ) === "object" ) {
+			if($.type(params) === "object") {
 				params = $.param(params, true);
 			}
 
 			$.each(rez, function(key, value) {
-				url = url.replace( '$' + key, value || '' );
+				url = url.replace('$' + key, value || '');
 			});
 
-			if (params.length) {
-				url += ( url.indexOf('?') > 0 ? '&' : '?' ) + params;
+			if(params.length) {
+				url += (url.indexOf('?') > 0? '&' : '?') + params;
 			}
 
 			return url;
@@ -121,8 +121,8 @@
 					autoPlay : 'yes'
 				},
 				type : 'swf',
-				url  : function( rez, params, obj ) {
-					obj.swf.flashVars = 'playerVars=' + $.param( params, true );
+				url  : function(rez, params, obj) {
+					obj.swf.flashVars = 'playerVars=' + $.param(params, true);
 
 					return '//www.metacafe.com/fplayer/' + rez[1] + '/.swf';
 				}
@@ -157,8 +157,8 @@
 			google_maps : {
 				matcher : /maps\.google\.([a-z]{2,3}(\.[a-z]{2})?)\/(\?ll=|maps\?)(.*)/i,
 				type : 'iframe',
-				url  : function( rez ) {
-					return '//maps.google.' + rez[1] + '/' + rez[3] + '' + rez[4] + '&output=' + (rez[4].indexOf('layer=c') > 0 ? 'svembed' : 'embed');
+				url  : function(rez) {
+					return '//maps.google.' + rez[1] + '/' + rez[3] + '' + rez[4] + '&output=' + (rez[4].indexOf('layer=c') > 0? 'svembed' : 'embed');
 				}
 			}
 		},
@@ -171,23 +171,23 @@
 				rez,
 				params;
 
-			for (what in opts) {
-				if (opts.hasOwnProperty(what)) {
+			for(what in opts) {
+				if(opts.hasOwnProperty(what)) {
 					item = opts[ what ];
-					rez  = url.match( item.matcher );
+					rez  = url.match(item.matcher);
 
-					if (rez) {
+					if(rez) {
 						type   = item.type;
-						params = $.extend(true, {}, item.params, obj[ what ] || ($.isPlainObject(opts[ what ]) ? opts[ what ].params : null));
+						params = $.extend(true, {}, item.params, obj[ what ] || ($.isPlainObject(opts[ what ])? opts[ what ].params : null));
 
-						url = $.type( item.url ) === "function" ? item.url.call( this, rez, params, obj ) : format( item.url, rez, params );
+						url = $.type(item.url) === "function"? item.url.call(this, rez, params, obj) : format(item.url, rez, params);
 
 						break;
 					}
 				}
 			}
 
-			if (type) {
+			if(type) {
 				obj.href = url;
 				obj.type = type;
 

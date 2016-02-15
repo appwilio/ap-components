@@ -1,14 +1,14 @@
 ([
 {
     mustDeps : [
-    	{ block : 'i-bem', elem : 'dom' },
-    	{ block : 'vow' },
+        { block : 'i-bem', elem : 'dom' },
+        { block : 'vow' },
     ]
 },
 {
 	tech : 'tmpl-spec.js',
     mustDeps : [
-    	{
+        {
             block : 'confirm',
             mods : {
                 proof : 'word',
@@ -20,7 +20,7 @@
 {
 	tech : 'spec.js',
     mustDeps : [
-    	{ block : 'confirm', tech : 'bemhtml' }
+        { block : 'confirm', tech : 'bemhtml' }
     ]
 },
 ])

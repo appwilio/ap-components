@@ -1,4 +1,4 @@
 ({
-    mustDeps: [],
-    shouldDeps: [{block: 'image', elem : 'config'}]
+    mustDeps : [],
+    shouldDeps : [{ block : 'image', elem : 'config' }]
 })

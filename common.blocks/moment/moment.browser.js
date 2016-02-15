@@ -1,11 +1,8 @@
 modules.define('moment', ['loader_type_js', 'moment__config'], function(provide, loader, cfg) {
 
-
 function doProvide() {
-    /**
-     * @exports
-     * @type Function
-     */
+   /* globals moment: true */
+
     moment.locale(cfg.locale);
     provide(moment);
 }
@@ -16,4 +13,4 @@ typeof moment !== 'undefined'?
         loader(cfg.localeUrl, doProvide);
     });
 
-})
+});

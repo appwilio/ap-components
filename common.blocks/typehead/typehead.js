@@ -7,7 +7,7 @@ BEM.decl('typehead', {
      * Variants source
      * @protected
      */
-    _source: null,
+    _source : null,
 
     /**
      * Set data source
@@ -15,7 +15,7 @@ BEM.decl('typehead', {
      * @override
      * @param src Any data-source
      */
-    setSource: function(src){
+    setSource : function(src){
         this._source = src;
     },
 
@@ -25,9 +25,9 @@ BEM.decl('typehead', {
      * @param  {String} val value to autocomplete
      * @returns {Object} Promise
      */
-    search: function(val){
-        var defer = Vow.defer();
-        var promise = defer.promise();
+    search : function(val){
+        var defer = Vow.defer(),
+            promise = defer.promise();
 
         this._getVariants(val).then(
             function(variants){
@@ -48,7 +48,7 @@ BEM.decl('typehead', {
      * @override
      * @returns {Object} Promise
      */
-    _getVariants: function(val){
+    _getVariants : function(){
         throw Error('_getVariants is not implemented.');
     }
 });

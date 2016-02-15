@@ -1,8 +1,8 @@
 ({
-    block: 'collapse',
-    mods: {
-        opened: true
+    block : 'collapse',
+    mods : {
+        opened : true
     },
-    preview: 'Collapse header',
-    content: 'Collapse content'
+    preview : 'Collapse header',
+    content : 'Collapse content'
 })

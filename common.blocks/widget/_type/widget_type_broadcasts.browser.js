@@ -1,9 +1,9 @@
 modules.define('widget', ['i-bem__dom', 'BEMHTML', 'posts-api'], function(provide, BEMDOM, BEMHTML, postsApi) {
 
-provide(BEMDOM.decl({block : this.name, modName : 'type', modVal : 'broadcasts'}, {
-    onSetMod: {
-        js: {
-            inited: function() {
+provide(BEMDOM.decl({ block : this.name, modName : 'type', modVal : 'broadcasts' }, {
+    onSetMod : {
+        js : {
+            inited : function() {
                 this._tabs = this.findBlockInside('tabs');
                 this._tabsLoaded = [0];
             }
@@ -18,8 +18,8 @@ provide(BEMDOM.decl({block : this.name, modName : 'type', modVal : 'broadcasts'}
     },
 
     _loadPosts : function(tab){
-        filters = {};
-        switch (tab) {
+        var filters = {};
+        switch(tab) {
             case 1:
                 filters.order = 'top_viewed_per_day';
                 break;
@@ -61,4 +61,4 @@ provide(BEMDOM.decl({block : this.name, modName : 'type', modVal : 'broadcasts'}
         );
     },
 }));
-})
+});

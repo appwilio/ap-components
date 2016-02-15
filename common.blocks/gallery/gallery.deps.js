@@ -1,4 +1,4 @@
 ({
-    mustDeps: ['fancybox'],
-    shouldDeps: []
+    mustDeps : ['fancybox'],
+    shouldDeps : []
 })

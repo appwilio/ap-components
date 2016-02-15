@@ -2,18 +2,18 @@
     mustDeps : [
         { block : 'i-bem', elems : ['dom'] }
     ],
-    shouldDeps: [
+    shouldDeps : [
         {
-            block: 'functions',
-            elem: 'throttle'
+            block : 'functions',
+            elem : 'throttle'
         },
         {
-            block: 'scrollto',
+            block : 'scrollto',
         },
         {
-            block: 'scrollto',
-            mods: {
-                target: 'position'
+            block : 'scrollto',
+            mods : {
+                target : 'position'
             }
         }
     ]

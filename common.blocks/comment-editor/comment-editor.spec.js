@@ -8,7 +8,7 @@ describe('comment-editor', function(){
 
     beforeEach(function() {
         editor = build({
-            block: 'comment-editor',
+            block : 'comment-editor',
         });
     });
 
@@ -50,7 +50,7 @@ describe('comment-editor', function(){
     });
 });
 
-function build(bemjson){
+function build(bemjson) {
     return BEMDOM.init($(BEMHTML.apply(bemjson)).appendTo('body'))
         .bem('comment-editor');
 }

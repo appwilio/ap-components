@@ -24,14 +24,14 @@
 			width    : 50,       // thumbnail width
 			height   : 50,       // thumbnail height
 			position : 'bottom', // 'top' or 'bottom'
-			source   : function ( item ) {  // function to obtain the URL of the thumbnail image
+			source   : function (item) {  // function to obtain the URL of the thumbnail image
 				var href;
 
-				if (item.element) {
+				if(item.element) {
 					href = $(item.element).find('img').attr('src');
 				}
 
-				if (!href && item.type === 'image' && item.href) {
+				if(!href && item.type === 'image' && item.href) {
 					href = item.href;
 				}
 
@@ -43,7 +43,7 @@
 		list  : null,
 		width : 0,
 
-		init: function (opts, obj) {
+		init : function (opts, obj) {
 			var that = this,
 				list,
 				thumbWidth  = opts.width,
@@ -53,7 +53,7 @@
 			//Build list structure
 			list = '';
 
-			for (var n = 0; n < obj.group.length; n++) {
+			for(var n = 0; n < obj.group.length; n++) {
 				list += '<li><a style="width:' + thumbWidth + 'px;height:' + thumbHeight + 'px;" href="javascript:jQuery.fancybox.jumpto(' + n + ');"></a></li>';
 			}
 
@@ -62,9 +62,9 @@
 
 			//Load each thumbnail
 			$.each(obj.group, function (i) {
-				var href = thumbSource( obj.group[ i ] );
+				var href = thumbSource(obj.group[ i ]);
 
-				if (!href) {
+				if(!href) {
 					return;
 				}
 
@@ -73,7 +73,7 @@
 						height = this.height,
 						widthRatio, heightRatio, parent;
 
-					if (!that.list || !width || !height) {
+					if(!that.list || !width || !height) {
 						return;
 					}
 
@@ -83,8 +83,8 @@
 
 					parent = that.list.children().eq(i).find('a');
 
-					if (widthRatio >= 1 && heightRatio >= 1) {
-						if (widthRatio > heightRatio) {
+					if(widthRatio >= 1 && heightRatio >= 1) {
+						if(widthRatio > heightRatio) {
 							width  = Math.floor(width / heightRatio);
 							height = thumbHeight;
 
@@ -114,21 +114,21 @@
 			this.list.width(this.width * (obj.group.length + 1)).css('left', Math.floor($(window).width() * 0.5 - (obj.index * this.width + this.width * 0.5)));
 		},
 
-		beforeLoad: function (opts, obj) {
+		beforeLoad : function (opts, obj) {
 			//Remove self if gallery do not have at least two items
-			if (obj.group.length < 2) {
+			if(obj.group.length < 2) {
 				obj.helpers.thumbs = false;
 
 				return;
 			}
 
 			//Increase bottom margin to give space for thumbs
-			obj.margin[ opts.position === 'top' ? 0 : 2 ] += ((opts.height) + 15);
+			obj.margin[ opts.position === 'top'? 0 : 2 ] += ((opts.height) + 15);
 		},
 
-		afterShow: function (opts, obj) {
+		afterShow : function (opts, obj) {
 			//Check if exists and create or update list
-			if (this.list) {
+			if(this.list) {
 				this.onUpdate(opts, obj);
 
 			} else {
@@ -140,16 +140,16 @@
 		},
 
 		//Center list
-		onUpdate: function (opts, obj) {
-			if (this.list) {
+		onUpdate : function (opts, obj) {
+			if(this.list) {
 				this.list.stop(true).animate({
-					'left': Math.floor($(window).width() * 0.5 - (obj.index * this.width + this.width * 0.5))
+					'left' : Math.floor($(window).width() * 0.5 - (obj.index * this.width + this.width * 0.5))
 				}, 150);
 			}
 		},
 
-		beforeClose: function () {
-			if (this.wrap) {
+		beforeClose : function () {
+			if(this.wrap) {
 				this.wrap.remove();
 			}
 

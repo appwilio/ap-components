@@ -7,11 +7,11 @@
     ]
 },
 {
-    tech: 'spec.js',
-    mustDeps: [
+    tech : 'spec.js',
+    mustDeps : [
         {
-            block: 'collapse',
-            tech: 'bemhtml'
+            block : 'collapse',
+            tech : 'bemhtml'
         }
     ]
 }])

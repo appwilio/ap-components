@@ -1,5 +1,5 @@
 modules.define('functions__timeout', ['vow'], function(provide, Vow){
-    function timeout(time){
+    function timeout(time) {
         var deferred = Vow.defer();
         setTimeout(function(){
             deferred.resolve();
@@ -9,5 +9,4 @@ modules.define('functions__timeout', ['vow'], function(provide, Vow){
 
     provide(timeout);
 });
-
 

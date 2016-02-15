@@ -1,7 +1,7 @@
 module.exports = function(bh) {
     bh.match('calendar__content', function(ctx) {
-        var date = ctx.param('date');
-        var switchers = ctx.param('switchers');
+        var date = ctx.param('date'),
+            switchers = ctx.param('switchers');
 
         ctx.tParam('date', date);
         ctx.tParam('selected', ctx.param('selected') || true);

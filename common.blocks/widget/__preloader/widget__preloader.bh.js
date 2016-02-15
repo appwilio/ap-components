@@ -1,6 +1,6 @@
 module.exports = function (bh) {
- bh.match("widget__preloader", function ($ctx){
-     $ctx.content([
+ bh.match('widget__preloader', function (ctx){
+     ctx.content([
          {
              'block' : 'spin',
              'mods' : {

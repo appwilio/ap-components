@@ -6,15 +6,15 @@ module.exports = function(bh) {
         .content([
             {
                 elem : 'header',
-                mix: {elem : 'switcher'},
+                mix : { elem : 'switcher' },
                 content : [
-                    json.preview,
-                    {elem : 'switcher'}
+                    ctx.param('preview'),
+                    { elem : 'switcher' }
                 ]
             },
             {
-                elem: 'content',
-                content: json.content
+                elem : 'content',
+                content : json.content
             }
         ], true);
   });

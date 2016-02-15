@@ -3,10 +3,10 @@
     mods : {
         mode : 'check',
         theme : 'vr',
-        suggest: 'multiple'
+        suggest : 'multiple'
     },
     text : 'select-check',
-    placeholder: 'Поиск метки',
+    placeholder : 'Поиск метки',
     options : [
         { val : 1, text : 'first' },
         { val : 2, text : 'second' }

@@ -1,3 +1,3 @@
 ({
-    block: 'upward'
+    block : 'upward'
 })

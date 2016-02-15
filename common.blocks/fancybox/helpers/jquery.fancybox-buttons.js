@@ -14,10 +14,10 @@
  *
  */
 (function ($) {
-	//Shortcut for fancyBox object
+	// Shortcut for fancyBox object
 	var F = $.fancybox;
 
-	//Add helper object
+	// Add helper object
 	F.helpers.buttons = {
 		defaults : {
 			skipSingle : false, // disables if gallery contains single image
@@ -26,58 +26,58 @@
 		},
 
 		list : null,
-		buttons: null,
+		buttons : null,
 
-		beforeLoad: function (opts, obj) {
-			//Remove self if gallery do not have at least two items
+		beforeLoad : function (opts, obj) {
+			// Remove self if gallery do not have at least two items
 
-			if (opts.skipSingle && obj.group.length < 2) {
+			if(opts.skipSingle && obj.group.length < 2) {
 				obj.helpers.buttons = false;
 				obj.closeBtn = true;
 
 				return;
 			}
 
-			//Increase top margin to give space for buttons
-			obj.margin[ opts.position === 'bottom' ? 2 : 0 ] += 30;
+			// Increase top margin to give space for buttons
+			obj.margin[ opts.position === 'bottom'? 2 : 0 ] += 30;
 		},
 
-		onPlayStart: function () {
-			if (this.buttons) {
+		onPlayStart : function () {
+			if(this.buttons) {
 				this.buttons.play.attr('title', 'Pause slideshow').addClass('btnPlayOn');
 			}
 		},
 
-		onPlayEnd: function () {
-			if (this.buttons) {
+		onPlayEnd : function () {
+			if(this.buttons) {
 				this.buttons.play.attr('title', 'Start slideshow').removeClass('btnPlayOn');
 			}
 		},
 
-		afterShow: function (opts, obj) {
+		afterShow : function (opts, obj) {
 			var buttons = this.buttons;
 
-			if (!buttons) {
+			if(!buttons) {
 				this.list = $(opts.tpl).addClass(opts.position).appendTo('body');
 
 				buttons = {
-					prev   : this.list.find('.btnPrev').click( F.prev ),
-					next   : this.list.find('.btnNext').click( F.next ),
-					play   : this.list.find('.btnPlay').click( F.play ),
-					toggle : this.list.find('.btnToggle').click( F.toggle ),
-					close  : this.list.find('.btnClose').click( F.close )
+					prev   : this.list.find('.btnPrev').click(F.prev),
+					next   : this.list.find('.btnNext').click(F.next),
+					play   : this.list.find('.btnPlay').click(F.play),
+					toggle : this.list.find('.btnToggle').click(F.toggle),
+					close  : this.list.find('.btnClose').click(F.close)
 				}
 			}
 
-			//Prev
-			if (obj.index > 0 || obj.loop) {
+			// Prev
+			if(obj.index > 0 || obj.loop) {
 				buttons.prev.removeClass('btnDisabled');
 			} else {
 				buttons.prev.addClass('btnDisabled');
 			}
 
-			//Next / Play
-			if (obj.loop || obj.index < obj.group.length - 1) {
+			// Next / Play
+			if(obj.loop || obj.index < obj.group.length - 1) {
 				buttons.next.removeClass('btnDisabled');
 				buttons.play.removeClass('btnDisabled');
 
@@ -91,26 +91,26 @@
 			this.onUpdate(opts, obj);
 		},
 
-		onUpdate: function (opts, obj) {
+		onUpdate : function (opts, obj) {
 			var toggle;
 
-			if (!this.buttons) {
+			if(!this.buttons) {
 				return;
 			}
 
 			toggle = this.buttons.toggle.removeClass('btnDisabled btnToggleOn');
 
-			//Size toggle button
-			if (obj.canShrink) {
+			// Size toggle button
+			if(obj.canShrink) {
 				toggle.addClass('btnToggleOn');
 
-			} else if (!obj.canExpand) {
+			} else if(!obj.canExpand) {
 				toggle.addClass('btnDisabled');
 			}
 		},
 
-		beforeClose: function () {
-			if (this.list) {
+		beforeClose : function () {
+			if(this.list) {
 				this.list.remove();
 			}
 

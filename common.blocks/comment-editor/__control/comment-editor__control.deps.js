@@ -1,9 +1,9 @@
 ({
-    mustDeps: [],
-    shouldDeps: [
+    mustDeps : [],
+    shouldDeps : [
         {
-            block: 'input',
-            mods: { type: 'hidden'}
+            block : 'input',
+            mods : { type : 'hidden' }
         }
     ]
 })

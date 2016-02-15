@@ -1,19 +1,21 @@
-modules.define('date', ['i-bem__dom', 'moment', 'moment__range', 'functions__timeout'], function(provide, BEMDOM, moment, Mrange, timeout) {
+modules.define('date',
+    ['i-bem__dom', 'moment', 'moment__range', 'functions__timeout'],
+    function(provide, BEMDOM, moment, Mrange, timeout) {
 
-provide(BEMDOM.decl({ block: this.name, modName: 'relative', modVal: true}, {
-    onSetMod: {
-        js: {
-            inited: function() {
+provide(BEMDOM.decl({ block : this.name, modName : 'relative', modVal : true }, {
+    onSetMod : {
+        js : {
+            inited : function() {
 
                 if(this.params.unix){
-                    this._date = new Date(this.params.unix*1000);
+                    this._date = new Date(this.params.unix * 1000);
                     this.startTimer();
                 }
             }
         }
     },
 
-    startTimer: function(){
+    startTimer : function(){
         var range = moment.range(this._date, new Date()),
             to;
         if(range.diff('days') > 30){
@@ -35,13 +37,13 @@ provide(BEMDOM.decl({ block: this.name, modName: 'relative', modVal: true}, {
         this.showRelTime();
     },
 
-    showRelTime: function(){
+    showRelTime : function(){
         BEMDOM.update(this.domElem, this._getRelTime());
     },
 
-    _getRelTime: function(){
+    _getRelTime : function(){
         return moment(this._date).fromNow();
     }
 }));
 
-})
+});

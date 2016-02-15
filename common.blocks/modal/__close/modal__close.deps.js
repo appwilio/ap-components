@@ -1,9 +1,9 @@
 ({
-    mustDeps: [],
-    shouldDeps: [
+    mustDeps : [],
+    shouldDeps : [
         {
-            block: 'popup',
-            elem: 'close'
+            block : 'popup',
+            elem : 'close'
         }
     ]
 })

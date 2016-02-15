@@ -1,48 +1,48 @@
 ([
 {
-    shouldDeps: [
+    shouldDeps : [
         {
-            block: 'events', elem: 'channels'
+            block : 'events', elem : 'channels'
         }
     ]
 },
 {
-    tech: 'tmpl-spec.js',
-    shouldDeps: [
-        {block: 'link', mods: {
-            action: [
+    tech : 'tmpl-spec.js',
+    shouldDeps : [
+        { block : 'link', mods : {
+            action : [
                 'scroll',
                 'lightbox',
                 'gallery',
                 'event'
             ],
-        }}
+        } }
     ]
 },
 {
-    tech: 'spec.js',
-    mustDeps: [
+    tech : 'spec.js',
+    mustDeps : [
         {
-            block: 'link',
-            mods: {
-                action: [
+            block : 'link',
+            mods : {
+                action : [
                     'scroll',
                     'lightbox',
                     'gallery',
                     'event'
                 ],
             },
-            tech: 'js'
+            tech : 'js'
         },
-        {block: 'link', mods: {
-            action: [
+        { block : 'link', mods : {
+            action : [
                 'scroll',
                 'lightbox',
                 'gallery',
                 'event'
                 ],
             },
-            tech: 'bemhtml'
+            tech : 'bemhtml'
         }
     ]
 }])

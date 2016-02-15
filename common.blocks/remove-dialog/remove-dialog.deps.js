@@ -1,6 +1,6 @@
 ([{
-    mustDeps: [],
-    shouldDeps: [
+    mustDeps : [],
+    shouldDeps : [
         {
             block : 'confirm',
             mods : {
@@ -28,7 +28,7 @@
                 type : 'modal',
                 proof : 'word'
             },
-            tech: 'bemhtml'
+            tech : 'bemhtml'
         }
     ]
 }])

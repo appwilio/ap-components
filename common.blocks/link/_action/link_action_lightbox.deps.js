@@ -1,8 +1,5 @@
 ({
-    mustDeps: [
-     
-    ],
-    shouldDeps: [
-       {block:'lightbox'}
+    shouldDeps : [
+       { block : 'lightbox' }
     ]
 })

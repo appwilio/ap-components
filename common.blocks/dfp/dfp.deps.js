@@ -1,10 +1,10 @@
 ([{
-    mustDeps: [
-        { block : 'loader', mods : {type : 'js'}}
+    mustDeps : [
+        { block : 'loader', mods : { type : 'js' } }
     ],
-    shouldDeps: [
+    shouldDeps : [
         {
-            elems: [ 'config' ]
+            elems : ['config']
         }
     ]
 }])

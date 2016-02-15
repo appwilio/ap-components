@@ -1,5 +1,5 @@
 module.exports = function (bh) {
- bh.match('image_lazy_scroll', function (ctx, json) {
-     ctx.mix({'block' : 'scrollspy', 'js' : {'offset' : '-30'}});
+ bh.match('image_lazy_scroll', function (ctx) {
+     ctx.mix({ 'block' : 'scrollspy', 'js' : { 'offset' : '-30' } });
  });
 };

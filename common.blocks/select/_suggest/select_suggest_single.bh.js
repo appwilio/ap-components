@@ -1,7 +1,6 @@
 module.exports = function (bh) {
-    bh.match("select_suggest_single__button", function (ctx, json){
-        var mods = json.blockMods ? null : json.mods,
-        select = ctx.tParam('select'),
+    bh.match('select_suggest_single__button', function (ctx, json){
+        var mods = json.blockMods? null : json.mods,
         checkedOptions = ctx.tParam('checkedOptions');
 
         return {
@@ -22,7 +21,7 @@ module.exports = function (bh) {
                         { 'block' : 'icon', 'mix' : { 'block' : 'select', 'elem' : 'tick' } }
                     ]
                 }
-            ],//control-group
+            ]
         };
     });
 };

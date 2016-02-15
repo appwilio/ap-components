@@ -1,17 +1,16 @@
 modules.define('glue-field', ['i-bem__dom'], function(provide, BEMDOM) {
 
-provide(BEMDOM.decl({ block: 'glue-field_type_radio-group', baseBlock : 'glue-field_type_input' }, {
+provide(BEMDOM.decl({ block : 'glue-field_type_radio-group', baseBlock : 'glue-field_type_input' }, {
 
-    onSetMod: {
-        js: {
-            inited: function() {
+    onSetMod : {
+        js : {
+            inited : function() {
                 this.__base();
                 this.input = this.findBlockOn('radio-group');
             }
         }
-    },
+    }
 }));
 
 });
-
 

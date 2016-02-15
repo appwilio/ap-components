@@ -9,21 +9,21 @@ modules.define('comment-editor', ['i-bem__dom', 'control'], function(provide, BE
  * @abstract
  * @bem
  */
-provide(BEMDOM.decl({block: this.name, baseBlock: 'control'}, /** @lends comment-editor.prototype */ {
-    onSetMod: {
-        js: {
-            inited: function() {
+provide(BEMDOM.decl({ block : this.name, baseBlock : Control }, /** @lends comment-editor.prototype */ {
+    onSetMod : {
+        js : {
+            inited : function() {
                 this.__base.apply(this, arguments);
                 !this.hasMod('disabled') && this._bindEvents();
             }
         },
         'focused' : {
             'true' : function(){
-                var el = this.elem('body')[0];
-                var len = el.childNodes.length;
+                var el = this.elem('body')[0],
+                    len = el.childNodes.length;
                 if(len){
-                    var range = document.createRange();
-                    var sel = window.getSelection();
+                    var range = document.createRange(),
+                        sel = window.getSelection();
                     range.setEndAfter(el.childNodes[len - 1]);
                     range.collapse();
                     sel.removeAllRanges();
@@ -40,7 +40,7 @@ provide(BEMDOM.decl({block: this.name, baseBlock: 'control'}, /** @lends comment
             '' : function(){
                 this._bindEvents();
                 this.elem('control').attr('contenteditable', '');
-            },
+            }
         }
     },
 
@@ -58,7 +58,7 @@ provide(BEMDOM.decl({block: this.name, baseBlock: 'control'}, /** @lends comment
      * Clear comment-form
      * @fires clear
      */
-    clear: function(){
+    clear : function(){
         this.setVal('');
         this.emit('clear');
         this.emit('change', '');
@@ -69,22 +69,24 @@ provide(BEMDOM.decl({block: this.name, baseBlock: 'control'}, /** @lends comment
      * @callback
      * @emits change
      */
-    _onBodyChange: function(){
-        var html = this.elem('body').html();
-        var old = this.elem('control').val();
+    _onBodyChange : function(){
+        var html = this.elem('body').html(),
+            old = this.elem('control').val();
+
         if(html === old){
-            return;
+            return false;
         }
+
         this.elem('control').val(html);
         this.emit('change', html);
     },
 
-    setVal: function(val){
+    setVal : function(val){
         this.__base.apply(this, arguments);
         this.elem('control').val(val);
         this.elem('body').html(val);
         this.emit('change', val);
-    },
+    }
 
 }));
 

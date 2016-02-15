@@ -1,7 +1,7 @@
 /* global modules:false */
 
 modules.define('spec',
-               ['image-builder',],
+               ['image-builder'],
                function(provide, Builder) {
 
 describe('image-builder', function(){

@@ -1,7 +1,7 @@
 ({
-    mustDeps: [
+    mustDeps : [
     ],
-    shouldDeps: [
+    shouldDeps : [
         {
             block : 'modal',
             mods : {

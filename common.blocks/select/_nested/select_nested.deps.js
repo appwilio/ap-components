@@ -1,6 +1,6 @@
 ({
-    mustDeps: [],
-    shouldDeps: [
-        {block: 'menu', mods: {nested: true}}
+    mustDeps : [],
+    shouldDeps : [
+        { block : 'menu', mods : { nested : true } }
     ]
 })

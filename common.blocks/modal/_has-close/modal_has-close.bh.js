@@ -1,14 +1,14 @@
 module.exports = function(bh) {
-     bh.match("modal_has-close", function (ctx){
+     bh.match('modal_has-close', function (ctx){
          ctx.tParam('insert', !ctx.mod('has-header'));
      });
 
-     bh.match("modal_has-close__content", function (ctx){
+     bh.match('modal_has-close__content', function (ctx){
          if(!ctx.tParam('insert')) {
              return;
          }
          ctx.content([
-             {'elem': 'close'},
+             { elem : 'close' },
              ctx.content()
          ], true);
      });
