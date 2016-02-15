@@ -5,7 +5,6 @@ node_modules/
 .project
 .svn
 npm-debug.log
-composer.lock
 
 vendor
 tmp/
