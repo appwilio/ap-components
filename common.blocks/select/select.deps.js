@@ -6,8 +6,7 @@
             block : 'select',
             mods : {
                 suggest : ['single', 'multiple'],
-                mode : ['check', 'radio-check', 'radio'],
-                nested : true
+                mode : ['check', 'radio-check', 'radio']
             }
         }
     ]
