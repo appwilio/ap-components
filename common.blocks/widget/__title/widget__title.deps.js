@@ -1,6 +1,6 @@
 ({
-    mustDeps: [
-        { block : 'heading', mods : { lvl : 4}}
+    mustDeps : [
+        { block : 'heading', mods : { lvl : 4 } }
     ],
-    shouldDeps: []
+    shouldDeps : []
 })

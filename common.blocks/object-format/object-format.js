@@ -7,7 +7,7 @@ modules.define('object-format', ['i-bem'], function(provide, BEM){
          * @param {Object} obj source object
          * @returns {String} serialized object
          */
-        toString: function(obj){
+        toString : function(obj){
             return obj.toString();
         }
     });

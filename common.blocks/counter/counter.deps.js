@@ -1,13 +1,13 @@
 ({
-    mustDeps: [],
-    shouldDeps: [
+    mustDeps : [],
+    shouldDeps : [
         {
-            mods: {
-                'toggleable': true,
+            mods : {
+                'toggleable' : true,
                 disabled : true
             }
         },
-        {block: 'button', mods: {theme: 'vr'}},
-        {block: 'icon', mods: {font: true}},
+        { block : 'button', mods : { theme : 'vr' } },
+        { block : 'icon', mods : { font : true } },
     ]
 })

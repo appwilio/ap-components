@@ -1,6 +1,6 @@
 ({
-    mustDeps: [],
-    shouldDeps: [
-        {block: 'icon'}
+    mustDeps : [],
+    shouldDeps : [
+        { block : 'icon' }
     ]
 })

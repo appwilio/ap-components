@@ -1,9 +1,9 @@
 module.exports = function (bh) {
- bh.match("alert_has-icon", function (ctx, json){
+ bh.match('alert_has-icon', function (ctx, json){
      var status;
      ctx.applyBase();
 
-     switch (ctx.mod('status')) {
+     switch(ctx.mod('status')) {
          case 'error' :
              status = 'info-2';
          break;

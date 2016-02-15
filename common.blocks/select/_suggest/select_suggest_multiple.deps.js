@@ -1,8 +1,8 @@
 ({
-    mustDeps: [],
-    shouldDeps: [
+    mustDeps : [],
+    shouldDeps : [
         {
-            elem: 'input',
+            elem : 'input',
         }
     ]
 })

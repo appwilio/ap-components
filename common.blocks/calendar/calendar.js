@@ -36,8 +36,8 @@ modules.define(
 
             live : function() {
                 this.liveBindTo('switcher', 'click', function(e) {
-                    var year = this._date.getFullYear();
-                    var month = this._date.getMonth() + (this.getMod(e.currentTarget, 'dest') === 'prev' ? (-1) : 1);
+                    var year = this._date.getFullYear(),
+                        month = this._date.getMonth() + (this.getMod(e.currentTarget, 'dest') === 'prev'? (-1) : 1);
 
                     this._date = new Date(year, month);
                     this._changeDate();

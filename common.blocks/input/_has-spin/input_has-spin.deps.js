@@ -1,13 +1,13 @@
 ({
-    mustDeps: [],
-    shouldDeps: [
+    mustDeps : [],
+    shouldDeps : [
         {
-            elem: 'spin'
+            elem : 'spin'
         },
         {
-            block: 'spin',
-            mods: {
-                progress: true,
+            block : 'spin',
+            mods : {
+                progress : true,
             }
         }
     ]

@@ -1,8 +1,8 @@
 ({
-    mustDeps: [
+    mustDeps : [
         { block : 'i-bem', elem : 'dom' }
     ],
-    shouldDeps: [
+    shouldDeps : [
         {
             elems : [
                 'keyword'

@@ -1,5 +1,5 @@
 module.exports = function (bh) {
-    bh.match("confirm_proof_word", function (ctx, json){
+    bh.match('confirm_proof_word', function (ctx, json){
         ctx.js({
             'word' : json.word,
         });
@@ -24,8 +24,8 @@ module.exports = function (bh) {
                     'size' : 'l',
                     'type' : 'text',
                     'width' : 'available'
-                },
-            },
+                }
+            }
         ]);
     });
 };

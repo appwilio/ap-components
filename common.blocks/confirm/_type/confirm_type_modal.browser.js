@@ -1,9 +1,9 @@
-modules.define('confirm', ['i-bem__dom', 'modal'], function(provide, BEMDOM, Modal) {
+modules.define('confirm', ['i-bem__dom', 'modal'], function(provide, BEMDOM) {
 
-provide(BEMDOM.decl({ block : this.name, modName : 'type', modVal : 'modal'}, {
-    onSetMod: {
-        js: {
-            inited: function() {
+provide(BEMDOM.decl({ block : this.name, modName : 'type', modVal : 'modal' }, {
+    onSetMod : {
+        js : {
+            inited : function() {
                 this.__base.apply(this, arguments);
                 this.show();
                 this.on('yes', this.hide);
@@ -12,7 +12,7 @@ provide(BEMDOM.decl({ block : this.name, modName : 'type', modVal : 'modal'}, {
         }
     },
 
-    _getModal: function(){
+    _getModal : function(){
         return this._modal || (this._modal = this.findBlockOn('modal'));
     },
 
@@ -22,7 +22,7 @@ provide(BEMDOM.decl({ block : this.name, modName : 'type', modVal : 'modal'}, {
 
     hide : function(){
         this._getModal().delMod('visible');
-    },
+    }
 
 }));
 

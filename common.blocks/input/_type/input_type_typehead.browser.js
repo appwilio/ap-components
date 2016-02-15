@@ -3,11 +3,11 @@
 modules.define('input',
                ['functions__throttle', 'i-bem', 'i-bem__dom', 'keyboard__codes', 'BEMHTML', 'typehead'],
                function(provide, throttle, BEM, BEMDOM, keyCodes, BEMHTML, th, Input) {
-Input.decl({modName: 'type', modVal: 'typehead'},{
+Input.decl({ modName : 'type', modVal : 'typehead' }, {
 
-    onSetMod: {
-        'js': {
-            'inited': function(){
+    onSetMod : {
+        'js' : {
+            'inited' : function(){
                 this.__base.apply(this, arguments);
 
                 this._src = this.params.src;
@@ -23,28 +23,28 @@ Input.decl({modName: 'type', modVal: 'typehead'},{
                 this._spin = this.findBlockInside('spin');
                 this._menu = this._popup.findBlockInside('menu');
 
-                //setup typehead
-                this.typehead = BEM.create({block:'typehead', mods: {'source': this.getMod('source')}});
+                // setup typehead
+                this.typehead = BEM.create({ block : 'typehead', mods : { 'source' : this.getMod('source') } });
                 this.typehead.setSource(this._src);
                 this.typehead.searchField = this._nameField;
 
             },
 
-            '': function(){
+            '' : function(){
                 delete this._typehead;
-            },
+            }
         },
-        'progress': {
-            'true': function(){
+        'progress' : {
+            'true' : function(){
                 this._spin.setMod('visible', true);
                 this._setHint();
             },
-            '': function(){
+            '' : function(){
                 this._spin.delMod('visible');
             }
         },
-        'focused': {
-            'true': function(){
+        'focused' : {
+            'true' : function(){
                 this.__base.apply(this, arguments);
                 this.bindTo('keyup', throttle(this._onKeyUp, this._to));
                 this.bindTo('keydown', this._onKeyDown);
@@ -54,19 +54,18 @@ Input.decl({modName: 'type', modVal: 'typehead'},{
                     this.elem('hint').val(this._hintText);
                 }
             },
-            '': function(){
+            '' : function(){
                 this.__base.apply(this, arguments);
                 this.unbindFrom('keyup');
                 this._menu.un('item-click', this._onMenuClick, this);
                 this._clear();
-                console.log('input value: '+this.getVal());
             }
-        },
+        }
     },
 
-    beforeSetMod: {
-        'focused': {
-            '': function(){
+    beforeSetMod : {
+        'focused' : {
+            '' : function(){
                 var mf = this._menu.hasMod('hovered');
                 this.elem('control').focus();
                 return !mf;
@@ -74,7 +73,7 @@ Input.decl({modName: 'type', modVal: 'typehead'},{
         }
     },
 
-    _onKeyDown: function(e){
+    _onKeyDown : function(e){
         if(e.keyCode === keyCodes.TAB) {
             if(this._hintText){
                 e.preventDefault();
@@ -83,19 +82,19 @@ Input.decl({modName: 'type', modVal: 'typehead'},{
         }
     },
 
-    _onMenuClick: function(e, data){
+    _onMenuClick : function(e, data){
         this.setVal(data.item.getText(), data.item.getVal());
         this._clear();
         this.setMod('completed', true);
         this.delMod('focused');
     },
 
-    getVal: function(){
-        console.log('real val: '+this._realVal);
-        return this.hasMod('completed') ? this._realVal : this._val;
+    getVal : function(){
+        return this.hasMod('completed')? this._realVal : this._val;
     },
 
-    setVal: function(text, val){
+    // jshint unused: false
+    setVal : function(text, val){
         this.__base.apply(this, arguments);
         if(val) {
             this._realVal = val;
@@ -105,7 +104,7 @@ Input.decl({modName: 'type', modVal: 'typehead'},{
     /**
      * Set value from autocomplete
      */
-    complete: function(){
+    complete : function(){
         if(this._hintText){
             this.setVal(this._hintText, this._hintVal);
             this.setMod('completed', true);
@@ -116,9 +115,10 @@ Input.decl({modName: 'type', modVal: 'typehead'},{
     /**
      * Keyup trigger
      */
-    _onKeyUp: function(e){
-        if (this._oldVal === this._val || e.keyCode == keyCodes.TAB)
+    _onKeyUp : function(e){
+        if(this._oldVal === this._val || e.keyCode === keyCodes.TAB) {
             return;
+        }
 
         this.delMod('completed');
         if(this._val.length < this._searchStart) {
@@ -134,7 +134,7 @@ Input.decl({modName: 'type', modVal: 'typehead'},{
      * Redraw autocomplete menu
      * @protected
      */
-    _updateMenu: function(items){
+    _updateMenu : function(items){
         var fItem = items[0];
         this._setHint(fItem[this._nameField], fItem[this._valField]);
 
@@ -145,21 +145,20 @@ Input.decl({modName: 'type', modVal: 'typehead'},{
                 )
             );
 
-        this._popup.setMod('visible', items.length > 2); //show-hide popup
+        this._popup.setMod('visible', items.length > 2); // show-hide popup
     },
 
     /**
      * Set hint text & value
      */
-    _setHint: function(text, val){
+    _setHint : function(text, val){
         this._hintText = text;
         this._hintVal = val;
         this.elem('hint').val(this._hintText);
     },
-    
-    _clear: function(){
+
+    _clear : function(){
         this._setHint();
-        //this._menu.setContent('');
         this._popup.setMod('visible', false);
     },
 
@@ -169,14 +168,15 @@ Input.decl({modName: 'type', modVal: 'typehead'},{
      * @protected
      * @returns {Object} menu-item
      */
-    _getMenuItem: function(item){
-        if (!item[this._nameField])
+    _getMenuItem : function(item){
+        if(!item[this._nameField]) {
             return;
+        }
 
         return {
-            block: 'menu-item',
-            val: item[this._valField],
-            content: item[this._nameField]
+            block : 'menu-item',
+            val : item[this._valField],
+            content : item[this._nameField]
         };
     },
 
@@ -184,13 +184,13 @@ Input.decl({modName: 'type', modVal: 'typehead'},{
      * Fill autocomplete
      * @param val {String} value to autocomplete
      */
-    search: function(val){
+    search : function(val){
         this.setMod('progress', true);
 
         this.typehead.search(val).then(
             function(variants){
                 this.delMod('progress');
-                variants.length? this._updateMenu(variants): this._clear();
+                variants.length? this._updateMenu(variants) : this._clear();
             },
             function(){
                 this.delMod('progress');
@@ -198,8 +198,7 @@ Input.decl({modName: 'type', modVal: 'typehead'},{
             },
             this
         );
-    },
-
+    }
 
 });
 

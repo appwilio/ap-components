@@ -1,5 +1,5 @@
 module.exports = function (bh) {
- bh.match("image_wrap", function (ctx, json){
+ bh.match('image_wrap', function (ctx){
      ctx.applyBase();
 
      return {

@@ -5,7 +5,7 @@ provide(BEMDOM.declMix(this.name, {
 
     /**
      * call remove dialog
-     * @param {Boolean} force dont asc confirm
+     * @param {Boolean} force don't ask confirm
      * @public
      */
     remove : function(force){
@@ -24,7 +24,7 @@ provide(BEMDOM.declMix(this.name, {
         }, this);
 
         removeConfirm.on('no', function(){
-            BEMDOM.destruct(this.domElem);//destruct confirm
+            BEMDOM.destruct(this.domElem); // destruct confirm
         });
     },
 
@@ -38,12 +38,12 @@ provide(BEMDOM.declMix(this.name, {
                 proof : 'word'
             },
             word : 'УДАЛИТЬ',
-            text: [
+            text : [
                'Введите слово ',
-               {elem: 'keyword', content: 'удалить'}, ', ',
+               { elem : 'keyword', content : 'удалить' }, ', ',
                'чтобы подтвердить удаление.'
-            ],
+            ]
         }, this._confirmParams || {});
-    },
+    }
 }));
 });

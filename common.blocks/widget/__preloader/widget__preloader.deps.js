@@ -1,6 +1,6 @@
 ([{
-    mustDeps: [],
-    shouldDeps: [
+    mustDeps : [],
+    shouldDeps : [
         {
             block : 'spin',
             mods : {

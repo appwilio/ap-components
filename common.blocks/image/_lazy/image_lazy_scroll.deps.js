@@ -1,6 +1,6 @@
 ({
-    mustDeps: [],
-    shouldDeps: [
-      {block: 'scrollspy'}
+    mustDeps : [],
+    shouldDeps : [
+      { block : 'scrollspy' }
     ]
 })

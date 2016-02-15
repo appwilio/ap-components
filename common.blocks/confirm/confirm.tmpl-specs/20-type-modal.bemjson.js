@@ -1,18 +1,18 @@
 ({
-   block: 'confirm',
+   block : 'confirm',
    mods : {
        type : 'modal',
        theme : 'vr',
        size : 'm',
-       proof: 'word'
+       proof : 'word'
    },
    header : 'Удалить всё!!!',
-   word: 'УДАЛИТЬ',
-   text: [
+   word : 'УДАЛИТЬ',
+   text : [
        'Вы удаляете категорию',
-       {elem: 'keyword', content: 'вязание'}, ', ',
+       { elem : 'keyword', content : 'вязание' }, ', ',
        'введите слово ',
-       {elem: 'keyword', content: 'удалить'}, ', ',
+       { elem : 'keyword', content : 'удалить' }, ', ',
        'чтобы подтвердить удаление.'
    ],
 })

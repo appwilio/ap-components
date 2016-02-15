@@ -1,15 +1,15 @@
-modules.define('confirm', ['i-bem__dom', 'validation_equal'], function(provide, BEMDOM, validation, Confirm) {
+modules.define('confirm', ['i-bem__dom', 'validation_equal'], function(provide, BEMDOM, validation) {
 
 provide(BEMDOM.decl({ block : this.name, modName : 'proof', modVal : 'word' }, {
-    onSetMod: {
-        js: {
-            inited: function() {
+    onSetMod : {
+        js : {
+            inited : function() {
                 this.__base.apply(this, arguments);
                 this._field = this.findBlockInside('input');
                 this.bindTo(this._field.domElem, 'keyup', this._onKeyUp, this);
                 this._submit = this.findBlockOn('yes', 'button');
                 this._submit.setMod('disabled');
-                this._submit.on({modName : 'disabled', modVal : false}, function(){
+                this._submit.on({ modName : 'disabled', modVal : false }, function(){
                     this.setMod('focused');
                 });
 

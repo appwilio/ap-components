@@ -1,6 +1,6 @@
 ({
-    mustDeps: [
-        {block: 'typehead'}
+    mustDeps : [
+        { block : 'typehead' }
     ],
-    shouldDeps: []
+    shouldDeps : []
 })

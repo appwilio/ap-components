@@ -5,27 +5,21 @@ modules.define('sortable',
                function(provide, BEMDOM, $, dom) {
 
 BEMDOM.decl('sortable', {
-    onSetMod: {
-        'js': {
-            'inited': function(){
-                //this.setAttrs();
-                this._moveThreshold = 2;
-            }
-        },
+    onSetMod : {
         'dragging' : {
             'true' : function(){
                 this.bindTo('dragover', this._onDragOver);
             },
             '' : function(){
                 this.unbindFrom('dragover', this._onDragOver);
-            },
+            }
         }
     },
 
     /**
      * Set draggable attrs to items
      */
-    setAttrs: function() {
+    setAttrs : function() {
         this.findElem('item').map(function(item){
             item.attr('draggable', 'true');
         }, this);
@@ -40,10 +34,11 @@ BEMDOM.decl('sortable', {
             levelChanged = !parent.is(this._dragingElem.parent());
 
         if(this._dragSourcePos.index > 0){
-            var children = parent.children();
+            var children = parent.children(),
+                targetElem;
 
             if(children.length <= index) {
-                targetElem = parent.children().eq(index -1);
+                targetElem = parent.children().eq(index - 1);
                 return targetElem.append(this._dragingElem);
             }
 
@@ -58,7 +53,7 @@ BEMDOM.decl('sortable', {
         return parent.prepend(this._dragingElem);
     },
 
-    _onDrop: function(e){
+    _onDrop : function(e){
         if(!this._validateDrop(e)) {
             this.cancel();
             return;
@@ -69,14 +64,14 @@ BEMDOM.decl('sortable', {
         var target = this._getRealTarget(e);
         this._sortInsert(this._dragingElem, target);
 
-        this.emit('sortend', {source : this._dragingElem, target : target});
+        this.emit('sortend', { source : this._dragingElem, target : target });
     },
 
-    _sortInsert: function(source, target){
+    _sortInsert : function(source, target){
         return this._moveElem(source, target);
     },
 
-    _validateDrop: function(e){
+    _validateDrop : function(e){
         if(e.originalEvent.dataTransfer.files.length ||
            !dom.contains(this.domElem, $(e.target))){
             return false;
@@ -90,7 +85,7 @@ BEMDOM.decl('sortable', {
      * @param {Event} e drag event
      * @returns {jQuery} sortable__item domElem
      */
-    _getRealTarget: function(e){
+    _getRealTarget : function(e){
         return this.closestElem($(e.target), 'item');
     },
 
@@ -101,7 +96,7 @@ BEMDOM.decl('sortable', {
      * @param {jQuery} target
      */
     _moveElem : function(source, target){
-        if (source.index() > target.index()){
+        if(source.index() > target.index()){
             this.domElem.is(target)?
                 this.domElem.prepend(source):
                 target.before(source);
@@ -110,9 +105,8 @@ BEMDOM.decl('sortable', {
                 this.domElem.append(source):
                 target.after(source);
         }
-        this.emit('sort', {source: source, dir: this._lastMoveDir});
+        this.emit('sort', { source : source, dir : this._lastMoveDir });
     },
-
 
     /**
      * @callback
@@ -122,7 +116,7 @@ BEMDOM.decl('sortable', {
         var X = e.originalEvent.screenX,
             Y = e.originalEvent.screenY;
 
-        //Object not moved?
+        // Object not moved?
         if(this._dragPos.x === X && this._dragPos.y === Y){
             return;
         }
@@ -142,7 +136,7 @@ BEMDOM.decl('sortable', {
         var X = e.originalEvent.screenX,
             Y = e.originalEvent.screenY;
 
-        //Object not moved?
+        // Object not moved?
         if(this._dragPos.x === X && this._dragPos.y === Y){
             return;
         }
@@ -161,7 +155,7 @@ BEMDOM.decl('sortable', {
         this.emit('start', this._dragingElem);
     },
 
-    _initDrag: function(e){
+    _initDrag : function(e){
         this._dragPos = { x : e.originalEvent.screenX, y : e.originalEvent.screenY };
         this._dragingElem = $(e.target);
         this._dragSourcePos = {
@@ -171,21 +165,21 @@ BEMDOM.decl('sortable', {
         this.setMod(this._dragingElem, 'moving', true);
 
         e.originalEvent.dataTransfer.effectAllowed = 'move';
-        e.originalEvent.dataTransfer.setData("text", e.target.id);
+        e.originalEvent.dataTransfer.setData('text', e.target.id);
     },
 
     /**
      * @callback
      * @emits end
      */
-    _onDragEnd : function(e){
+    _onDragEnd : function(){
         this.delMod('dragging');
         this._dragPos = null;
         this.emit('end');
         this.delMod(this._dragingElem, 'moving');
     },
 
-    getSiblings: function(block){
+    getSiblings : function(block){
         return {
             prev : this.findBlockOn(this._dragingElem.next(), block),
             next : this.findBlockOn(this._dragingElem.prev(), block)
@@ -200,34 +194,30 @@ BEMDOM.decl('sortable', {
      */
     getDragDirection : function(x, y, asObj){
         var direction,
-            dirX = false, //'left',
-            dirY = false, //'top',
+            dirX = false, // 'left',
+            dirY = false, // 'top',
             mainX,
             mainDir,
             old = this._dragPos;
 
-
-        dirX = x > old.x; //right
-        dirY = y > old.y; //bottom
+        dirX = x > old.x; // right
+        dirY = y > old.y; // bottom
 
         direction =  {
                 x : dirX? 'right' : 'left',
                 y : dirY? 'bottom': 'top'
             };
 
-
-        //console.log(x +' '+ old.x + ' '+ Math.abs(x - old.x));
-        //console.log(y +' '+ old.y + ' '+ Math.abs(y - old.y));
         mainX = Math.abs(x - old.x) > Math.abs(y - old.y);
         mainDir = mainX? direction.x : direction.y;
 
         this._lastMoveDir = mainDir;
 
         return asObj? direction : mainDir;
-    },
+    }
 
-},{
-    live: function() {
+}, {
+    live : function() {
         this
             .liveBindTo('dragstart', this.prototype._onDragStart)
             .liveBindTo('drag', this.prototype._onDrag)

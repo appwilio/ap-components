@@ -1,6 +1,6 @@
 ({
-    mustDeps: [],
-    shouldDeps: [
-        {elem: 'close'}
+    mustDeps : [],
+    shouldDeps : [
+        { elem : 'close' }
     ]
 })

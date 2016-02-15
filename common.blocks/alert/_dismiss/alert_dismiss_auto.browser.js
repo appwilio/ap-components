@@ -1,14 +1,14 @@
 /* global modules:false */
 
 modules.define('alert',
-               ['functions__timeout','i-bem__dom'], function(provide, timeout, BEMDOM) {
+               ['functions__timeout', 'i-bem__dom'], function(provide, timeout, BEMDOM) {
 
-BEMDOM.decl({block: 'alert', modName: 'dismiss', modVal: 'auto'},{
-    beforeSetMod: {
-        'hidden': {
-            'true': function(){
+BEMDOM.decl({ block : 'alert', modName : 'dismiss', modVal : 'auto' }, {
+    beforeSetMod : {
+        'hidden' : {
+            'true' : function(){
                 if(this.hasMod('hovered')){
-                    var event = {modName: 'hovered', modVal:false};
+                    var event = { modName : 'hovered', modVal :false };
                     this.on(event, function(){
                         this.un(event);
                         this.dismiss();
@@ -18,9 +18,9 @@ BEMDOM.decl({block: 'alert', modName: 'dismiss', modVal: 'auto'},{
             }
         }
     },
-    onSetMod: {
-        'js': {
-            'inited': function(){
+    onSetMod : {
+        'js' : {
+            'inited' : function(){
                 this.__base.apply(this, arguments);
                 this.timeout = this.params.timeout || 5000;
                 timeout(this.timeout).then(this.dismiss, this);
@@ -32,5 +32,4 @@ BEMDOM.decl({block: 'alert', modName: 'dismiss', modVal: 'auto'},{
 provide(BEMDOM);
 
 });
-
 

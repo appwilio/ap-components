@@ -1,18 +1,18 @@
 module.exports = function (bh) {
 
-   bh.match("image_load_lazy", function (ctx, json) {
+   bh.match('image_load_lazy', function (ctx, json) {
 
-       if(ctx.mods('semantic')) {
+       if(ctx.mod('semantic')) {
            ctx.attrs({
-               itemprop : false,
-               itemscope: true,
-               itemtype : 'http://schema.org/ImageObject'
+               itemprop  : false,
+               itemscope : true,
+               itemtype  : 'http://schema.org/ImageObject'
            });
        }
 
        ctx
          .tag('span')
-         .js({url : json.url})
+         .js({ url : json.url })
          .attr('src', null, true)
          .content([
                 {
@@ -20,26 +20,26 @@ module.exports = function (bh) {
                     'tag' : 'span',
                     'content' : [
                         {
-                            'block' : 'image',
-                            'mix' : {'elem' : 'img'},
-                            'alt' : json.alt,
-                            'title' : json.title,
-                            'width' : json.width,
-                            'height' : json.height,
+                            block : 'image',
+                            mix : { elem : 'img' },
+                            alt : json.alt,
+                            title : json.title,
+                            width : json.width,
+                            height : json.height
                         },
                         {
                             'elem' : 'spin',
                             'tag' : 'span'
-                        },
-                    ],
+                        }
+                    ]
                 },
                 {
                     'elem' : 'fallback',
                     'content' : {
-                        'block' : 'image',
+                        block : 'image',
                         mods : { semantic : json.mods.semantic },
-                        'url' : json.url,
-                        'alt' : json.alt,
+                        url : json.url,
+                        alt : json.alt
                     }
                 }
          ]);

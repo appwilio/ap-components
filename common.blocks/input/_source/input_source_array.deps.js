@@ -1,6 +1,6 @@
 ({
-    mustDeps: [],
-    shouldDeps: [
-        {block: 'typehead', mods: {source: 'array'}}
+    mustDeps : [],
+    shouldDeps : [
+        { block : 'typehead', mods : { source : 'array' } }
     ]
 })

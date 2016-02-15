@@ -11,8 +11,8 @@
     ]
 },
 {
-    tech: 'js',
-    shouldDeps: [
-        {block: 'calendar', mods : { theme : 'vr' }, tech: 'bemhtml'}
+    tech : 'js',
+    shouldDeps : [
+        { block : 'calendar', mods : { theme : 'vr' }, tech : 'bemhtml' }
     ]
 }])

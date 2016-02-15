@@ -1,4 +1,4 @@
 ({
-    mustDeps: [{mods : {type : 'input'}}],
-    shouldDeps: []
+    mustDeps : [{ mods : { type : 'input' } }],
+    shouldDeps : []
 })

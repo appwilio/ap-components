@@ -1,11 +1,6 @@
 ({
-    mustDeps: [],
-    shouldDeps: [
-      {
-        block: 'jquery'
-      },
-      {
-        block: 'vow'
-      },
+    shouldDeps : [
+        'jquery',
+        'wov'
     ]
 })

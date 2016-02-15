@@ -1,7 +1,7 @@
 module.exports = function (bh) {
-    bh.match("widget-area", function (ctx, json){
-        var name = ctx.param('name');
-        var allWidgets = json.widgets || ctx.tParam('widgets');
+    bh.match('widget-area', function (ctx, json){
+        var name = ctx.param('name'),
+            allWidgets = json.widgets || ctx.tParam('widgets');
         if(!allWidgets[name]) {
             return;
         }

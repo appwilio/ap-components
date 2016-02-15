@@ -3,21 +3,19 @@ module.exports = function(bh) {
 
         var getDaysInMonth = function(year, mount){
             return new Date(year, mount + 1, 0).getDate();
-        };
-
-        var isDayOfPrevMonth = function(dayNum, monthStartDay, weekNum){
+        },
+        isDayOfPrevMonth = function(dayNum, monthStartDay, weekNum){
             return dayNum < monthStartDay && weekNum === 0;
-        };
-
-        var getGrid = function(date){
+        },
+        getGrid = function(date){
             var grid = [],
-                selected = ctx.tParam('selected') !== 'no';
+                selected = ctx.tParam('selected') !== 'no',
 
-            var year = date.getFullYear(),
+                year = date.getFullYear(),
                 month = date.getMonth(),
-                day = date.getDate();
+                day = date.getDate(),
 
-            var daysOnWeek = 7,
+                daysOnWeek = 7,
                 daysInMonth = getDaysInMonth(year, month),
                 weekOnMonth = Math.ceil(daysInMonth / daysOnWeek),
                 dayNum = 1,
@@ -64,9 +62,9 @@ module.exports = function(bh) {
             }
 
             return grid;
-        };
+        },
 
-        var grid = getGrid(ctx.tParam('date'));
+        grid = getGrid(ctx.tParam('date'));
 
         ctx.content(grid, true);
         ctx.tag('table');

@@ -33,15 +33,15 @@ bh.match('select_nested', function(ctx, json){
         iterateOptions(json.options);
         ctx
             .tParam('firstOption', firstOption)
-            .tParam('checkedOptions', checkedOptions)
+            .tParam('checkedOptions', checkedOptions);
 });
 
-bh.match("select__menu", function (ctx, json){ //вообще то тут должен быть select_nested но он не матчился.
-        //ctx.applyBase();
-        var select = ctx.tParam('select') || ctx.param('select');
-        var mods = ctx.mods();
+bh.match('select__menu', function (ctx, json){
+        ctx.applyBase();
+        var select = ctx.tParam('select') || ctx.param('select'),
+            mods = ctx.mods(),
 
-        var optionToMenuItem = function(option){
+        optionToMenuItem = function(option){
             var res = {
                 'block' : 'menu-item',
                 'mods' : {
@@ -53,7 +53,7 @@ bh.match("select__menu", function (ctx, json){ //вообще то тут дол
                 'content' : option.text
             };
 
-            if (option.icon) {
+            if(option.icon) {
                 res.js.text = option.text;
                 res.content = [
                     option.icon,
@@ -64,18 +64,7 @@ bh.match("select__menu", function (ctx, json){ //вообще то тут дол
             return res;
         };
 
-        var processOptionOrGroup = function(optionOrGroup){
-            return optionOrGroup.group?
-                {
-                    'elem' : 'group',
-                    'title' : optionOrGroup.title,
-                    'option' : optionOrGroup.option?  optionToMenuItem(optionOrGroup.option) : false,
-                    'content' : optionOrGroup.group.map(processOptionOrGroup)
-                } :
-                optionToMenuItem(optionOrGroup);
-        };
-
-        return select.options ? {
+        return select.options? {
             'block' : 'menu',
             'mix' : { 'block' : json.block, 'elem' : json.elem },
             'mods' : {
@@ -87,7 +76,14 @@ bh.match("select__menu", function (ctx, json){ //вообще то тут дол
             },
             'val' : select.val,
             'attrs' : { 'tabindex' : null },
-            'content' : select.options.map(processOptionOrGroup)
+            'content' : select.options.map(function (optionOrGroup) {
+                return optionOrGroup.group? {
+                    elem : 'group',
+                    title : optionOrGroup.title,
+                    option : optionOrGroup.option || false,
+                    content : optionOrGroup.group.map(optionToMenuItem)
+                } : optionToMenuItem(optionOrGroup);
+            })
         } : null;
  });
 };

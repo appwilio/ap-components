@@ -13,7 +13,6 @@
 			text : 'simple option'
 		},
 		{
-			title : 'group title',
 			option : {
 				val : 2,
 				text : 'option with group',

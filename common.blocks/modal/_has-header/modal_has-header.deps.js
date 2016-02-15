@@ -1,6 +1,6 @@
 ({
-    mustDeps: [],
-    shouldDeps: [
-        {elem: 'header'}
+    mustDeps : [],
+    shouldDeps : [
+        { elem : 'header' }
     ]
 })

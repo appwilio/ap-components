@@ -1,16 +1,13 @@
 ([{
-    mustDeps: [
-        {mods: {theme : 'vr'}}
-    ],
-    shouldDeps: [
-        { elem : 'tail'}
+    shouldDeps : [
+        { elem : 'tail' }
     ]
-},{
-    tech: 'bemhtml',
-    shouldDeps: [
+}, {
+    tech : 'bemhtml',
+    shouldDeps : [
         {
-            elem: 'tail',
-            tech: 'bemhtml'
+            elem : 'tail',
+            tech : 'bemhtml'
         }
     ]
 }

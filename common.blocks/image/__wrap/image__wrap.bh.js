@@ -1,5 +1,5 @@
 module.exports = function (bh) {
- bh.match("image__wrap", function (ctx, json){
+ bh.match('image__wrap', function (ctx){
      ctx
          .tag('figure')
          .attrs({

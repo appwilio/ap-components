@@ -1,4 +1,6 @@
-modules.define('button', ['i-bem__dom', 'BEMHTML', 'functions__timeout'], function(provide, BEMDOM, BEMHTML, timeout) {
+modules.define('button',
+    ['i-bem__dom', 'BEMHTML', 'functions__timeout', 'functions'],
+    function(provide, BEMDOM, BEMHTML, timeout, functions) {
 
 provide(BEMDOM.decl({ block : this.name, modName : 'progress' }, {
     beforeSetMod : {
@@ -16,9 +18,9 @@ provide(BEMDOM.decl({ block : this.name, modName : 'progress' }, {
             }
         }
     },
-    onSetMod: {
-        js: {
-            inited: function() {
+    onSetMod : {
+        js : {
+            inited : function(){
                 this.__base.apply(this, arguments);
                 this._setTexts();
                 this._to = this.params.timeout || 1000;
@@ -46,17 +48,16 @@ provide(BEMDOM.decl({ block : this.name, modName : 'progress' }, {
             'error' : function(){
                 this.setText(this._failText || this._defaultText);
                 timeout(this._popupTo).then(this._reset, this);
-            },
+            }
         }
     },
-
 
     /**
      * Set progress State
      * @param {Int} percents progress
      * @public
      */
-    setProgress: function(percents){},
+    setProgress : functions.noop,
 
     _reset : function(){
         if(!this.persistState){
@@ -77,7 +78,7 @@ provide(BEMDOM.decl({ block : this.name, modName : 'progress' }, {
     /**
      * Start progress animation
      */
-    start: function(){
+    start : function(){
         this.setMod('process', 'started');
         return this;
     },
@@ -89,11 +90,11 @@ provide(BEMDOM.decl({ block : this.name, modName : 'progress' }, {
      * @param {String} popup add popup with text
      * @param {Boolean} persist that will be persistant state
      */
-    stop: function(status, text, popup, persist){
+    stop : function(status, text, popup, persist){
         this.persistState = !!persist;
 
         if(popup){
-            this.on({modName: 'process', modVal: false}, function(){
+            this.on({ modName : 'process', modVal : false }, function(){
                 this.setPopup(popup);
             });
         }
@@ -106,29 +107,30 @@ provide(BEMDOM.decl({ block : this.name, modName : 'progress' }, {
         return this;
     },
 
-    _getPopup: function(){
+    _getPopup : function(){
         return this._popup || (this._popup = this.findBlockOn(
         BEMDOM.after(this.domElem, BEMHTML.apply(this.__self.popup())), 'popup'));
     },
 
-    setPopup: function(text){
+    setPopup : function(text){
         this._getPopup().setAnchor(this.domElem);
         this._getPopup().setContent(text);
         this._popup.setMod('visible');
-    },
+    }
+
 }, {
-    popup: function(){
+    popup : function(){
         return {
             block : 'popup',
             mods : {
                 target : 'anchor',
-                theme : 'vr',
+                theme : 'vr', // FIXME: get theme from block
                 hastail : true,
                 autoclosable : true,
-                animate: 'zoom',
-                padding: 'l',
+                animate : 'zoom',
+                padding : 'l'
             },
-            directions : ['bottom-center', 'top-center'],
+            directions : ['bottom-center', 'top-center']
         };
     }
 }));

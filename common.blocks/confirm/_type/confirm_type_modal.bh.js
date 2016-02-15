@@ -1,5 +1,5 @@
 module.exports = function (bh) {
-    bh.match("confirm_type_modal", function (ctx, json){
+    bh.match('confirm_type_modal', function (ctx, json){
         ctx.applyBase();
         var style = ctx.tParam('style');
         return [
@@ -58,7 +58,7 @@ module.exports = function (bh) {
                         ]
                     }
                 ]
-            }, //modal
+            } // modal
         ];
     });
 };

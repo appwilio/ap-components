@@ -1,11 +1,10 @@
 ({
-    mustDeps: [],
-    shouldDeps: [
+    shouldDeps : [
         {
-            block: 'input',
-            mods: {
-                type: 'text',
-                'has-clear': true
+            block : 'input',
+            mods : {
+                type : 'text',
+                'has-clear' : true
             }
         },
     ]
