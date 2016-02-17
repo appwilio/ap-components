@@ -11,8 +11,8 @@ describe('accordion', function() {
             {
                 block : 'accordion',
                 content : [
-                    { block : 'collapse', mods : { 'has-header' : true } },
-                    { block : 'collapse', mods : { 'has-header' : true } },
+                    { block : 'collapse' },
+                    { block : 'collapse' },
                 ]
             }
         );
