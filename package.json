@@ -22,7 +22,7 @@
     "bower-npm-install": "~0.5.4",
     "enb": "0.17.0",
     "enb-bem-docs": "^0.11.0",
-    "enb-bem-specs": "kompolom/enb-bem-specs#49c24ba80e7fa73688b421668f59f2062e0b7bb0",
+    "enb-bem-specs": "kompolom/enb-bem-specs#33@add-template-engine-option",
     "enb-bem-techs": "2.0.0",
     "enb-bem-tmpl-specs": "~0.15.1",
     "enb-bemxjst": "v2.0.0-rc",
@@ -61,7 +61,7 @@
     "coverage-html": "npm run coverage && istanbul report html --include coverage.json",
     "specs": "npm run test-specs",
     "tmpls": "npm run test-tmpls",
-    "postinstall": "bower-npm-install",
+    "postinstall": "bower-npm-install && composer install",
     "clean": "rm -rf *.tmpl-specs && rm -rf *.specs && rm -rf .enb/tmp && rm -rf coverage.json && rm -rf coverage/ && rm -rf __coverage*.json",
     "deps": "bower-npm-install --non-interactive"
   },

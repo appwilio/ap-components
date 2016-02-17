@@ -67,16 +67,15 @@ module.exports = function (config) {
                 levels : getLibLevels(platform),
                 sourceLevels : getSpecLevels(platform),
                 jsSuffixes : ['vanilla.js', 'browser.js', 'js'],
-                depsTech : techs.bem.depsOld,
-                engine : {
-                    name : 'bh',
-                    tech : 'enb-bh/techs/bh-bundle',
-                    bemjsonTech : 'enb-bh/techs/bemjson-to-html',
-                    options : {
+                templateEngine : {
+                    templateTech : require('enb-bh/techs/bh-bundle'),
+                    templateOptions : {
                         mimic : 'BEMHTML',
                         bhOptions : BH_OPTIONS
-                    }
-                }
+                    },
+                    htmlTech : require('enb-bh/techs/bemjson-to-html'),
+                    htmlTechOptionNames : { bemjsonFile : 'bemjsonFile', templateFile : 'bhFile' },
+                },
             });
 
             sets.tmplSpecs.configure({
