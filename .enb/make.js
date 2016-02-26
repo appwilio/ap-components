@@ -250,6 +250,7 @@ function getSourceLevels(platform) {
         levels.push({ path : path.join('libs', 'bem-components', name + '.blocks'), check : false });
         levels.push({ path : path.join('libs', 'bem-components-php', name + '.blocks'), check : false });
         levels.push({ path : path.join('libs', 'bem-scrollspy', name + '.blocks'), check : false });
+        levels.push({ path : path.join('libs', 'bem-forms', name + '.blocks'), check : false });
     });
 
     platformNames.forEach(function(name) {
