@@ -62,7 +62,7 @@ module.exports = function(bh) {
                         },
                         content : {
                             block : 'comment-editor',
-                            mods : { theme : 'vr' },
+                            mods : { theme : ctx.mod('theme') },
                             mix : { block : json.block, elem : 'editor' },
                             placeholder : 'Ваш комментарий',
                         }
@@ -87,6 +87,7 @@ module.exports = function(bh) {
                                     ctx.mod('by') === 'guest'?
                                         {
                                         block : 'comment-form',
+                                        mods : { theme : ctx.mod('theme') },
                                         elem : 'guest',
                                     }: null,
                                     ctx.param('attachable')?
@@ -107,7 +108,7 @@ module.exports = function(bh) {
                                                     }
                                                 ],
                                                 'mods' : {
-                                                    'theme' : 'vr',
+                                                    'theme' : ctx.mod('theme'),
                                                     'size' : 'l',
                                                     'type' : 'submit',
                                                     'width' : 'available',

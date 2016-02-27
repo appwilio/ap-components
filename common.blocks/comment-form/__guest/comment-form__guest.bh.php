@@ -32,7 +32,7 @@ return function ($bh) {
                         [
                             'block' => 'input',
                             'mods' => [
-                                'theme' => 'vr',
+                                'theme' => $ctx->mod('theme'),
                                 'size' => 'l',
                                 'width' => 'available'
                             ],
@@ -68,7 +68,7 @@ return function ($bh) {
                         [
                             'block' => 'input',
                             'mods' => [
-                                'theme' => 'vr',
+                                'theme' => $ctx->mod('theme'),
                                 'size' => 'l',
                                 'width' => 'available'
                             ],
@@ -90,7 +90,7 @@ return function ($bh) {
                         'text' => 'Я хочу зарегистрироваться',
                         'cheked' => true,
                         'mods' => [
-                            'theme' => 'vr',
+                            'theme' => $ctx->mod('theme'),
                             'size' => 'l'
                         ],
                         'mix' => [

@@ -31,7 +31,7 @@ module.exports = function (bh) {
                         {
                             'block' : 'input',
                             'mods' : {
-                                'theme' : 'vr',
+                                'theme' : ctx.mod('theme'),
                                 'size' : 'l',
                                 'width' : 'available'
                             },
@@ -67,7 +67,7 @@ module.exports = function (bh) {
                         {
                             'block' : 'input',
                             'mods' : {
-                                'theme' : 'vr',
+                                'theme' : ctx.mod('theme'),
                                 'size' : 'l',
                                 'width' : 'available'
                             },
@@ -89,7 +89,7 @@ module.exports = function (bh) {
                         'text' : 'Я хочу зарегистрироваться',
                         'cheked' : true,
                         'mods' : {
-                            'theme' : 'vr',
+                            'theme' : ctx.mod('theme'),
                             'size' : 'l'
                         },
                         'mix' : [

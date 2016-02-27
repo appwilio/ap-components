@@ -65,7 +65,7 @@ return function ($bh) {
                             'content' => [
                                 [
                                     'block' => 'comment-editor',
-                                    'mods' => ['theme' => 'vr'],
+                                    'mods' => ['theme' => $ctx->mod('theme')],
                                     'mix' => ['block' => $json->block, 'elem' => 'editor'],
                                     'placeholder' => 'Ваш комментарий'
                                 ],
@@ -92,6 +92,7 @@ return function ($bh) {
                                         [
                                             'block' => 'comment-form',
                                             'elem' => 'guest',
+                                            'mods' => [ 'theme' => $ctx->mod('theme') ]
                                         ] : null,
                                         $ctx->param('attachable') ?
                                         [
@@ -111,7 +112,7 @@ return function ($bh) {
                                                         ],
                                                     ],
                                                     'mods' => [
-                                                        'theme' => 'vr',
+                                                        'theme' => $ctx->mod('theme'),
                                                         'size' => 'l',
                                                         'type' => 'submit',
                                                         'width' => 'available',
