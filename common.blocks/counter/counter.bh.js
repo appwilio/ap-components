@@ -20,8 +20,9 @@ module.exports = function(bh) {
                 'url' : json.url,
                 'content' : [
                     {
-                        'block' : 'icon',
-                        'mods' : { 'font' : true, 'type' : icon },
+                        block : json.block,
+                        elem : 'icon',
+                        icon : icon
                     },
                     {
                         'elem' : 'text',

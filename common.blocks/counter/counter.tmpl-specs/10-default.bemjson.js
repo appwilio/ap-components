@@ -5,5 +5,6 @@
     icon : 'thumb',
     mods : {
         size : 's',
+        theme : 'vr'
     }
 })

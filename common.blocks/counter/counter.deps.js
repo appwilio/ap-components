@@ -7,7 +7,7 @@
                 disabled : true
             }
         },
-        { block : 'button', mods : { theme : 'vr' } },
-        { block : 'icon', mods : { font : true } },
+        { block : 'button', mods : { type : 'counter' } },
+        { elem : 'icon' },
     ]
 })

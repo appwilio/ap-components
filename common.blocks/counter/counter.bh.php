@@ -12,7 +12,7 @@ return function ($bh) {
             ->content([
                 'block' => 'button',
                 'mods' => [
-                    'theme' => 'vr',
+                    'theme' => $ctx->mod('theme'),
                     'type' => 'counter',
                     'size' => $ctx->mod('size'),
                     'hovered' => $ctx->mod('toggled'),
@@ -21,8 +21,9 @@ return function ($bh) {
                 'url' => $json->url,
                 'content' => [
                     [
-                        'block' => 'icon',
-                        'mods' => ['font' => true, 'type' => $icon],
+                        'block' => $json->block,
+                        'elem' => 'icon',
+                        'icon' => $icon,
                     ],
                     [
                         'elem' => 'text',
