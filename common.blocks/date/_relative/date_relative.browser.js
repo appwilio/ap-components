@@ -44,6 +44,8 @@ provide(BEMDOM.decl({ block : this.name, modName : 'relative', modVal : true }, 
     _getRelTime : function(){
         return moment(this._date).fromNow();
     }
+}, {
+    live : false
 }));
 
 });
