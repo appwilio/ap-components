@@ -123,7 +123,7 @@ BEMDOM.decl('comment-form', {
             parentInfo.author + ',',
             '</a>',
             '&nbsp;'
-        ].join());
+        ].join(''));
         this.findBlockInside('body', 'comment-editor').setMod('focused');
     },
 
