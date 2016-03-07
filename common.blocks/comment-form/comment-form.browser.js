@@ -119,7 +119,7 @@ BEMDOM.decl('comment-form', {
         this.setParent(parentInfo.parent);
         this.setText([
             '<a class="link comment__to-inline"',
-            'href="#comment-' + parentInfo.parent + ">',
+            'href="#comment-' + parentInfo.parent + '">',
             parentInfo.author + ',',
             '</a>',
             '&nbsp;'
