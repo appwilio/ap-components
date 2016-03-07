@@ -1,8 +1,8 @@
 /* global modules:false */
 
 modules.define('comment-form',
-               ['i-bem__dom', 'comments-api', 'dom', 'events__channels', 'jquery', 'BEMHTML', 'functions__timeout'],
-               function(provide, BEMDOM, Api, dom, Channel, $, BEMHTML, timeout) {
+               ['i-bem__dom', 'comments-api', 'dom', 'events__channels', 'jquery', 'functions__timeout'],
+               function(provide, BEMDOM, Api, dom, Channel, $, timeout) {
 
 BEMDOM.decl('comment-form', {
     onSetMod : {
@@ -117,15 +117,13 @@ BEMDOM.decl('comment-form', {
      */
     setAnswerTo : function(parentInfo){
         this.setParent(parentInfo.parent);
-        this.setText(BEMHTML.apply([
-            {
-                block : 'link',
-                mix : { block : 'comment', elem : 'to-inline' },
-                url : '#comment-' + parentInfo.parent,
-                content : parentInfo.author + ','
-            },
+        this.setText([
+            '<a class="link comment__to-inline"',
+            'href="#comment-' + parentInfo.parent + ">',
+            parentInfo.author + ',',
+            '</a>',
             '&nbsp;'
-        ]));
+        ].join());
         this.findBlockInside('body', 'comment-editor').setMod('focused');
     },
 
