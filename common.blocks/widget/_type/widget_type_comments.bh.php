@@ -33,7 +33,7 @@ return function ($bh) {
                 ],
                 [
                     'block' => 'link',
-                    'mods' => ['theme' => 'vr', 'size' => 'l'],
+                    'mods' => ['theme' => $ctx->mod('theme'), 'size' => 'l'],
                     'url' => $json->profile_url,
                     'content' => isset($json->full_name) ? $json->full_name : $json->username
                 ]
@@ -53,7 +53,7 @@ return function ($bh) {
                         'к записи: ',
                         [
                             'block' => 'link',
-                            'mods' => ['theme' => 'vr', 'size' => 'l'],
+                            'mods' => ['theme' => $ctx->mod('theme'), 'size' => 'l'],
                             'url' => $json->post_url,
                             'content' => $json->title,
                         ],

@@ -5,7 +5,7 @@ return function ($bh) {
      $ctx->js(true);
      $defOpts = [
          'size' => 's',
-         'theme' => 'vr',
+         'theme' => $ctx->mod('theme'),
          'view' => 'list'
      ];
      $opts = isset($json->options)? $json->options : [];
