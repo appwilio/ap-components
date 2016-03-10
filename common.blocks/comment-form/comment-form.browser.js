@@ -169,7 +169,7 @@ BEMDOM.decl('comment-form', {
             focus
         );
         this.liveBindTo('submit', this.prototype._onSubmit);
-        this.liveBindTo('click', focus);
+        this.liveBindTo('pointerclick', focus);
         this.liveBindTo('body', 'focusin', focus);
         return false;
     }
