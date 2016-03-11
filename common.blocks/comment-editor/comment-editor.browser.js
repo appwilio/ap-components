@@ -88,6 +88,13 @@ provide(BEMDOM.decl({ block : this.name, baseBlock : Control }, /** @lends comme
         this.emit('change', val);
     }
 
+}, {
+    live : function(){
+        this.liveBindTo('body', 'pointerclick', function(){
+            this.setMod('focused');
+        });
+        return this.__base.apply(this, arguments);
+    }
 }));
 
 });
