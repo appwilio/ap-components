@@ -7,16 +7,20 @@ provide(BEMDOM.decl({ block : 'image', modName : 'lazy', modVal : 'scroll' }, {
     'js' : {
       'inited' : function(){
         this.ss = this.findBlockOn('scrollspy');
-        this.ss.on('scrollin', this._load, this);
       }
     }
   },
 
   _load : function() {
     this.ss.un('scrollin');
-    this.ss.setMod('js', '');
+    this.ss.delMod('js');
     this.load();
   }
+
+}, {
+    live : function(){
+        this.liveInitOnBlockInsideEvent('scrollin', 'scrollspy', this.prototype._load);
+    }
 }));
 
 });
