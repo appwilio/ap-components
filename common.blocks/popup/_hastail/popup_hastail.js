@@ -13,7 +13,7 @@ modules.define('popup', ['objects'], function (provide, objects, Popup) {
         setContent : function(content){
             Popup.update(this.elem('content'), content);
             return this;
-        }
+        },
     }
   ));
 

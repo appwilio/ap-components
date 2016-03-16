@@ -3,7 +3,7 @@ module.exports = function (bh) {
      ctx.applyBase();
      ctx.content([
          { elem : 'tail' },
-         { elem : 'content', 'content' : ctx.content() }
+         { elem : 'content', content : ctx.content() }
      ], true);
  });
 };

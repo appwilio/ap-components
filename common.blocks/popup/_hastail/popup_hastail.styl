@@ -1,15 +1,20 @@
 tailWidth = 12px
 .popup_hastail
+    .popup__content
+        position: relative
+        z-index : 2
     &.popup
         &_direction
             &_bottom-left
                 .popup__tail
                     top: - tailWidth
-                    left: 10%
+                    left: tailWidth
             &_bottom-right
                 .popup__tail
-                    top: - tailWidth
-                    right: 10%
+                    top: - (tailWidth / 2)
+                    right: tailWidth
+                    border-bottom-color: transparent
+                    border-right-color: transparent
             &_bottom-center
                 .popup__tail
                     top: - (tailWidth / 2)
@@ -20,11 +25,11 @@ tailWidth = 12px
             &_top-left
                 .popup__tail
                     bottom: - tailWidth
-                    left: 10%
+                    left: tailWidth
             &_top-right
                 .popup__tail
                     bottom: - tailWidth
-                    right: 10%
+                    right: tailWidth
             &_top-center
                 .popup__tail
                     bottom: - (tailWidth / 2)

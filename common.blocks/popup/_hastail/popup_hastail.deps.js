@@ -1,4 +1,7 @@
 ([{
+    mustDeps : [
+        { mods : { theme : 'vr' } }
+    ],
     shouldDeps : [
         { elem : 'tail' }
     ]
