@@ -61,7 +61,7 @@
     "coverage-html": "npm run coverage && istanbul report html --include coverage.json",
     "specs": "npm run test-specs",
     "tmpls": "npm run test-tmpls",
-    "postinstall": "bower-npm-install && composer install",
+    "postinstall": "npm run deps",
     "clean": "rm -rf *.tmpl-specs && rm -rf *.specs && rm -rf .enb/tmp && rm -rf coverage.json && rm -rf coverage/ && rm -rf __coverage*.json",
     "deps": "bower-npm-install --non-interactive"
   },
