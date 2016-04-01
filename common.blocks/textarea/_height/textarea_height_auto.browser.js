@@ -17,6 +17,7 @@ provide(Textarea.decl({ block : this.name, modName : 'height', modVal : 'auto' }
         this.liveBindTo('control', 'focusout', function(){
             this.elem('control').css('height', 'auto');
         });
+        return this.__base.apply(this, arguments);
     }
 }));
 
