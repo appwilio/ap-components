@@ -15,8 +15,8 @@ FormField.decl({ modName : 'validate', modVal : 'equal' },
        }
      },
      getStatus : function(){
-        var nameToCompare = this.params.equal.rel;
-        var val2 = this
+        var nameToCompare = this.params.equal.rel,
+            val2 = this
                     ._form
                     .getFieldByName(nameToCompare)
                     .getVal();
