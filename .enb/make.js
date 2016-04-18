@@ -93,6 +93,13 @@ module.exports = function (config) {
                         options : {
                             bhOptions : BH_OPTIONS
                         }
+                    },
+                    'bemhtml' : {
+                        tech : 'enb-bemxjst/techs/bemhtml',
+                        options : {
+                            exportName : 'BEMHTML',
+                            devMode : true
+                        }
                     }
                 },
                 depsTech : techs.bem.depsOld

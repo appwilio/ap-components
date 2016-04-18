@@ -24,7 +24,7 @@
     "enb-bem-specs": "kompolom/enb-bem-specs#33@add-template-engine-option",
     "enb-bem-techs": "2.0.0",
     "enb-bem-tmpl-specs": "~0.15.1",
-    "enb-bemxjst": "v2.0.0-rc",
+    "enb-bemxjst": "6.0.0",
     "enb-bh": "1.0.0",
     "enb-bh-php": "0.1.4",
     "enb-borschik": "2.0.0",
