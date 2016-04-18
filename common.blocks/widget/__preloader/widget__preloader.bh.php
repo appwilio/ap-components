@@ -6,7 +6,7 @@ return function ($bh) {
              'block' => 'spin',
              'mods' => [
                  'size' => 'l',
-                 'theme' => 'vr',
+                 'theme' => $ctx->mod('theme'),
                  'visible' => true
              ]
          ]

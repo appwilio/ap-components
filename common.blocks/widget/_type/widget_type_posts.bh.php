@@ -4,7 +4,7 @@ return function ($bh) {
      $ctx->applyBase();
      $defOpts = [
          'size' => 'm',
-         'theme' => 'vr',
+         'theme' => $ctx->mod('theme'),
          'view' => 'grid',
          'lazy' => 'scroll',
          'features' => [
