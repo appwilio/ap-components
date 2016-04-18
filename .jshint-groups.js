@@ -34,6 +34,7 @@ module.exports = {
                 '**/*.spec.js',
                 '**/*.deps.js',
                 '**/*.bemjson.js',
+                '**/*.bemhtml.js',
                 'common.blocks/fancybox/**'
             ]
         },
@@ -77,7 +78,7 @@ module.exports = {
                     'tag'
                 ]
             },
-            includes : ['*.blocks/**/*.bemhtml']
+            includes : ['*.blocks/**/*.bemhtml.js', '*.blocks/**/*.bemhtml']
         },
 
         bhjs : {
