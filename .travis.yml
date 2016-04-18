@@ -16,5 +16,5 @@ script:
 
 env:
   global:
-    - GH_REF: github.com/apwillio/ap-components.git
+    - GH_REF: github.com/appwilio/ap-components.git
     - ISTANBUL_COVERAGE: yes
