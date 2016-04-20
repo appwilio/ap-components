@@ -10,9 +10,10 @@ sudo: false
 
 before_script:
     - npm install
+    - composer install
 
 script:
-    - npm run specs
+    - npm run unit
 
 env:
   global:
