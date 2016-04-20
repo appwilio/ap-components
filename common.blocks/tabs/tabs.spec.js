@@ -1,7 +1,7 @@
 modules.define(
     'spec',
     ['tabs', 'i-bem__dom', 'jquery', 'BEMHTML', 'radio-group', 'chai'],
-    function(provide, Tabs, BEMDOM, $, BEMHTML, Rg, chai) {
+    function(provide, Tabs, BEMDOM, $, BEMHTML) {
 
         describe('tabs', function() {
             var tabs;
