@@ -1,0 +1,3 @@
+block('accordion')(
+    js()(true)
+);
