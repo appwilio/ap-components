@@ -3,6 +3,6 @@ block('alert').mod('dismissible',true).content()(function() {
       {
         elem: 'dismiss'
       },
-      this.ctx.content
+      applyNext()
   ];
 });

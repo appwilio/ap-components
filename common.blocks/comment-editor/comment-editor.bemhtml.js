@@ -1,5 +1,5 @@
 block('comment-editor')(
-  ctx.tParam('val', ctx.content());
+  def()(function() { return applyNext({ val : this.ctx }); }),
   content()(
     function(){
       return [
@@ -9,7 +9,7 @@ block('comment-editor')(
         {
             elem : 'body',
             placeholder : this.ctx.placeholder,
-            content : this.ctx.content
+            content : applyNext()
         },
         {
             elem : 'tools',
@@ -18,13 +18,13 @@ block('comment-editor')(
                     block : 'input',
                     elem : 'clear',
                     mix : {
-                        block : this.block,
+                        block : this.ctx.block,
                         elem : 'clear'
                     }
                 }
             ]
         }
-      ]
+      ];
     }
   )
 );
