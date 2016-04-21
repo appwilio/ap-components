@@ -1,8 +1,8 @@
-block('alert').mod('has-icon',true).content()(
+block('alert').mod('has-icon', true).content()(
     function () {
         var status;
 
-        switch (this.mods.status) {
+        switch(this.mods.status) {
             case 'error' :
                 status = 'info-2';
                 break;
@@ -10,7 +10,7 @@ block('alert').mod('has-icon',true).content()(
                 status = 'check';
                 break;
             default:
-                status = 'info'
+                status = 'info';
 
         }
 
@@ -32,6 +32,6 @@ block('alert').mod('has-icon',true).content()(
                 elem : 'content',
                 content : applyNext()
             }
-        ]
+        ];
     }
 );

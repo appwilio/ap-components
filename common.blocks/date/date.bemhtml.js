@@ -4,7 +4,7 @@ block('date')(
     function () {
       var date = new Date(this.ctx.unix_ts * 1000),
           iso = date.toISOString(),
-          attrs = { datetime : iso};
+          attrs = { datetime : iso };
           return attrs;
     }
   )

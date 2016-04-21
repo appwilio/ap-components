@@ -19,7 +19,7 @@ block('counter')(
             mods = this.mods;
         return {
             block : 'button',
-            mix : [{block : 'button', elem : 'control'}],
+            mix : [{ block : 'button', elem : 'control' }],
             mods : {
                 theme : 'vr',
                 type : 'counter',

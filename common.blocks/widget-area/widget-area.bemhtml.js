@@ -30,7 +30,7 @@ block('widget-area').match(function () {
         allWidgets = this.ctx.widgets || this._widgets,
         widgets = allWidgets[name];
         widgets.map(function (widget) {
-        return this.extend({ 'block' : 'widget', 'mods' : {'type' : widget.type}}, widget);
-    },widgets);
+        return this.extend({ 'block' : 'widget', 'mods' : { 'type' : widget.type } }, widget);
+    }, widgets);
     return applyNext();
 });

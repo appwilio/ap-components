@@ -1,6 +1,6 @@
-block('date').mod('relative',true)(
+block('date').mod('relative', true)(
     js()(function(){
-      return { unix : this.ctx.unix_ts};
+      return { unix : this.ctx.unix_ts };
       }
     )
 );

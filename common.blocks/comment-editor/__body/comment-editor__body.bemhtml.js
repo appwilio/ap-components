@@ -1,5 +1,5 @@
 block('comment-editor').elem('body')(
-    mix()({ elem : 'control'}),
+    mix()({ elem : 'control' }),
     attrs()(function(){
         return {
             tabindex : 0,

@@ -44,7 +44,6 @@ provide(BEMDOM.decl(this.name,  /** @lends tabs.prototype */{
     getVal : function() {
         return parseInt(this._radioGroup.getVal());
     }
-    
 },  /** @lends tabs */{
     live : function() {
         this.liveInitOnBlockInsideEvent('change', 'radio-group', this.prototype._onRadioGroupChange);
