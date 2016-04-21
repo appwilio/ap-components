@@ -4,10 +4,12 @@ block('comment-editor').elem('control')(
       block : 'comment-editor',
       elem : 'control'
     }),
-    attrs()({
+    attrs()(function() {
+      return {
         type : 'hidden',
         name : this.ctx.name,
         value : this.ctx.content,
         id : this.generateId()
+      };
     })
 );

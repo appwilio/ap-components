@@ -13,16 +13,14 @@ block('comment-editor')(
       },
       {
         elem : 'tools',
-        content : [
-          {
+        content : {
             block : 'input',
             elem : 'clear',
             mix : {
-              block : this.ctx.block,
-              elem : 'clear'
+                block : this.ctx.block,
+                elem : 'clear'
             }
-          }
-        ]
+        }
       }
     ];
   })
