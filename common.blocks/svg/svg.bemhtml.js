@@ -1,6 +1,6 @@
 block('svg')(
     tag()('svg'),
-    attrs()(function() {
+    attrs()(function(){
         return {
             role : 'img',
             version : '1.1',
