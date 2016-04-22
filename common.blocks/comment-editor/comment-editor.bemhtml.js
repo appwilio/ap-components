@@ -16,10 +16,10 @@ block('comment-editor')(
         content : {
             block : 'input',
             elem : 'clear',
-            mix : {
+            mix : [{
                 block : this.ctx.block,
                 elem : 'clear'
-            }
+            }]
         }
       }
     ];

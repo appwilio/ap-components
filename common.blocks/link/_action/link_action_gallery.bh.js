@@ -12,4 +12,3 @@ bh.match('link_action_gallery', function(ctx, json) {
 
 });
 };
-
