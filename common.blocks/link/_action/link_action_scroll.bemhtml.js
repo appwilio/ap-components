@@ -1,6 +1,10 @@
 block('link').mod('action', 'scroll')(
-    mix()([{
-        block : 'scrollto',
-        mods : { target : 'anchor' }
-    }])
+    mix()(function(){
+        var mix = applyNext();
+        mix.push({
+            block : 'scrollto',
+            mods : { target : 'anchor' }
+        });
+        return mix;
+    })
 );
