@@ -9,19 +9,9 @@ block('comment-editor')(
       {
         elem : 'body',
         placeholder : this.ctx.placeholder,
-        content : applyNext()
+        content : applyNext(this.ctx.content)
       },
-      {
-        elem : 'tools',
-        content : {
-            block : 'input',
-            elem : 'clear',
-            mix : [{
-                block : this.ctx.block,
-                elem : 'clear'
-            }]
-        }
-      }
+      { elem : 'tools' }
     ];
   })
 );
