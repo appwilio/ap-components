@@ -1,7 +1,7 @@
 block('avatar')(
     def()(function() {
-    this.mods.default = !this.ctx.image? this.mode.default : (false, true) ;
-    return applyNext();
+        this.mods.default = !this.ctx.image? this.mods.default : false;
+        return applyNext();
     }),
 
     content()(function () {

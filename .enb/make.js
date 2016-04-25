@@ -97,6 +97,7 @@ module.exports = function (config) {
                     'bemhtml' : {
                         tech : 'enb-bemxjst/techs/bemhtml',
                         options : {
+                            sourceSuffixes : ['bemhtml.js', 'bemhtml'],
                             exportName : 'BEMHTML',
                             devMode : true
                         }

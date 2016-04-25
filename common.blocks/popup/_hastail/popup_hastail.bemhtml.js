@@ -1,4 +1,4 @@
-block('popup').mod('hastail')(
+block('popup').mod('hastail', true)(
     content()(function () {
         return [
             { elem : 'tail' },

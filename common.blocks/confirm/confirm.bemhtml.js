@@ -1,8 +1,7 @@
 block('confirm')(
-
 	def()(function () {
-	return applyNext({ style : this.mode.style || 'error' });
+        this.ctx.style = this.mods.style || 'error';
+        return applyNext();
 	}),
-
 	js()(true)
 );

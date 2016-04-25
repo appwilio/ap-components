@@ -13,12 +13,12 @@ block('confirm').mod('proof', 'word')(
             },
             {
                 block : 'input',
-                mix : [{ block : ctx.block, elem : 'input' }],
+                mix : [{ block : this.block, elem : 'input' }],
                 autocomplete : false,
                 placeholder : 'Введите текст',
                 mods : {
                     focused : true,
-                    theme : ctx.mods.theme,
+                    theme : this.mods.theme,
                     size : 'l',
                     type : 'text',
                     width : 'available'

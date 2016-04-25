@@ -9,9 +9,8 @@
     "libs"
   ],
   "dependencies": {
-    "bem-components": "^2.4.0",
-    "bem-components-php": "^2.3.0",
-    "bem-social": "https://github.com/bem-incubator/bem-social.git#master",
+    "bem-components": "2.5.0",
+    "bem-components-php": "2.5.0",
     "bem-scrollspy": "^v0.1.5",
     "bem-forms": "^0.1.3"
   },
@@ -20,6 +19,8 @@
   },
   "resolutions": {
     "bem-core": "2.9.0",
-    "bem-components": "2.3.0"
+    "bem-core-php": "2.9.0",
+    "bem-components": "2.5.0",
+    "bem-components-php": "2.5.0"
   }
 }
