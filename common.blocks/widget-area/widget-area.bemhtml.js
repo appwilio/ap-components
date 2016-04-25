@@ -1,5 +1,5 @@
-block('widget-area')(
-    replace()(function(){
+block('widget-area').replace()(
+    function(){
         this.ctx.widgetList = this.ctx.widgets[this.ctx.name];
         var _this = this;
         return this.ctx.widgetList.map(function(widget){
@@ -8,5 +8,5 @@ block('widget-area')(
                 widget
             );
         });
-    })
+    }
 );
