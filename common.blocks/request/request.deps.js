@@ -1,6 +1,6 @@
 ({
     shouldDeps : [
         'jquery',
-        'wov'
+        'vow'
     ]
 })
