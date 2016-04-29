@@ -55,6 +55,14 @@ provide(BEMDOM.decl({ block : this.name, baseBlock : Control }, /** @lends comme
     },
 
     /**
+     * Вырезает из тела комментария все лишнее
+     * @param string content текст комментария
+     */
+    filterContent : function(content){
+        return content.replace(/[<br>]+/g,"<br>");
+    },
+
+    /**
      * Clear comment-form
      * @fires clear
      */
@@ -70,7 +78,7 @@ provide(BEMDOM.decl({ block : this.name, baseBlock : Control }, /** @lends comme
      * @emits change
      */
     _onBodyChange : function(){
-        var html = this.elem('body').html(),
+        var html = this.filterContent(this.elem('body').html()),
             old = this.elem('control').val();
 
         if(html === old){
