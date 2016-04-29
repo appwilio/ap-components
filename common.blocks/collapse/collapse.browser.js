@@ -9,8 +9,8 @@ modules.define('collapse', ['i-bem__dom'], function(provide, BEMDOM) {
     provide(BEMDOM.decl(this.name, {
         onSetMod : {
             'opened' : function(_, modVal) {
-                this.setMod(this.elem('switcher'), 'opened',  modVal);
-                this.setMod(this.elem('content'), 'visible', modVal);
+                this.setMod(this.findElem('switcher', true), 'opened',  modVal);
+                this.setMod(this.findElem('content', true), 'visible', modVal);
             }
         },
 
