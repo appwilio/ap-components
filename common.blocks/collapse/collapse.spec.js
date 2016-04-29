@@ -44,7 +44,7 @@ describe('collapse', function() {
             sw = $(collapse.elem('switcher')[0]);
             sw.trigger('click');
             collapse.hasMod(
-                collapse.elem('switcher'),
+                collapse.findElem('switcher', true),
                 'opened')
                 .should.be.true;
         });
