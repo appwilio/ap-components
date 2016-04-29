@@ -97,7 +97,8 @@ provide(BEMDOM.decl({ block : this.name, baseBlock : Control }, /** @lends comme
         if(html === old){
             return false;
         }
-        this.setVal(html);
+        this.elem('control').val(html);
+        this.emit('change', html);
     },
 
     /**
