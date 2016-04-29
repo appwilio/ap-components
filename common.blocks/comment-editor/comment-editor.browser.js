@@ -19,16 +19,7 @@ provide(BEMDOM.decl({ block : this.name, baseBlock : Control }, /** @lends comme
         },
         'focused' : {
             'true' : function(){
-                var el = this.elem('body')[0],
-                    len = el.childNodes.length;
-                if(len){
-                    var range = document.createRange(),
-                        sel = window.getSelection();
-                    range.setEndAfter(el.childNodes[len - 1]);
-                    range.collapse();
-                    sel.removeAllRanges();
-                    sel.addRange(range);
-                }
+                this.setCaretToEnd();
                 this.__base.apply(this, arguments);
             }
         },
@@ -42,6 +33,22 @@ provide(BEMDOM.decl({ block : this.name, baseBlock : Control }, /** @lends comme
                 this.elem('control').attr('contenteditable', '');
             }
         }
+    },
+
+    /**
+     * Перемещает каретку в конец текста
+     */
+    setCaretToEnd : function(){
+        var el = this.elem('body')[0],
+            len = el.childNodes.length;
+        if(!len) return;
+
+        var range = document.createRange(),
+            sel = window.getSelection();
+        range.setEndAfter(el.childNodes[len - 1]);
+        range.collapse();
+        sel.removeAllRanges();
+        sel.addRange(range);
     },
 
     _unbindEvents : function(){
@@ -59,7 +66,13 @@ provide(BEMDOM.decl({ block : this.name, baseBlock : Control }, /** @lends comme
      * @param string content текст комментария
      */
     filterContent : function(content){
-        return content.replace(/[<br>]+/g,"<br>");
+        return content
+            .replace(/(<br>)+/g, '<br>')
+            .replace(/(<br>)$/g, '')
+            .replace(/^(<br>)/g, '')
+            .replace(/\s+/g, ' ')
+            .replace(/^\s/, '')
+            .replace(/\s$/, '');
     },
 
     /**
@@ -84,16 +97,21 @@ provide(BEMDOM.decl({ block : this.name, baseBlock : Control }, /** @lends comme
         if(html === old){
             return false;
         }
-
-        this.elem('control').val(html);
-        this.emit('change', html);
+        this.setVal(html);
     },
 
+    /**
+     * Устанавливает новое значение
+     * @param val string новое значение
+     */
     setVal : function(val){
         this.__base.apply(this, arguments);
-        this.elem('control').val(val);
-        this.elem('body').html(val);
-        this.emit('change', val);
+        if(val === this.getVal()) return;
+
+        var filteredVal = this.filterContent(val);
+        this.elem('control').val(filteredVal);
+        this.elem('body').html(filteredVal);
+        this.emit('change', filteredVal);
     }
 
 }, {
