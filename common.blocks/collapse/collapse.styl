@@ -4,6 +4,10 @@
         height: 0;
         opacity: 0
         transition: all 0.5s ease-out;
+        &_visible
+            opacity : 1
+            height: auto
+            visibility: visible
     &__header
         position: relative
         overflow: hidden
@@ -16,11 +20,7 @@
         transition: transform 0.1s ease-out 0s;
         font-size: 1.3rem;
         line-height: 26px;
-    &_opened
-        > .collapse
-            &__content
-                visibility: visible
-                opacity: 1
-                height: auto;
-            &__header .collapse__tick
+    &__switcher
+        &_opened
+            .collapse__tick
                 transform: rotate(-180deg);
