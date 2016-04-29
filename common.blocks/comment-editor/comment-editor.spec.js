@@ -85,9 +85,27 @@ describe('comment-editor', function(){
                 'white space' : 'white space'
             };
             for(var src in content) {
-                editor.filterContent(src).should.equals(content[src]);
+                if(content.hasOwnProperty(src)){
+                    editor.filterContent(src).should.equals(content[src]);
+                }
             }
         });
+
+        it('should filter &nbsp;', function(){
+            var content = {
+                'text' : 'text',
+                '&nbsp;text&nbsp;' : 'text',
+                'text&nbsp;' : 'text',
+                ' text &nbsp; &nbsp; ' : 'text',
+                'white&nbsp;space' : 'white space',
+            };
+            for(var src in content) {
+                if(content.hasOwnProperty(src)){
+                    editor.filterContent(src).should.equals(content[src]);
+                }
+            }
+        });
+
         it('should filter <br>', function(){
             var content = {
                 'text with br' : 'text with br',
@@ -95,9 +113,12 @@ describe('comment-editor', function(){
                 'double<br><br> text' : 'double<br> text',
                 'double <br> <br>' : 'double <br>',
                 '<br>three<br><br>' : 'three',
+                '<div><br></div>' : ''
             };
             for(var src in content) {
-                editor.filterContent(src).should.equals(content[src]);
+                if(content.hasOwnProperty(src)){
+                    editor.filterContent(src).should.equals(content[src]);
+                }
             }
         });
         it('should apply filters to content', function(){

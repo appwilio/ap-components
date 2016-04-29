@@ -70,6 +70,8 @@ provide(BEMDOM.decl({ block : this.name, baseBlock : Control }, /** @lends comme
             .replace(/(<br>)+/g, '<br>')
             .replace(/(<br>)$/g, '')
             .replace(/^(<br>)/g, '')
+            .replace(/(&nbsp;)+/g, ' ')
+            .replace(/<div><br><\/div>/g, '')
             .replace(/\s+/g, ' ')
             .replace(/^\s/, '')
             .replace(/\s$/, '');
@@ -91,7 +93,7 @@ provide(BEMDOM.decl({ block : this.name, baseBlock : Control }, /** @lends comme
      * @emits change
      */
     _onBodyChange : function(){
-        var html = this.filterContent(this.elem('body').html()),
+        var html = this.filterContent(this.elem('body').text()),
             old = this.elem('control').val();
 
         if(html === old){
