@@ -10,7 +10,7 @@ provide(Input.decl({ block : 'input', modName : 'type', modVal : 'datepicker' },
 
                 this.getCalendar()
                 .on('change', function(_, data) {
-                    this.setVal(this._formatDate(data.date));
+                    this.setDate(data.date);
                     this._popup.delMod('visible');
                 }, this);
             }
@@ -27,7 +27,7 @@ provide(Input.decl({ block : 'input', modName : 'type', modVal : 'datepicker' },
     },
 
     getCalendar : function(){
-        return this._calendar || (this._calendar = this.findBlockInside('calendar'));
+        return this._calendar || (this._calendar = this._getPopup().findBlockInside('calendar'));
     },
 
     _formatDate : function(date){
@@ -37,6 +37,12 @@ provide(Input.decl({ block : 'input', modName : 'type', modVal : 'datepicker' },
                 month < 10? '0' + month : month,
                 date.getFullYear()
                 ].join('.');
+    },
+
+    setDate : function(date){
+        this.setVal(this._formatDate(date));
+        this.getCalendar().setDate(date);
+        return this;
     },
 
     getDate : function(){

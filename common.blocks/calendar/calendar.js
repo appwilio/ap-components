@@ -30,6 +30,14 @@ modules.define(
 
             getDate : function(){
                 return this._date;
+            },
+
+            setDate : function(dateTime){
+                if(this._date === dateTime) return;
+
+                this._date = dateTime;
+                this._changeDate();
+                this.emit('change', { date : this._date });
             }
 
         }, {

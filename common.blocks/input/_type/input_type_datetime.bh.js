@@ -55,7 +55,7 @@ module.exports = function (bh) {
                         hour = hour < 10? '0' + hour : hour;
                         return { val : hour, 'text' : hour };
                     })
-                } // hours
+                } // mins
      ], true);
  });
 };

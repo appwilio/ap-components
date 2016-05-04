@@ -47,6 +47,31 @@ modules.define('spec',
             var dateObj = new Date(timestamp * 1000);
             input.getDate().should.eql(dateObj);
         });
+
+        it('should update date', function(){
+            var dateObj = new Date();
+            input.getDate().should.not.eql(dateObj);
+            input.setDate(dateObj);
+            input.getDate().should.eql(dateObj);
+        });
+
+        it('should not emit `change` on same date', function(){
+            var dateObj = new Date(),
+                spy = sinon.spy();
+            input.setDate(dateObj);
+            input.on('change', spy);
+            input.setDate(dateObj);
+            spy.calledOnce.should.be.false();
+        });
+
+        it('should emit `change`', function(){
+            var dateObj = new Date(),
+                spy = sinon.spy();
+            input.on('change', spy);
+            input.setDate(dateObj);
+            input.setDate(dateObj);
+            spy.calledOnce.should.be.true();
+        });
     });
 
     provide();

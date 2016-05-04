@@ -13,6 +13,9 @@ Input.decl({ block : 'input', modName : 'type', modVal : 'datetime' }, {
                     modName : 'type',
                     modVal : 'datepicker'
                 });
+                this._dateInput.on('change', function(){
+                    this.emit('change', this._collectData());
+                }, this);
                 this._hourInput = this.findBlockOn('hours', 'select');
                 this._minInput = this.findBlockOn('mins', 'select');
             }
@@ -20,11 +23,21 @@ Input.decl({ block : 'input', modName : 'type', modVal : 'datetime' }, {
     },
 
     _collectData : function(){
-        var date = this._dateInput.getVal(true),
+        var date = this._dateInput.getDate(),
             hour = this._hourInput.getVal(),
             min  = this._minInput.getVal();
         date.setHours(hour, min);
+
+        var t1 = this._date.getTime(),
+            t2 = date.getTime();
+
+        if(t1 === t2) {
+            return this._date;
+        }
+
         this._date = date;
+        this.emit('change', this._date);
+        return this._date;
     },
 
     /**
@@ -38,10 +51,11 @@ Input.decl({ block : 'input', modName : 'type', modVal : 'datetime' }, {
 
 }, {
     live : function(){
-        this.__base();
-        this.liveInitOnBlockInsideEvent('change', 'calendar', function(){
-            this._collectData();
-        });
+        this.__base.apply(this, arguments);
+        var ptp = this.prototype;
+        // this.liveInitOnBlockInsideEvent('change', 'input', ptp._collectData);
+        this.liveInitOnBlockInsideEvent('change', 'select', ptp._collectData);
+        return false;
     }
 });
 provide(Input);
