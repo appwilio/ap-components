@@ -246,8 +246,10 @@ function getSourceLevels(platform) {
 
     platformNames.forEach(function(name) {
         levels.push({ path : path.join('libs', 'bem-core', name + '.blocks'), check : false });
+        levels.push({ path : path.join('libs', 'bem-core', 'desktop.blocks'), check : false });
         levels.push({ path : path.join('libs', 'bem-core-php', name + '.blocks'), check : false });
         levels.push({ path : path.join('libs', 'bem-components', name + '.blocks'), check : false });
+        levels.push({ path : path.join('libs', 'bem-components', 'desktop.blocks'), check : false });
         levels.push({ path : path.join('libs', 'bem-components-php', name + '.blocks'), check : false });
         levels.push({ path : path.join('libs', 'bem-scrollspy', name + '.blocks'), check : false });
         levels.push({ path : path.join('libs', 'bem-forms', name + '.blocks'), check : false });
@@ -256,7 +258,6 @@ function getSourceLevels(platform) {
     platformNames.forEach(function(name) {
         levels.push({ path : name + '.blocks', check : true });
     });
-
     return levels;
 }
 
