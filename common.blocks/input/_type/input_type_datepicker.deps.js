@@ -1,18 +1,25 @@
 ([{
+    mustDeps : [],
     shouldDeps : [
         {
             block : 'popup',
-            mods : { theme : 'vr', target : 'anchor' }
+            mods : { target : 'anchor', autoclosable : true }
         },
-        {
-            block : 'calendar',
-            mods : { theme : 'vr' }
-        }
+        'calendar'
     ]
 },
 {
     tech : 'js',
     shouldDeps : [
-        { block : 'calendar', mods : { theme : 'vr' }, tech : 'bemhtml' }
+        { block : 'calendar', tech : 'bemhtml' }
     ]
-}])
+},
+{
+    tech : 'spec.js',
+    shouldDeps : [
+        { block : 'calendar' },
+        { block : 'calendar', tech : 'bemhtml' },
+        { block : 'popup', mods : { target : 'anchor' }, tech : 'bemhtml' }
+    ]
+}
+]);

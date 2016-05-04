@@ -1,10 +1,11 @@
-modules.define('input', ['i-bem__dom', 'BEMHTML'], function(provide, BEMDOM, BEMHTML, Input) {
+modules.define('input', ['i-bem__dom', 'BEMHTML', 'popup'], function(provide, BEMDOM, BEMHTML, Input) {
 
-provide(Input.decl({ modName : 'type', modVal : 'datepicker' }, {
+provide(Input.decl({ block : 'input', modName : 'type', modVal : 'datepicker' }, {
 
     onSetMod : {
         js : {
             inited : function() {
+                this.__base.apply(this, arguments);
                 this._getPopup().setAnchor(this);
 
                 this.getCalendar()
@@ -38,9 +39,9 @@ provide(Input.decl({ modName : 'type', modVal : 'datepicker' }, {
                 ].join('.');
     },
 
-    getVal : function(obj){
-        return obj? this.getCalendar().getDate(): this._val;
-    }
+    getDate : function(){
+        return this.getCalendar().getDate();
+    },
 
 }));
 

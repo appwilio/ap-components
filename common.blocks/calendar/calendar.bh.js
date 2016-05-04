@@ -4,7 +4,6 @@ module.exports = function(bh) {
             date = ctx.param('date')? new Date(ctx.param('date')) : new Date();
         ctx.tParam('theme', ctx.mod('theme'));
         ctx.tParam('size',  ctx.mod('size'));
-        console.log(date);
 
         ctx.js({
             date : date.getTime(),
