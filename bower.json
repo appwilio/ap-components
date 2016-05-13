@@ -10,15 +10,15 @@
   ],
   "dependencies": {
     "bem-components": "^2.5.0",
-    "bem-social": "https://github.com/bem-incubator/bem-social.git#master",
+    "bem-social": "https://github.com/bem-contrib/bem-social.git#master",
     "bem-scrollspy": "^v0.1.5",
-    "bem-forms": "^0.1.3"
+    "bem-forms": "https://github.com/bem-contrib/bem-forms.git#master"
   },
   "devDependencies": {
     "bem-pr": "~0.12.0"
   },
   "resolutions": {
-    "bem-core": "2.9.1",
-    "bem-components": "2.5.1"
+    "bem-core": "2.9.0",
+    "bem-components": "2.5.0"
   }
 }
