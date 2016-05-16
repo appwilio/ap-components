@@ -1,3 +1,8 @@
-block('image').mod('wrap', true).def()(function() {
-    return applyCtx({ elem : 'wrap', content: this.ctx });
-});
+block('image').mod('wrap', true).replace()(
+    function () {
+        return applyCtx({
+            elem : 'wrap',
+            content : applyNext()
+        });
+    }
+);

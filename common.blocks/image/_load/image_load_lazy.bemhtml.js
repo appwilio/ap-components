@@ -1,10 +1,13 @@
 block('image').mod('load', 'lazy')(
-    match(function() { return this.mods.semantic; })(
+
+    match(function () {
+        return this.mods.semantic;
+    }).def()(
         attrs()({
-                itemprop : false,
-                itemscope : false,
-                itemtype : 'http://schema.org/ImageObject'
-            })
+            itemprop  : false,
+            itemscope : true,
+            itemtype  : 'http://schema.org/ImageObject'
+        })
     ),
 
     tag()('span'),
@@ -13,8 +16,11 @@ block('image').mod('load', 'lazy')(
         return { url : this.ctx.url };
     }),
 
+    attrs()({ src : true }),
+
     content()(function () {
         var ctx = this.ctx;
+
         return [
                {
                    elem : 'container',
@@ -38,11 +44,12 @@ block('image').mod('load', 'lazy')(
                    elem : 'fallback',
                    content : {
                        block : 'image',
-                       mods : { semantic : ctx.mods.semantic },
+                       mods : { semantic : this.mods.semantic },
                        url : ctx.url,
                        alt : ctx.alt
                    }
                }
         ];
     })
+
 );

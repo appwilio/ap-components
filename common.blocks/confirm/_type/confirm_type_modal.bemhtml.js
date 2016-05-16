@@ -2,7 +2,7 @@ block('confirm').mod('type', 'modal').replace()(function(){
     this.ctx.style = this.mods.style || 'error';
     var ctx = this.ctx,
         style = ctx.style;
-    
+
     return applyCtx([
         {
             'block' : 'modal',
