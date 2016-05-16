@@ -27,17 +27,17 @@ block('tabs')(
             });
 
             if(!hasSelected && tab.checked === true) {
-                radioGroup.options[i].checked = true;
+                radioGroup.val = i;
                 hasSelected = true;
-                tabBox.mods = { selected : true };
+                tabBox.elemMods = { selected : true };
             }
 
             boxContainer.push(tabBox);
         });
 
         if(!hasSelected) {
-            radioGroup.options[0].checked = true;
-            boxContainer[0].mods = { selected : true };
+            radioGroup.val = 0;
+            boxContainer[0].elemMods = { selected : true };
         }
 
         return [radioGroup, { elem : 'container', content : boxContainer }];
