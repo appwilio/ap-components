@@ -83,15 +83,23 @@ module.exports = function (config) {
                 levels : getLibLevels(platform),
                 sourceLevels : getSpecLevels(platform),
                 engines : {
-                    'BH.php' : {
+                    /*'BH.php' : {
                         tech : 'enb-bh-php/techs/bh-php-test',
                         async : true,
                         options : BH_OPTIONS
-                    },
+                    },*/
                     'BH.js' : {
                         tech : 'enb-bh/techs/bh-commonjs',
                         options : {
                             bhOptions : BH_OPTIONS
+                        }
+                    },
+                    'bemhtml' : {
+                        tech : 'enb-bemxjst/techs/bemhtml',
+                        options : {
+                            sourceSuffixes : ['bemhtml.js', 'bemhtml'],
+                            exportName : 'BEMHTML',
+                            devMode : true
                         }
                     }
                 },
@@ -247,10 +255,10 @@ function getSourceLevels(platform) {
     platformNames.forEach(function(name) {
         levels.push({ path : path.join('libs', 'bem-core', name + '.blocks'), check : false });
         levels.push({ path : path.join('libs', 'bem-core', 'desktop.blocks'), check : false });
-        levels.push({ path : path.join('libs', 'bem-core-php', name + '.blocks'), check : false });
+        // levels.push({ path : path.join('libs', 'bem-core-php', name + '.blocks'), check : false });
         levels.push({ path : path.join('libs', 'bem-components', name + '.blocks'), check : false });
         levels.push({ path : path.join('libs', 'bem-components', 'desktop.blocks'), check : false });
-        levels.push({ path : path.join('libs', 'bem-components-php', name + '.blocks'), check : false });
+        // levels.push({ path : path.join('libs', 'bem-components-php', name + '.blocks'), check : false });
         levels.push({ path : path.join('libs', 'bem-scrollspy', name + '.blocks'), check : false });
         levels.push({ path : path.join('libs', 'bem-forms', name + '.blocks'), check : false });
     });

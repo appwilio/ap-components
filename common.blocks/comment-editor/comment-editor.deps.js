@@ -8,7 +8,8 @@
             elems : [
                 'body',
                 'control',
-                'tools'
+                'tools',
+                'clear'
             ]
         }
     ]
@@ -18,6 +19,17 @@
     mustDeps : [
         {
             block : 'comment-editor',
+            tech : 'bemhtml'
+        }
+    ],
+    shouldDeps : [
+        {
+            elems : [
+                'body',
+                'control',
+                'tools',
+                'clear'
+            ],
             tech : 'bemhtml'
         }
     ]

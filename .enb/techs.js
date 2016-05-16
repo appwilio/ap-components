@@ -17,6 +17,7 @@ module.exports = {
     html : {
         bh : require('enb-bh/techs/bemjson-to-html'),
         bhPhp : require('enb-bh-php').bemjsonToHtml,
+        bemhtml : require('enb-bemxjst/techs/bemhtml')
     },
     borschik : require('enb-borschik/techs/borschik')
 };
