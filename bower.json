@@ -18,7 +18,7 @@
     "bem-pr": "~0.12.0"
   },
   "resolutions": {
-    "bem-core": "2.9.0",
-    "bem-components": "2.5.0"
+    "bem-core": "2.9.1",
+    "bem-components": "^2.5.0"
   }
 }
