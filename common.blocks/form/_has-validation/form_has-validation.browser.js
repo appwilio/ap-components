@@ -12,7 +12,11 @@ provide(Form.decl({ block : this.name, modName : 'has-validation', modVal : true
             if(!errors.hasOwnProperty(error)){continue;}
 
             var field = this.getFieldByName(error);
-            field.setStatus(errors[error][0]);
+            if(field){
+                field.setStatus(errors[error][0]);
+                field.setMessageVal(errors[error][0]);
+                field.getMessage().show();
+            }
         }
     }
 }));
