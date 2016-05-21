@@ -1,6 +1,10 @@
 block('gpt')(
-    js()(function(){
-      return { slot : this.ctx.slot, id : this.generateId() };
+    def()(function(){
+        this.ctx.id = this.ctx.id || this.generateId();
+        return applyNext();
     }),
-    attrs()(function() { return { id : this.generateId() }; })
+    js()(function(){
+      return { slot : this.ctx.slot, id : this.ctx.id };
+    }),
+    attrs()(function() { return { id : this.ctx.id }; })
 );
