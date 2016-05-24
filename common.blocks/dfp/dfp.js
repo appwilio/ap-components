@@ -16,8 +16,8 @@ function doProvide() {
      */
     googletag.cmd.push(function(){
         cfg.single && googletag.pubads().enableSingleRequest();
-        provide(googletag);
         googletag.enableServices();
+        provide(googletag);
     });
 
 }
