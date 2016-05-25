@@ -9,6 +9,9 @@ BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
             'inited' : function(){
                 this.__base.apply(this, arguments);
 
+                this._parent = this.domElem.parent();
+                this._parentHeight = this._parent.height();
+
                 this.setFixWidth({
                     start : this.params.fixStart,
                     stop :this.params.fixStop
@@ -18,8 +21,31 @@ BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
                     this.params.posTop,
                     this.params.posLeft
                 );
+
+                var _this = this;
+                this._timer = setInterval(function(){
+                    _this._checkParentHeight();
+                }, 500);
+            },
+            '' : function(){
+                clearInterval(this._timer);
             }
         }
+    },
+
+    /**
+     * Пересчитывает позицию блока, елси изменилась высота родителя
+     * @callback
+     * @private
+     */
+    _checkParentHeight : function(){
+        var currentHeight = this._parent.height();
+
+        if(this._parentHeight === currentHeight)
+            return;
+
+        this._parentHeight = currentHeight;
+        BEMDOM.win.resize();
     },
 
     beforeSetMod : {
