@@ -29,6 +29,9 @@ BEMDOM.decl('sortable', {
      * Cancel drop
      */
     cancel : function(){
+        if(this._dragSourcePos === undefined)
+            return;
+
         var parent = this._dragSourcePos.parent,
             index = this._dragSourcePos.index,
             levelChanged = !parent.is(this._dragingElem.parent());
@@ -53,6 +56,13 @@ BEMDOM.decl('sortable', {
         return parent.prepend(this._dragingElem);
     },
 
+    /**
+     * Обрабатывает drop событие.
+     * @callback
+     * @param {object} e Event
+     * @private
+     * @returns void
+     */
     _onDrop : function(e){
         if(!this._validateDrop(e)) {
             this.cancel();
@@ -71,6 +81,13 @@ BEMDOM.decl('sortable', {
         return this._moveElem(source, target);
     },
 
+    /**
+     * Проверяет нужно ли обрабатывать drop событие.
+     * Возвращает false если был сброшен файл или событие прошло на другом DOM узле
+     * @param {object} e Event
+     * @returns {boolean}
+     * @private
+     */
     _validateDrop : function(e){
         if(e.originalEvent.dataTransfer.files.length ||
            !dom.contains(this.domElem, $(e.target))){
@@ -155,6 +172,11 @@ BEMDOM.decl('sortable', {
         this.emit('start', this._dragingElem);
     },
 
+    /**
+     * Устанавливает необходимые свойства блока во время сортировки.
+     * @param e
+     * @private
+     */
     _initDrag : function(e){
         this._dragPos = { x : e.originalEvent.screenX, y : e.originalEvent.screenY };
         this._dragingElem = $(e.target);
