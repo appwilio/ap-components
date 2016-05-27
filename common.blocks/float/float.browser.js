@@ -8,13 +8,14 @@ BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
         'js' : {
             'inited' : function(){
                 this.__base.apply(this, arguments);
+                this._offset = this.params.offset || 0;
 
                 this._parent = this.domElem.parent();
                 this._parentHeight = this._parent.height();
 
                 this.setFixWidth({
                     start : this.params.fixStart,
-                    stop :this.params.fixStop
+                    stop : this.params.fixStop
                 });
 
                 this.setFixedPos(
@@ -22,13 +23,23 @@ BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
                     this.params.posLeft
                 );
 
-                var _this = this;
-                this._timer = setInterval(function(){
-                    _this._checkParentHeight();
-                }, 500);
+                // Периодически проверяем, не изменилась ли высота родительского
+                // блока
+                this._timer = setInterval(this._checkParentHeight.bind(this), 1000);
             },
             '' : function(){
                 clearInterval(this._timer);
+            }
+        },
+
+        state : {
+            default : function(){
+                this.domElem.css({ 'width' : '' });
+            },
+            paused : function(){
+                this.domElem.css({
+                    'top' : this.fixStop - this.height,
+                });
             }
         }
     },
@@ -49,10 +60,16 @@ BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
     },
 
     beforeSetMod : {
-        'state' : {
-            'fixed' : function(){
+        state : {
+            fixed : function(){
                 this.domElem.css({
                     'top' : this._fixPosTop,
+                    'left' : this._fixPosLeft,
+                    'width' : this.domElem.css('width')
+                });
+            },
+            paused : function(){
+                this.domElem.css({
                     'left' : this._fixPosLeft,
                     'width' : this.domElem.css('width')
                 });
@@ -60,12 +77,18 @@ BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
         }
     },
 
+    /**
+     * Рассчитывает "ширину" зоны фиксирования
+     */
     setFixWidth : function(pos){
         this.fixStart = pos.start || false;
-        this.fixStop = pos.stop || false;
+        this.fixStop = pos.stop || this._parent.offset().top + this._parentHeight;
         this.calcOffsets();
     },
 
+    /**
+     * Рассчитывает позицию блока в фиксированном состоянии
+     */
     setFixedPos : function(top, left){
         this.calcOffsets();
         // Calc position for fixed state
@@ -92,14 +115,14 @@ BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
      */
     _onScroll : function() {
       var self = this.__self,
-          fixStoped = this._ofbottom >= self.scroll;
+          fixStoped = this._ofbottom >= (self.scroll + this.height);
 
       // scrolled down
       if(this._oftop <= self.scroll && (this.fixStop? fixStoped : true)) {
         return this.activate(!fixStoped);
       }
 
-      return this.deactivate();
+      return this.deactivate(!fixStoped);
     },
 
     activate : function(){
