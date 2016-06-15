@@ -17,7 +17,7 @@ return function ($bh) {
             ],
             [
                 'block' => 'popup',
-                'mods' => [ 'padding' => 'l', 'theme' => $ctx->mod('theme'), 'target' => 'anchor'],
+                'mods' => [ 'padding' => 'l', 'theme' => $ctx->mod('theme'), 'target' => 'anchor', 'autoclosable' => true ],
                 'content' => [
                     'block' => 'calendar',
                     'mods' => [

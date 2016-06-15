@@ -21,11 +21,11 @@ module.exports = function (bh) {
                 'attrs' : {
                     'readonly' : true,
                     'value' : formatDate(date)
-                },
+                }
             },
             {
                 'block' : 'popup',
-                'mods' : { 'padding' : 'l', 'theme' : ctx.mod('theme'), 'target' : 'anchor' },
+                'mods' : { 'padding' : 'l', 'theme' : ctx.mod('theme'), 'target' : 'anchor', autoclosable : true },
                 'content' : {
                     'block' : 'calendar',
                     'mods' : {
