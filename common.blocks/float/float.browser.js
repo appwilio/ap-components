@@ -56,7 +56,10 @@ BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
             return;
 
         this._parentHeight = currentHeight;
-        BEMDOM.win.resize();
+        this.setFixWidth({
+            start : this.params.fixStart,
+            stop : this.params.fixStop
+        });
     },
 
     beforeSetMod : {
