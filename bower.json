@@ -1,8 +1,7 @@
 {
   "name": "ap-components",
-  "version": "1.0.1",
-  "description": "Blog BEM template",
-  "bugs": "https://github.com/bem/project-stub/issues",
+  "version": "1.0.2",
+  "description": "BEM blocks from appwilio",
   "ignore": [
     ".bem/cache",
     "node_modules",
@@ -11,7 +10,7 @@
   "dependencies": {
     "bem-components": "^2.5.0",
     "bem-social": "https://github.com/bem-contrib/bem-social.git#master",
-    "bem-scrollspy": "^v0.1.5",
+    "bem-scrollspy": "^v0.2.0",
     "bem-forms": "https://github.com/bem-contrib/bem-forms.git#master"
   },
   "devDependencies": {
