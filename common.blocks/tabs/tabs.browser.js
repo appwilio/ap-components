@@ -16,6 +16,9 @@ provide(BEMDOM.decl(this.name,  /** @lends tabs.prototype */{
                 this._boxList = this.findElem('box', true);
                 this._radioGroup = this.findBlockOn(this.findElem('tabs-group', true), 'radio-group');
             }
+        },
+        'disabled' : function(name, val){
+            this._radioGroup.setMod(name, val);
         }
     },
 
