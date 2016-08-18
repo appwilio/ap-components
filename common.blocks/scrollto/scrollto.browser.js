@@ -9,7 +9,7 @@ provide(BEMDOM.decl('scrollto', {
         'js' : {
             inited : function(){
                 this.offset = this.params.offset || 0;
-                this.speed = this.params.speed || 600;
+                this.speed = this.params.speed || 300;
                 this.easing = this.params.easing || 'swing';
             }
         }
