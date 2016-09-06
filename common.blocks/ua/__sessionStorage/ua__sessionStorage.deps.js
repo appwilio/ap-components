@@ -1,0 +1,4 @@
+({
+    mustDeps: ['ua'],
+    shouldDeps: []
+})
