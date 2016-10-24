@@ -1,44 +1,56 @@
 /* global modules:false */
 
 modules.define('float',
-               ['i-bem__dom', 'scrollspy'],
-               function(provide, BEMDOM, Scrollspy) {
+               ['i-bem__dom', 'scrollspy', 'functions__throttle'],
+               function(provide, BEMDOM, Scrollspy, throttle) {
 BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
     onSetMod : {
         'js' : {
             'inited' : function(){
                 this.__base.apply(this, arguments);
-                this._offset = this.params.offset || 0;
 
-                this._parent = this.domElem.parent();
-                this._parentHeight = this._parent.height();
+                this.fixable = this.elem('content'); // фиксируемый элемент
+                this._offset = this.params.offset || 0; // отступ сверху и снизу от края экрана
 
-                this.setFixWidth({
-                    start : this.params.fixStart,
-                    stop : this.params.fixStop
-                });
+                this._parent = this.domElem.parent(); // Элемент внутри которого все скроллится
+                this._parentHeight = this._parent.height(); // Высота родителя
 
-                this.setFixedPos(
-                    this.params.posTop,
-                    this.params.posLeft
-                );
+                this.setFixWidth();
 
-                // Периодически проверяем, не изменилась ли высота родительского
-                // блока
-                this._timer = setInterval(this._checkParentHeight.bind(this), 1000);
+                this.setFixedPos();
+
+
+                if(this.__self.observer){
+                    var observer = new this.__self.observer(throttle(this.calcOffsets, 2000, this));
+                    observer.observe(this._parent[0], { subtree : true, childList : true, attributes : true, attributeFilter : ['height', 'top', 'position'] });
+                    this._observer = observer;
+                } else {
+                    // Периодически проверяем, не изменилась ли высота блоков
+                    this._fixableHeight = this.fixable.height(); // Высота контента
+                    this._timer = setInterval(this._checkValues.bind(this), 2000);
+                }
             },
             '' : function(){
-                clearInterval(this._timer);
+                this._observer? this._observer.disconnect(): clearInterval(this._timer);
             }
         },
 
         state : {
             default : function(){
-                this.domElem.css({ 'width' : '' });
+                this.fixable.css({
+                    'width' : '',
+                    'position' : ''
+                });
+            },
+            fixed : function(){
+                this.fixable.css({
+                    'position' : 'fixed'
+                });
             },
             paused : function(){
-                this.domElem.css({
-                    'top' : this.fixStop - this.height,
+                this.fixable.css({
+                    'top' : this._ofbottom - this._oftop - this.height,
+                    'position' : 'absolute'
                 });
             }
         }
@@ -46,33 +58,35 @@ BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
 
     /**
      * Пересчитывает позицию блока, елси изменилась высота родителя
+     * Вызывается по таймеру
      * @callback
      * @private
      */
-    _checkParentHeight : function(){
-        var currentHeight = this._parent.height();
+    _checkValues : function(){
+        var currentHeight = this._parent.height(),
+            currentFixableHeight = this.fixable.height();
 
-        if(this._parentHeight === currentHeight)
+        if(this._parentHeight === currentHeight && currentFixableHeight === this._fixableHeight)
             return;
+        this._fixableHeight = currentFixableHeight;
+        this.calcOffsets();
+    },
 
-        this._parentHeight = currentHeight;
-        this.setFixWidth({
-            start : this.params.fixStart,
-            stop : this.params.fixStop
-        });
+    _updateParentHeight : function(newHeight){
+        this._parentHeight = newHeight || this._parent.height();
     },
 
     beforeSetMod : {
         state : {
             fixed : function(){
-                this.domElem.css({
+                this.fixable.css({
                     'top' : this._fixPosTop,
                     'left' : this._fixPosLeft,
                     'width' : this.domElem.css('width')
                 });
             },
             paused : function(){
-                this.domElem.css({
+                this.fixable.css({
                     'left' : this._fixPosLeft,
                     'width' : this.domElem.css('width')
                 });
@@ -80,36 +94,45 @@ BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
         }
     },
 
+    _updateDomHeight : function(){
+        this.domElem.height(this.fixable.height());
+    },
+
     /**
-     * Рассчитывает "ширину" зоны фиксирования
+     * Рассчитывает "ширину" зоны фиксирования без отступов
      */
-    setFixWidth : function(pos){
-        this.fixStart = pos.start || false;
-        this.fixStop = pos.stop || this._parent.offset().top + this._parentHeight;
-        this.calcOffsets();
+    setFixWidth : function(){
+        this.fixStart = false; // абсолютное значение scrollTop для начала фиксирования
+        this.fixStop = this._parent.offset().top + this._parentHeight; // абсолютное значение scrollTop конца фиксирования
     },
 
     /**
      * Рассчитывает позицию блока в фиксированном состоянии
+     * @param {String} top - отступ сверху в px или %
+     * @param {String} left - отступ слева в px или %
      */
     setFixedPos : function(top, left){
-        this.calcOffsets();
         // Calc position for fixed state
-        if(top !== undefined){
-            this._fixPosTop = this.__self.getOffset(top);
-        } else {
-            this._fixPosTop = 0;
-        }
+        this._fixPosTop = this._offset;
         if(left !== undefined){
             this._fixPosLeft = this.__self.getOffset(left);
         }
     },
 
+    /**
+     * Рассчитывает абсолютные позиции начала и конца фиксирования
+     */
     calcOffsets : function(){
+        this._updateParentHeight();
+        this._updateDomHeight();
+        this.setFixWidth();
+
         this.__base.apply(this, arguments);
 
-        this._oftop = this.fixStart || this._oftop;
-        this._ofbottom = this.fixStop || this._ofbottom;
+        // По умолчанию фиксируем в начале зоны фиксирования
+        this._oftop = this.fixStart? this.fixStart - this._offset : this._oftop - this._offset * 2; // Верхняя граница фиксирования с учетом отступа
+        this._ofbottom = this.fixStop? this.fixStop - this._offset * 2 : this._ofbottom - this._offset * 2; // Нижняя граница фиксирования с учетом отступа
+        this.setFixedPos();
     },
 
     /**
@@ -118,16 +141,21 @@ BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
      */
     _onScroll : function() {
       var self = this.__self,
-          fixStoped = this._ofbottom >= (self.scroll + this.height);
+          // Если скролл + высота больше нижней границы фиксирования пора остановиться
+          bottomReached = this._ofbottom <= (self.scroll + this.height);
 
       // scrolled down
-      if(this._oftop <= self.scroll && (this.fixStop? fixStoped : true)) {
-        return this.activate(!fixStoped);
+      if(this._oftop <= self.scroll && !bottomReached) {
+          return this.activate(bottomReached);
       }
 
-      return this.deactivate(!fixStoped);
+      return this.deactivate(bottomReached);
     },
 
+    /**
+     * Элемент в зоне фиксирования
+     * @returns {boolean}
+     */
     activate : function(){
         if(this.__base.apply(this, arguments)){
             return false;
@@ -136,6 +164,11 @@ BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
         this.setMod('state', 'fixed');
     },
 
+    /**
+     * Элемент вне зоны фиксирования
+     * @param {bool} fixStoped остановка фиксирования внизу
+     * @returns {bool}
+     */
     deactivate : function(fixStoped){
         if(this.__base.apply(this, arguments)){
             return false;
@@ -143,6 +176,8 @@ BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
 
         this.setMod('state', fixStoped? 'paused': 'default');
     }
+}, {
+    observer : window.MutationObserver || window.WebkitMutationObserver
 });
 
 provide(BEMDOM);
