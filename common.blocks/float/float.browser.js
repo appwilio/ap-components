@@ -19,10 +19,14 @@ BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
 
                 this.setFixedPos();
 
-
                 if(this.__self.observer){
                     var observer = new this.__self.observer(throttle(this.calcOffsets, 2000, this));
-                    observer.observe(this._parent[0], { subtree : true, childList : true, attributes : true, attributeFilter : ['height', 'top', 'position'] });
+                    observer.observe(this._parent[0], {
+                        subtree : true,
+                        childList : true,
+                        attributes : true,
+                        attributeFilter : ['height', 'top', 'position']
+                    });
                     this._observer = observer;
                 } else {
                     // Периодически проверяем, не изменилась ли высота блоков
@@ -102,8 +106,10 @@ BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
      * Рассчитывает "ширину" зоны фиксирования без отступов
      */
     setFixWidth : function(){
-        this.fixStart = false; // абсолютное значение scrollTop для начала фиксирования
-        this.fixStop = this._parent.offset().top + this._parentHeight; // абсолютное значение scrollTop конца фиксирования
+        // абсолютное значение scrollTop для начала фиксирования
+        this.fixStart = false;
+        // абсолютное значение scrollTop конца фиксирования
+        this.fixStop = this._parent.offset().top + this._parentHeight;
     },
 
     /**
@@ -130,8 +136,12 @@ BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
         this.__base.apply(this, arguments);
 
         // По умолчанию фиксируем в начале зоны фиксирования
-        this._oftop = this.fixStart? this.fixStart - this._offset : this._oftop - this._offset * 2; // Верхняя граница фиксирования с учетом отступа
-        this._ofbottom = this.fixStop? this.fixStop - this._offset * 2 : this._ofbottom - this._offset * 2; // Нижняя граница фиксирования с учетом отступа
+        this._oftop = this.fixStart?
+            this.fixStart - this._offset:
+            this._oftop - this._offset * 2; // Верхняя граница фиксирования с учетом отступа
+        this._ofbottom = this.fixStop?
+            this.fixStop - this._offset * 2:
+            this._ofbottom - this._offset * 2; // Нижняя граница фиксирования с учетом отступа
         this.setFixedPos();
     },
 
