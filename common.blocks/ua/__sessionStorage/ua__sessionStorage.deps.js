@@ -1,4 +1,4 @@
 ({
-    mustDeps: ['ua'],
-    shouldDeps: []
+    mustDeps : ['ua'],
+    shouldDeps : []
 })

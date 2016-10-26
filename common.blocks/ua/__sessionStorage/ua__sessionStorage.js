@@ -6,8 +6,7 @@ modules.define('ua', function(provide, ua){
             storage.setItem(x, x);
             storage.removeItem(x);
             return true;
-        }
-        catch(e) {
+        } catch(e) {
             return false;
         }
     }
