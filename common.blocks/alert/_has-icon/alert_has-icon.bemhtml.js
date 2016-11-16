@@ -28,10 +28,7 @@ block('alert').mod('has-icon', true).content()(
                     }
                 ]
             },
-            {
-                elem : 'content',
-                content : applyNext()
-            }
+            applyNext()
         ];
     }
 );

@@ -26,7 +26,7 @@ BEMDOM.decl({ block : 'alert', modName : 'dismiss', modVal : 'auto' }, {
                 timeout(this.timeout).then(this.dismiss, this);
             }
         }
-    },
+    }
 });
 
 provide(BEMDOM);

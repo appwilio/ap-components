@@ -1,5 +1,4 @@
 ({
-    mustDeps : [],
     shouldDeps : [
         { elem : 'dismiss' }
     ]

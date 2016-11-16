@@ -28,10 +28,7 @@ module.exports = function (bh) {
                  }
              ]
          },
-         {
-             'elem' : 'content',
-             'content' : ctx.content()
-         }
+         ctx.content()
      ], true);
  });
 };
