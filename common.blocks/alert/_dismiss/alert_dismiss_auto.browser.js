@@ -15,6 +15,7 @@ BEMDOM.decl({ block : 'alert', modName : 'dismiss', modVal : 'auto' }, {
                     }, this);
                     return false;
                 }
+                return true;
             }
         }
     },
