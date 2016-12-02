@@ -5,9 +5,9 @@ block('calendar').elem('content')(
     }),
     content()(function(){
         return [
-            { elem : 'switcher', mods : { dest : 'prev' }, content : this.switchers[0] },
+            { elem : 'switcher', elemMods : { dest : 'prev' }, content : this.switchers[0] },
             { elem : 'title' },
-            { elem : 'switcher', mods : { dest : 'next' }, content : this.switchers[1] },
+            { elem : 'switcher', elemMods : { dest : 'next' }, content : this.switchers[1] },
             { elem : 'grid' }
         ];
     })

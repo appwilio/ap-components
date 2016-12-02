@@ -53,7 +53,7 @@ block('calendar').elem('grid')(
                             elem : 'cell',
                             content : val,
                             date : new Date(year, month, val).getTime(),
-                            mods : { state : cellState }
+                            elemMods : { state : cellState }
                         });
                     }
 
