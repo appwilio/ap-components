@@ -35,7 +35,8 @@ module.exports = {
                 '**/*.deps.js',
                 '**/*.bemjson.js',
                 '**/*.bemhtml.js',
-                'common.blocks/fancybox/**'
+                'common.blocks/fancybox/**',
+                'common.blocks/jslib/**'
             ]
         },
 
@@ -58,6 +59,7 @@ module.exports = {
 
         bemhtml : {
             options : {
+                maxlen : 250,
                 predef : [
                     'apply',
                     'applyCtx',
