@@ -1,7 +1,7 @@
 {
   "author": "",
   "name": "ap-components",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "repository": {
     "type": "git",
     "url": "git://github.com/appwilio/ap-components.git"
@@ -10,10 +10,13 @@
     "node": ">=0.10"
   },
   "dependencies": {
-    "bem-environ": "~1.4.0"
+    "bem-components": "<5.0",
+    "bem-scrollspy": "git+https://github.com/bem-contrib/bem-scrollspy.git",
+    "bem-social": "https://github.com/bem-contrib/bem-social.git#master"
   },
   "devDependencies": {
     "bem": "~0.10.0",
+    "bem-environ": "~1.4.0",
     "bem-tools-autoprefixer": "~0.0.3",
     "borschik": "^1.0.5",
     "borschik-tech-cleancss": "2.0.1",
