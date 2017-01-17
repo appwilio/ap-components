@@ -7,6 +7,12 @@
     ]
 },
 {
+    tech : 'tmpl-spec.js',
+    shouldDeps : [
+        { elem : 'tick' }
+    ]
+},
+{
     tech : 'spec.js',
     mustDeps : [
         {

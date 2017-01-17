@@ -1,3 +1,4 @@
 block('collapse').elem('tick')(
-    tag()('span')
+    tag()('span'),
+    mix()({ block : 'icon' })
 );

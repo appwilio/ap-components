@@ -1,0 +1,4 @@
+({
+    block : 'collapse',
+    elem : 'tick'
+})
