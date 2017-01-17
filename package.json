@@ -11,8 +11,7 @@
   },
   "dependencies": {
     "bem-components": "<5.0",
-    "bem-scrollspy": "git+https://github.com/bem-contrib/bem-scrollspy.git",
-    "bem-social": "https://github.com/bem-contrib/bem-social.git#master"
+    "bem-scrollspy": "git+https://github.com/bem-contrib/bem-scrollspy.git"
   },
   "devDependencies": {
     "bem": "~0.10.0",
