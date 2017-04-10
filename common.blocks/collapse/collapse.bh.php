@@ -2,7 +2,7 @@
 
 return function ($bh) {
     $bh->match('collapse', function ($ctx, $json) {
-        $isOpened = (bool) $json->mods['opened'];
+        $isOpened = (bool) $json->mods->opened;
         $ctx
             ->js(true)
             ->content([
