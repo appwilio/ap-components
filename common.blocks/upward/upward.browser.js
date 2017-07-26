@@ -4,7 +4,7 @@ modules.define('upward',
                ['jquery', 'functions__throttle', 'i-bem__dom'],
                function(provide, $, throttle, BEMDOM) {
 
-BEMDOM.decl('upward', {
+provide(BEMDOM.decl('upward', {
     onSetMod : {
         'js' : {
             inited : function(){
@@ -41,9 +41,7 @@ BEMDOM.decl('upward', {
         });
         return false;
     }
-});
-
-provide(BEMDOM);
+}));
 
 });
 

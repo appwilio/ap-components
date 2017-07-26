@@ -4,7 +4,7 @@ modules.define('comment-form',
                ['i-bem__dom', 'comments-api', 'dom', 'events__channels', 'jquery', 'functions__timeout'],
                function(provide, BEMDOM, Api, dom, Channel, $, timeout) {
 
-BEMDOM.decl('comment-form', {
+provide(BEMDOM.decl('comment-form', {
     onSetMod : {
         'js' : {
             'inited' : function(){
@@ -173,9 +173,7 @@ BEMDOM.decl('comment-form', {
         this.liveBindTo('body', 'focusin', focus);
         return false;
     }
-});
-
-provide(BEMDOM);
+}));
 
 });
 

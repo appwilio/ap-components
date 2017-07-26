@@ -3,7 +3,7 @@
 modules.define('float',
                ['i-bem__dom', 'scrollspy', 'functions__throttle'],
                function(provide, BEMDOM, Scrollspy, throttle) {
-BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
+provide(BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
     onSetMod : {
         'js' : {
             'inited' : function(){
@@ -188,9 +188,7 @@ BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
     }
 }, {
     observer : window.MutationObserver || window.WebkitMutationObserver
-});
-
-provide(BEMDOM);
+}));
 
 });
 

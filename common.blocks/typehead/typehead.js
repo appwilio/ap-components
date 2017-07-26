@@ -1,7 +1,7 @@
 /* global modules:false */
 modules.define('typehead', ['vow', 'i-bem'], function(provide, Vow, BEM){
 
-BEM.decl('typehead', {
+provide(BEM.decl('typehead', {
 
     /**
      * Variants source
@@ -51,7 +51,6 @@ BEM.decl('typehead', {
     _getVariants : function(){
         throw Error('_getVariants is not implemented.');
     }
-});
+}));
 
-provide(BEM);
 });

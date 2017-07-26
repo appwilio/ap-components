@@ -4,7 +4,7 @@ modules.define('counter',
                ['i-bem__dom', 'button'],
                function(provide, BEMDOM) {
 
-BEMDOM.decl('counter', {
+provide(BEMDOM.decl('counter', {
 
     onSetMod : {
         'js' : {
@@ -53,9 +53,7 @@ BEMDOM.decl('counter', {
                 this._onButtonClick();
             });
     }
-});
-
-provide(BEMDOM);
+}));
 
 });
 

@@ -1,7 +1,7 @@
 /* global modules:false */
 
 modules.define('alert', ['i-bem__dom'], function(provide, BEMDOM) {
-BEMDOM.decl('alert', {
+provide(BEMDOM.decl('alert', {
     dismiss : function(){
         this.setMod('hidden', true);
     }
@@ -13,8 +13,7 @@ BEMDOM.decl('alert', {
         });
         return false;
     }
-});
-provide(BEMDOM);
+}));
 
 });
 

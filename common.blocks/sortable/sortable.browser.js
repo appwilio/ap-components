@@ -4,7 +4,7 @@ modules.define('sortable',
                ['i-bem__dom', 'jquery', 'dom'],
                function(provide, BEMDOM, $, dom) {
 
-BEMDOM.decl('sortable', {
+provide(BEMDOM.decl('sortable', {
     onSetMod : {
         'dragging' : {
             'true' : function(){
@@ -246,9 +246,7 @@ BEMDOM.decl('sortable', {
             .liveBindTo('drop', this.prototype._onDrop)
             .liveBindTo('dragend', this.prototype._onDragEnd);
     }
-});
-
-provide(BEMDOM);
+}));
 
 });
 
