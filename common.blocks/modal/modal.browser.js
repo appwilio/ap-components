@@ -2,23 +2,14 @@
 
 modules.define('modal', ['jquery'], function(provide, $, Modal) {
 
-    Modal.decl('modal', {
-        onSetMod : {
-            'visible' : function(name, val){
-                this.__base.apply(this, arguments);
-                $('body').css('overflow', val === true? 'hidden': '');
-            }
-        }
-    }, {
-        live : function(){
+provide(Modal.decl({
+    onSetMod : {
+        visible : function(name, val) {
             this.__base.apply(this, arguments);
-            this.liveBindTo('close', 'click', function(){
-                this.delMod('visible');
-            });
+            $('body').css('overflow', val === true? 'hidden': '');
         }
-    });
-
-provide(Modal);
+    }
+}));
 
 });
 

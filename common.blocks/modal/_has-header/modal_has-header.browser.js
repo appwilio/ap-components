@@ -1,6 +1,6 @@
-modules.define('modal', function(provide, BEMDOM) {
+modules.define('modal', ['i-bem__dom'], function(provide, BEMDOM, Modal) {
 
-provide(BEMDOM.decl({ blcok : this.name, modName : 'has-header', modVal : true }, {
+provide(Modal.decl({ modName : 'has-header', modVal : true }, {
     setContent : function(content){
         BEMDOM.update(this.elem('container'), content);
     }
