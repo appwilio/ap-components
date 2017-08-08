@@ -70,14 +70,20 @@ provide(BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
         var currentHeight = this._parent.height(),
             currentFixableHeight = this.fixable.height();
 
-        if(this._parentHeight === currentHeight && currentFixableHeight === this._fixableHeight)
-            return;
+        if(this._parentHeight === currentHeight && currentFixableHeight === this._fixableHeight) {
+            return this;
+        }
+
         this._fixableHeight = currentFixableHeight;
         this.calcOffsets();
+
+        return this;
     },
 
     _updateParentHeight : function(newHeight){
         this._parentHeight = newHeight || this._parent.height();
+
+        return this;
     },
 
     beforeSetMod : {
@@ -100,6 +106,8 @@ provide(BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
 
     _updateDomHeight : function(){
         this.domElem.height(this.fixable.height());
+
+        return this;
     },
 
     /**
@@ -110,6 +118,8 @@ provide(BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
         this.fixStart = false;
         // абсолютное значение scrollTop конца фиксирования
         this.fixStop = this._parent.offset().top + this._parentHeight;
+
+        return this;
     },
 
     /**
@@ -123,6 +133,8 @@ provide(BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
         if(left !== undefined){
             this._fixPosLeft = this.__self.getOffset(left);
         }
+
+        return this;
     },
 
     /**
@@ -143,6 +155,8 @@ provide(BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
             this.fixStop - this._offset * 2:
             this._ofbottom - this._offset * 2; // Нижняя граница фиксирования с учетом отступа
         this.setFixedPos();
+
+        return this;
     },
 
     /**
