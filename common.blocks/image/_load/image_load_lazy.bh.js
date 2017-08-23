@@ -22,6 +22,7 @@ module.exports = function (bh) {
                         {
                             block : 'image',
                             mix : { elem : 'img' },
+                            url : json.preview,
                             alt : json.alt,
                             title : json.title,
                             width : json.width,

@@ -1,11 +1,12 @@
 ({
-    mustDeps : [],
     shouldDeps : [
       {
-        elem : 'fallback'
-      },
-      {
-        elem : 'container'
+        elems : [
+            'fallback',
+            'container',
+            'spin',
+            'img'
+        ]
       }
     ]
 })

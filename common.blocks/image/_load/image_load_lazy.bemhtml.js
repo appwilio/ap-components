@@ -29,6 +29,7 @@ block('image').mod('load', 'lazy')(
                        {
                            block : 'image',
                            mix : { elem : 'img' },
+                           url : ctx.preview,
                            alt : ctx.alt,
                            title : ctx.title,
                            width : ctx.width,
