@@ -10,25 +10,32 @@ modules.define('image_load_lazy', ['jquery', 'i-bem__dom'], function(provide, $,
         */
         load : function(){
             this.setMod('state', 'loading');
-            this.bindTo('imgload', this._onLoaded);
 
             this.img = new Image();
-            var ctx = this.domElem;
-            this.img.onload = function(){ctx.trigger('imgload'); };
+            this.img.onload = this._onLoad.bind(this);
+            this.img.onerror = this._onError.bind(this);
             this.img.src = this.params.url;
+        },
+
+        _onError : function() {
+            this.setMod('state', 'failed');
+            this.detach();
         },
 
         /**
         * Calls after image source loaded
         * @protected
         */
-        _onLoaded : function(){
+        _onLoad : function(){
             this.elem('img').attr('src', this.params.url);
             this.setMod('state', 'loaded');
+            this.detach();
+        },
+
+        detach : function() {
             this.img = undefined;
             BEMDOM.detach(this.domElem);
         }
-
     }));
 });
 

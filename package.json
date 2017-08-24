@@ -1,7 +1,7 @@
 {
   "author": "",
   "name": "ap-components",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/appwilio/ap-components.git"
@@ -23,7 +23,7 @@
     "bower-npm-install": "~0.5.4",
     "enb": "0.17.0",
     "enb-bem-docs": "^0.11.0",
-    "enb-bem-specs": "kompolom/enb-bem-specs#33@add-template-engine-option",
+    "enb-bem-specs": "github:kompolom/enb-bem-specs#33@add-template-engine-option",
     "enb-bem-techs": "2.0.0",
     "enb-bem-tmpl-specs": "~0.15.1",
     "enb-bemxjst": "6.4.0",
