@@ -109,7 +109,7 @@ provide(BEMDOM.decl({ block : this.name, modName : 'progress' }, {
 
     _getPopup : function(){
         return this._popup || (this._popup = this.findBlockOn(
-        BEMDOM.after(this.domElem, BEMHTML.apply(this.__self.popup())), 'popup'));
+        BEMDOM.after(this.domElem, BEMHTML.apply(this.__self.popup(this.getMods()))), 'popup'));
     },
 
     setPopup : function(text){
@@ -119,16 +119,16 @@ provide(BEMDOM.decl({ block : this.name, modName : 'progress' }, {
     }
 
 }, {
-    popup : function(){
+    popup : function(buttonMods){
         return {
             block : 'popup',
             mods : {
                 target : 'anchor',
-                theme : 'vr', // FIXME: get theme from block
+                theme : buttonMods.theme,
                 hastail : true,
                 autoclosable : true,
                 animate : 'zoom',
-                padding : 'l'
+                padding : buttonMods.size
             },
             directions : ['bottom-center', 'top-center']
         };
