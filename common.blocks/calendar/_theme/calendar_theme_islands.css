@@ -1,0 +1,15 @@
+@media all and (min-width:0px)
+{
+    /* :before — border */
+    .calendar_theme_islands .calendar__day_state_current:before
+    {
+        border: 1px solid rgba(0, 0, 0, .2);
+        border-radius: 3px;
+    }
+
+    /* :after — background */
+    .calendar_theme_islands .calendar__day_state_current:after
+    {
+        background: #ffeca6;
+    }
+}

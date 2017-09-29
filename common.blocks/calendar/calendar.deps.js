@@ -1,27 +1,19 @@
-([{
-    mustDeps : [
-    ],
-    shouldDeps : [
-        {
-            block : 'functions',
-            elem : 'date', },
-        {
-            block : 'calendar',
-            elems : ['content', 'title', 'grid', 'row', 'cell', 'switcher']
-        }
-    ]
-}, {
-    tech : 'js',
-    mustDeps : [
-        { block : 'i-bem', tech : 'bemhtml' },
-        {
-            block : 'calendar',
-            tech : 'bemhtml'
+[
+    {
+        mustDeps : {
+            block : 'i-bem-dom'
         },
-        {
-            block : 'calendar',
-            elems : ['content', 'title', 'grid', 'row', 'cell', 'switcher'],
+        shouldDeps : [
+            { block : 'jquery', elem : 'event', mods : { type : 'pointer' } },
+            {
+                elem : ['arrow', 'day', 'dayname']
+            }
+        ]
+    },
+    {
+        tech : 'js',
+        shouldDeps : {
             tech : 'bemhtml'
         }
-    ]
-}])
+    }
+];
