@@ -67,11 +67,11 @@ provide(BEMDOM.decl(this.name, /** @lends calendar.prototype */{
             this._month = new Date(this._val.getTime());
             this._month.setDate(1);
 
-            if(!this.elem('container') || shouldRebuild) {
+            if(!this.elem('container').length || shouldRebuild) {
                 this._build();
             } else {
                 this._selectDayElem(
-                    this.elem('day').get(this._firstDayIndex + this._val.getDate() - 1)
+                    this.elem('day').eq(this._firstDayIndex + this._val.getDate() - 1)
                 );
             }
         }
@@ -384,7 +384,6 @@ provide(BEMDOM.decl(this.name, /** @lends calendar.prototype */{
         });
     },
     _selectDayElem : function(element) {
-        element = $(element);
         if(this._selectedDayElem) {
             this.delMod(this._selectedDayElem, 'state');
         }
