@@ -1,13 +1,13 @@
-modules.define('button', ['i-bem__dom'], function(provide, BEMDOM) {
+modules.define('button', function(provide, Button) {
 
-provide(BEMDOM.decl({ block : this.name, modName : 'progress', modVal : 'elastic' }, {
+provide(Button.declMod({ modName : 'progress', modVal : 'elastic' }, {
     onSetMod : {
         js : {
             inited : function() {
                 this.__base.apply(this, arguments);
                 this._initWidth = this.domElem.width();
                 this.domElem.css('width', this._initWidth); // circle
-                this._path = this.elem('loader-path')[0];
+                this._path = this._elem('loader-path').domElem[0];
             }
         },
         'process' : {

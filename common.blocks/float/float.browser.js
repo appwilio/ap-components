@@ -1,15 +1,16 @@
 /* global modules:false */
 
 modules.define('float',
-               ['i-bem__dom', 'scrollspy', 'functions__throttle'],
-               function(provide, BEMDOM, Scrollspy, throttle) {
-provide(BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
+   ['i-bem-dom', 'scrollspy', 'functions__throttle'],
+   function(provide, bemDom, Scrollspy, throttle) {
+
+provide(bemDom.declBlock(this.name, Scrollspy, {
     onSetMod : {
         'js' : {
             'inited' : function(){
                 this.__base.apply(this, arguments);
 
-                this.fixable = this.elem('content'); // фиксируемый элемент
+                this.fixable = this._elem('content'); // фиксируемый элемент
                 this._offset = this.params.offset || 0; // отступ сверху и снизу от края экрана
 
                 this._parent = this.domElem.parent(); // Элемент внутри которого все скроллится

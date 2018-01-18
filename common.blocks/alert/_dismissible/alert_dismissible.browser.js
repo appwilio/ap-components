@@ -1,9 +1,9 @@
 /* global modules:false */
 
 modules.define('alert',
-               ['i-bem__dom'], function(provide, BEMDOM) {
+    function(provide, Alert) {
 
-BEMDOM.decl({ block : 'alert', modName : 'dismissible', modVal : true }, {
+provide(Alert.declMod({ modName : 'dismissible' }, {
     onSetMod : {
         'js' : {
             'inited' : function(){
@@ -13,17 +13,14 @@ BEMDOM.decl({ block : 'alert', modName : 'dismissible', modVal : true }, {
     },
 
 }, {
-    live : function(){
+    onInit : function(){
         this.__base.apply(this, arguments);
-        this.liveBindTo('dismiss', 'click', function(){
+        this._domEvents('dismiss').on('click', function(){
             this.delMod('hovered');
             this.dismiss();
         });
-        return false;
     }
-});
-
-provide(BEMDOM);
+}));
 
 });
 

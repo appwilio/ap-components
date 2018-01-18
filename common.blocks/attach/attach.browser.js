@@ -1,13 +1,13 @@
 /* global modules:false */
 
 modules.define('attach',
-               ['i-bem__dom'],
-               function(provide, BEMDOM) {
+               ['i-bem-dom'],
+               function(provide, bemDom, Attach) {
 
-    provide(BEMDOM.decl({ block : 'attach' }, {
+    provide(bemDom.declBlock(Attach, {
 
         _onChange : function() {
-            var control = this.findElem('control');
+            var control = this._elem('control').domElem;
             this._files = control[0].files;
             this.__base.apply(this, arguments);
         },

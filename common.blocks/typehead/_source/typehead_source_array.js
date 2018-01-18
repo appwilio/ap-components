@@ -1,9 +1,9 @@
 /* global modules:false */
 modules.define('typehead',
-               ['vow'],
-               function(provide, Vow, Typehead){
+   ['vow'],
+   function(provide, Vow, Typehead){
 
-Typehead.decl({ block : 'typehead', modName : 'source', modVal : 'array' }, {
+provide(Typehead.declMod({ modName : 'source', modVal : 'array' }, {
 
     searchField : 'name',
 
@@ -42,8 +42,6 @@ Typehead.decl({ block : 'typehead', modName : 'source', modVal : 'array' }, {
         res.length? defer.resolve(res) : defer.reject();
         return defer.promise();
     }
-}, {
-});
+}));
 
-provide(Typehead);
 });

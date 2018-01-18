@@ -1,6 +1,6 @@
-modules.define('button', ['i-bem__dom'], function(provide, BEMDOM) {
+modules.define('button', function(provide, Button) {
 
-provide(BEMDOM.decl({ block : this.name, modName : 'progress', modVal : 'spin' }, {
+provide(Button.declMod({ modName : 'progress', modVal : 'spin' }, {
     beforeSetMod : {
         'process' : {
             'started' : function(){

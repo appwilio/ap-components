@@ -1,36 +1,35 @@
 /* global modules:false */
 
 modules.define('comment-form',
-               ['i-bem__dom', 'comments-api', 'dom', 'events__channels', 'jquery', 'functions__timeout'],
-               function(provide, BEMDOM, Api, dom, Channel, $, timeout) {
+               ['i-bem-dom', 'comments-api', 'dom', 'events__channels', 'jquery', 'functions__timeout', 'form', 'button', 'comment-editor'],
+               function(provide, bemDom, Api, dom, Channel, $, timeout, Form, Button, CommentEditor) {
 
-provide(BEMDOM.decl('comment-form', {
+provide(bemDom.declBlock(this.name, {
     onSetMod : {
         'js' : {
             'inited' : function(){
-                this._form = this.findBlockOn('form');
+                this._form = this.findMixedBlock(Form);
                 this._timeout = 4000;
-                this._editor = this.findBlockInside('comment-editor');
+                this._editor = this.findChildBlock(CommentEditor);
                 this._editor.on('clear', this.clear, this);
                 this._editor.on('change', this._onTextChange, this);
-                this._submit = this.findBlockOn('submit', 'button');
+                this._submit = this._elem('submit').on(Button);
             }
         },
         'focused' : {
             'true' : function() {
                 this.delMod('collapsed');
 
-                this.bindToDoc('click', function(e){
+                this._domEvents(bemDom.doc).on('click', function(e) {
                     if(dom.contains(this.domElem, $(e.target))) {
                         return;
                     }
                     this.delMod('focused');
-                }
-                );
+                });
             },
             '' : function() {
                 this.setMod('collapsed', true);
-                this.unbindFromDoc('click');
+                this._domEvents(bemDom.doc).un('click');
             },
         },
         'state' : {
@@ -124,7 +123,7 @@ provide(BEMDOM.decl('comment-form', {
             '</a>',
             '&nbsp;'
         ].join(''));
-        this.findBlockInside('body', 'comment-editor').setMod('focused');
+        this._elem('body').findChildBlock(CommentEditor).setMod('focused');
     },
 
     /**
@@ -141,7 +140,7 @@ provide(BEMDOM.decl('comment-form', {
     },
 
     setText : function(text){
-        this.findBlockInside('body', 'comment-editor').setVal(text);
+        this._elem('body').findChildBlock(CommentEditor).setVal(text);
     },
 
     _onSubmit : function(e) {
@@ -151,27 +150,23 @@ provide(BEMDOM.decl('comment-form', {
     },
 
     _onTextChange : function(e, val){
-        this.findBlockOn('submit', 'button').setMod('disabled', !val);
+        this._elem('submit').findMixedBlock(Button).setMod('disabled', !val);
     }
 
 }, {
 
-    live : function(){
+    lazyInit : false,
+    onInit : function(){
         var focus = function(){
-            this.nextTick(
+            this._nextTick(
                 function(){
                     this.setMod('focused');
             });
         };
-        this.liveInitOnBlockInsideEvent(
-            { modName : 'focused', modVal : true },
-            'comment-editor',
-            focus
-        );
-        this.liveBindTo('submit', this.prototype._onSubmit);
-        this.liveBindTo('pointerclick', focus);
-        this.liveBindTo('body', 'focusin', focus);
-        return false;
+        this._events(CommentEditor).on({ modName : 'focused', modVal : true }, focus);
+        this._domEvents().on('submit', this.prototype._onSubmit);
+        this._domEvents().on('pointerclick', focus);
+        this._domEvents('body').on('focusin', focus);
     }
 }));
 

@@ -1,12 +1,14 @@
 /* global modules:false */
 
 modules.define('link',
-               ['i-bem__dom', 'jquery'], function(provide, BEMDOM, $, Link) {
-Link.decl({ modName : 'action', modVal : 'scroll' }, {
+    ['jquery', 'scrollto'],
+    function(provide, $, Scrollto, Link) {
+
+provide(Link.declMod({ modName : 'action', modVal : 'scroll' }, {
     onSetMod : {
         'js' : {
             'inited' : function(){
-                this._scrollto = this.findBlockOn('scrollto');
+                this._scrollto = this.findMixedBlock(Scrollto);
             }
         }
     },
@@ -21,8 +23,7 @@ Link.decl({ modName : 'action', modVal : 'scroll' }, {
         this._scrollto.setAnchor(to);
         this._scrollto.scroll();
     }
-});
-provide(Link);
+}));
 
 });
 

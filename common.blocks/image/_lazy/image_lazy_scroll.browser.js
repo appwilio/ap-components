@@ -1,17 +1,17 @@
 /* global modules:false */
 
-modules.define('image_lazy_scroll', ['i-bem__dom'], function(provide, BEMDOM) {
+modules.define('image', ['scrollspy'], function(provide, Scrollspy, BemImage) {
 
-provide(BEMDOM.decl({ block : 'image', modName : 'lazy', modVal : 'scroll' }, {
+provide(BemImage.declMod({ modName : 'lazy', modVal : 'scroll' }, {
 
     _load : function() {
-        this.findBlockOn('scrollspy').delMod('js');
+        this.findMixedBlock(Scrollspy).delMod('js');
         this.load();
     }
 
 }, {
-    live : function(){
-        this.liveInitOnBlockInsideEvent('scrollin', 'scrollspy', this.prototype._load);
+    onInit : function(){
+        this._events(Scrollspy).on('scrollin', this.prototype._load);
     }
 }));
 

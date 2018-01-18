@@ -1,5 +1,7 @@
 /* global modules:false */
 
+// TODO: bem-core-4
+//
 modules.define('input',
                ['functions__throttle', 'i-bem', 'i-bem__dom', 'keyboard__codes', 'BEMHTML', 'typehead'],
                function(provide, throttle, BEM, BEMDOM, keyCodes, BEMHTML, th, Input) {

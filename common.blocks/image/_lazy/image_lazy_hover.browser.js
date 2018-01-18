@@ -1,11 +1,11 @@
 /* global modules:false */
 
-modules.define('image_lazy_hover', ['i-bem__dom'], function(provide, BEMDOM) {
+modules.define('image', function(provide, BemImage) {
 
-provide(BEMDOM.decl({ block : 'image', modName : 'lazy', modVal : 'hover' }, {}, {
-  live : function() {
-    this.liveBindTo('pointerover', this.prototype.load);
-  }
+provide(bemImage.declMod({ modName : 'lazy', modVal : 'hover' }, {}, {
+    onInit : function() {
+        this._domEvents().on('pointerover', this.prototype.load);
+    }
 }));
 
 });

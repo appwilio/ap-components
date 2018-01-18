@@ -1,9 +1,10 @@
 /* global modules:false */
 
 modules.define('link',
-               ['events__channels'],
-               function(provide, Channel, Link) {
-Link.decl({ block : 'link', modName : 'action', modVal : 'event' }, {
+   ['events__channels'],
+   function(provide, Channel, Link) {
+
+provide(Link.declMod({ modName : 'action', modVal : 'event' }, {
     onSetMod : {
         'js' : {
             'inited' : function(){
@@ -22,11 +23,10 @@ Link.decl({ block : 'link', modName : 'action', modVal : 'event' }, {
         if(this._event.channel) {
             Channel(this._event.channel).emit(this._event.e);
         } else {
-            this.emit(this._event);
+            this._emit(this._event);
         }
     }
-});
-provide(Link);
+}));
 
 });
 

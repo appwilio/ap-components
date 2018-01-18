@@ -1,8 +1,8 @@
 modules.define('button',
-    ['i-bem__dom', 'BEMHTML', 'functions__timeout', 'functions'],
-    function(provide, BEMDOM, BEMHTML, timeout, functions) {
+    ['i-bem-dom', 'BEMHTML', 'functions__timeout', 'functions', 'popup'],
+    function(provide, bemDom, BEMHTML, timeout, functions, Popup, Button) {
 
-provide(BEMDOM.decl({ block : this.name, modName : 'progress' }, {
+provide(Button.declMod({ modName : 'progress', modVal : '*' }, {
     beforeSetMod : {
         'process' : {
             '' : function(){
@@ -10,7 +10,7 @@ provide(BEMDOM.decl({ block : this.name, modName : 'progress' }, {
                     time = now - this._startTime,
                     onTime = time > this._to;
                 if(!onTime){
-                    this.nextTick(function(){
+                    this._nextTick(function(){
                         this.delMod('process');
                     });
                 }
@@ -104,8 +104,8 @@ provide(BEMDOM.decl({ block : this.name, modName : 'progress' }, {
     },
 
     _getPopup : function(){
-        return this._popup || (this._popup = this.findBlockOn(
-        BEMDOM.after(this.domElem, BEMHTML.apply(this.__self.popup(this.getMods()))), 'popup'));
+        return this._popup
+            || (this._popup = bemDom.after(this.domElem, BEMHTML.apply(this.__self.popup(this.getMods()))).bem(Popup);
     },
 
     setPopup : function(text){

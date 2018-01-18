@@ -91,7 +91,7 @@ provide(BEMDOM.decl({ block : 'sortable', modName : 'pattern', modVal : 'menu' }
      */
     _onDragEnd : function(){
         this.__base.apply(this, arguments);
-        this.nextTick(function(){BEMDOM.destruct(this.findElem('placeholder'));});
+        this._nextTick(function(){BEMDOM.destruct(this.findElem('placeholder'));});
     }
 
 }));

@@ -1,6 +1,6 @@
 ([{
     mustDeps : [
-        { block : 'i-bem', elem : 'dom' }
+        { block : 'i-bem-dom' }
     ],
     shouldDeps : [
         { elems : ['switcher', 'container', 'tick', 'title'] },

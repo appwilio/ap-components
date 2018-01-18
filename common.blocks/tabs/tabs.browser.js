@@ -2,19 +2,20 @@
  * @module tabs
  */
 
-modules.define('tabs', ['i-bem__dom', 'jquery'], function(provide, BEMDOM, $) {
+modules.define('tabs',
+    ['i-bem-dom', 'jquery', 'radio-group'],
+    function(provide, bemDom, $, RadioGroup) {
 
 /**
  * @exports
  * @class tabs
  * @bem
  */
-provide(BEMDOM.decl(this.name,  /** @lends tabs.prototype */{
+provide(bemDom.declBlock(this.name,  /** @lends tabs.prototype */{
     onSetMod : {
         'js' : {
             'inited' : function() {
-                this._boxList = this.findElem('box', true);
-                this._radioGroup = this.findBlockOn(this.findElem('tabs-group', true), 'radio-group');
+                this._radioGroup = this._elem('tabs-group').findMixedBlock(RadioGroup);
             }
         },
         'disabled' : function(name, val){
@@ -25,9 +26,9 @@ provide(BEMDOM.decl(this.name,  /** @lends tabs.prototype */{
     _onRadioGroupChange : function(e) {
         e.stopPropagation();
         var newVal = this._radioGroup.getVal();
-        this.delMod(this._boxList, 'selected');
-        this.setMod($(this._boxList[newVal]), 'selected');
-        this.emit('change', newVal);
+        this._elems('box').delMod('selected');
+        this._elems('box')[newVal].setMod('selected');
+        this._emit('change', newVal);
     },
 
     /**
@@ -48,8 +49,8 @@ provide(BEMDOM.decl(this.name,  /** @lends tabs.prototype */{
         return parseInt(this._radioGroup.getVal());
     }
 },  /** @lends tabs */{
-    live : function() {
-        this.liveInitOnBlockInsideEvent('change', 'radio-group', this.prototype._onRadioGroupChange);
+    onInit : function() {
+        this._events(RadioGroup).on('change', this.prototype._onRadioGroupChange);
     }
 }));
 
