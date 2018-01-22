@@ -31,7 +31,7 @@ provide(bemDom.declBlock(this.name, Scrollspy, {
                     this._observer = observer;
                 } else {
                     // Периодически проверяем, не изменилась ли высота блоков
-                    this._fixableHeight = this.fixable.height(); // Высота контента
+                    this._fixableHeight = this.fixable.domElem.height(); // Высота контента
                     this._timer = setInterval(this._checkValues.bind(this), 2000);
                 }
             },
@@ -42,18 +42,18 @@ provide(bemDom.declBlock(this.name, Scrollspy, {
 
         state : {
             default : function(){
-                this.fixable.css({
+                this.fixable.domElem.css({
                     'width' : '',
                     'position' : ''
                 });
             },
             fixed : function(){
-                this.fixable.css({
+                this.fixable.domElem.css({
                     'position' : 'fixed'
                 });
             },
             paused : function(){
-                this.fixable.css({
+                this.fixable.domElem.css({
                     'top' : this._ofbottom - this._oftop - this.height,
                     'position' : 'absolute'
                 });
@@ -69,7 +69,7 @@ provide(bemDom.declBlock(this.name, Scrollspy, {
      */
     _checkValues : function(){
         var currentHeight = this._parent.height(),
-            currentFixableHeight = this.fixable.height();
+            currentFixableHeight = this.fixable.domElem.height();
 
         if(this._parentHeight === currentHeight && currentFixableHeight === this._fixableHeight) {
             return this;
@@ -90,14 +90,14 @@ provide(bemDom.declBlock(this.name, Scrollspy, {
     beforeSetMod : {
         state : {
             fixed : function(){
-                this.fixable.css({
+                this.fixable.domElem.css({
                     'top' : this._fixPosTop,
                     'left' : this._fixPosLeft,
                     'width' : this.domElem.css('width')
                 });
             },
             paused : function(){
-                this.fixable.css({
+                this.fixable.domElem.css({
                     'left' : this._fixPosLeft,
                     'width' : this.domElem.css('width')
                 });
@@ -106,7 +106,7 @@ provide(bemDom.declBlock(this.name, Scrollspy, {
     },
 
     _updateDomHeight : function(){
-        this.domElem.height(this.fixable.height());
+        this.domElem.height(this.fixable.domElem.height());
 
         return this;
     },
