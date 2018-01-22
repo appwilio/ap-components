@@ -104,8 +104,14 @@ provide(Button.declMod({ modName : 'progress', modVal : '*' }, {
     },
 
     _getPopup : function(){
-        return this._popup
-            || (this._popup = bemDom.after(this.domElem, BEMHTML.apply(this.__self.popup(this.getMods()))).bem(Popup);
+        // TODO: bem-core-4. Избавиться от getMods (либо костылить на проекте)
+        if(this._popup) {
+            return this._popup;
+        }
+
+        const html = BEMHTML.apply(this.__self.popup(this.getMods()));
+
+        return (this._popup = bemDom.after(this.domElem, html).bem(Popup));
     },
 
     setPopup : function(text){
