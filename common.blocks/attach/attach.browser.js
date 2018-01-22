@@ -12,14 +12,14 @@ modules.define('attach',
             this.__base.apply(this, arguments);
         },
 
-        getFile : function(){
-            return this._files? this._files[0] : undefined;
-        },
+    getFile : function(){
+        return this._files? this._files[0] : undefined;
+    },
 
-        getFiles : function(){
-            return this._files;
-        }
-    }));
+    getFiles : function(){
+        return this._files;
+    }
+}));
 
 });
 

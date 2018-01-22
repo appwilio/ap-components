@@ -1,17 +1,17 @@
 /* global modules:false */
 
 modules.define('sortable',
-               ['i-bem__dom', 'jquery', 'dom'],
+               ['i-bem-dom', 'jquery', 'dom'],
                function(provide, BEMDOM, $, dom) {
 
-provide(BEMDOM.decl('sortable', {
+provide(BEMDOM.declBlock(this.name, {
     onSetMod : {
         'dragging' : {
             'true' : function(){
-                this.bindTo('dragover', this._onDragOver);
+                this._domEvents().on('dragover', this._onDragOver);
             },
             '' : function(){
-                this.unbindFrom('dragover', this._onDragOver);
+                this._domEvents().on('dragover', this._onDragOver);
             }
         }
     },
@@ -20,7 +20,7 @@ provide(BEMDOM.decl('sortable', {
      * Set draggable attrs to items
      */
     setAttrs : function() {
-        this.findElem('item').map(function(item){
+        this.findChildElems('item').map(function(item){
             item.attr('draggable', 'true');
         }, this);
     },
@@ -239,12 +239,13 @@ provide(BEMDOM.decl('sortable', {
     }
 
 }, {
-    live : function() {
-        this
-            .liveBindTo('dragstart', this.prototype._onDragStart)
-            .liveBindTo('drag', this.prototype._onDrag)
-            .liveBindTo('drop', this.prototype._onDrop)
-            .liveBindTo('dragend', this.prototype._onDragEnd);
+    lazyInit : true,
+    onInit : function() {
+        this._domEvents()
+            .on('dragstart', this.prototype._onDragStart)
+            .on('drag', this.prototype._onDrag)
+            .on('drop', this.prototype._onDrop)
+            .on('dragend', this.prototype._onDragEnd);
     }
 }));
 

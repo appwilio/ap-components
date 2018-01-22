@@ -13,11 +13,11 @@ provide(Textarea.declMod({ modName : 'height', modVal : 'auto' }, {
 }, {
     onInit : function(){
         this._domEvents('control')
-            .on('keydown change focusin cut paste', this.prototype._updateHeight);
-            .on('cut', this.prototype._updateHeight);
-            .on('paste', this.prototype._updateHeight);
+            .on('keydown change focusin cut paste', this.prototype._updateHeight)
+            .on('cut', this.prototype._updateHeight)
+            .on('paste', this.prototype._updateHeight)
             .on('focusout', function(){
-                this.elem('control').css('height', 'auto');
+                this._elem('control').domElem.css('height', 'auto');
             });
 
         this.__base.apply(this, arguments);
