@@ -27,7 +27,7 @@ provide(bemDom.declBlock(this.name,  /** @lends tabs.prototype */{
         e.stopPropagation();
         var newVal = this._radioGroup.getVal();
         this._elems('box').delMod('selected');
-        this._elems('box')[newVal].setMod('selected');
+        this._elems('box').get(newVal).setMod('selected');
         this._emit('change', newVal);
     },
 
