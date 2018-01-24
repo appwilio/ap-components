@@ -12,10 +12,16 @@ module.exports = function(bh) {
                     mods : { opened : isOpened }
                 },
                 content : [
-                    ctx.param('preview'),
                     {
-                        elem : 'switcher',
-                        mods : { opened : isOpened }
+                        elem : 'title',
+                        content : ctx.param('preview'),
+                    },
+                    {
+                        elem : 'tick',
+                        mix : {
+                            elem : 'switcher',
+                            mods : { opened : isOpened }
+                        }
                     }
                 ]
             },

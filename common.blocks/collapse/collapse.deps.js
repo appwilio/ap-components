@@ -3,7 +3,7 @@
         { block : 'i-bem', elem : 'dom' }
     ],
     shouldDeps : [
-        { elems : ['switcher', 'container'] },
+        { elems : ['switcher', 'container', 'tick', 'title'] },
     ]
 },
 {

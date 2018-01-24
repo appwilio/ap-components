@@ -10,10 +10,16 @@ block('collapse')(
                     elemMods : { opened : isOpened }
                 },
                 content : [
-                    this.ctx.preview,
                     {
-                        elem : 'switcher',
-                        elemMods : { opened : isOpened }
+                        elem : 'title',
+                        content : apply('preview')
+                    },
+                    {
+                        elem : 'tick',
+                        mix : {
+                            elem : 'switcher',
+                            elemMods : { opened : isOpened }
+                        }
                     }
                 ]
             },
@@ -23,5 +29,8 @@ block('collapse')(
                 content : this.ctx.content
             }
         ];
+    }),
+    mode('preview')(function() {
+        return this.ctx.preview;
     })
 );
