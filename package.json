@@ -9,11 +9,10 @@
   "engines": {
     "node": ">=0.10"
   },
-  "dependencies": {
-    "bem-components": "<5.0",
-    "bem-scrollspy": "git+https://github.com/bem-contrib/bem-scrollspy.git"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "bem-components": "<5.0",
+    "bem-scrollspy": "git+https://github.com/bem-contrib/bem-scrollspy.git",
     "bem": "~0.10.0",
     "bem-environ": "~1.4.0",
     "bem-tools-autoprefixer": "~0.0.3",
@@ -62,7 +61,6 @@
     "coverage-html": "npm run coverage && istanbul report html --include coverage.json",
     "specs": "npm run test-specs",
     "tmpls": "npm run test-tmpls",
-    "postinstall": "npm run deps",
     "clean": "rm -rf *.tmpl-specs && rm -rf *.specs && rm -rf .enb/tmp && rm -rf coverage.json && rm -rf coverage/ && rm -rf __coverage*.json",
     "deps": "bower install"
   },
