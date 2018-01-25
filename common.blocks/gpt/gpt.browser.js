@@ -6,14 +6,13 @@ provide(BEMDOM.decl(this.name, {
     onSetMod : {
         js : {
             inited : function() {
-                this._id = this.params.id;
                 modules.require('dfp', $.proxy(this._onDfpReady, this));
             }
         }
     },
 
     _onDfpReady : function(googletag){
-        this.registerSlot(googletag) && googletag.display(this._id);
+        this.registerSlot(googletag) && googletag.display(this.params.id);
     },
 
     registerSlot : function(googletag){
@@ -22,7 +21,7 @@ provide(BEMDOM.decl(this.name, {
             return false;
         }
         googletag
-            .defineSlot('/' + cfg.network + '/' + location.name, location.sizes, this._id)
+            .defineSlot('/' + cfg.network + '/' + location.name, location.sizes, this.params.id)
             .addService(googletag.pubads());
         return true;
     }

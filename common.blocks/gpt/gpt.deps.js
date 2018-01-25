@@ -1,4 +1,6 @@
-({
-    mustDeps : [],
-    shouldDeps : []
-})
+[{
+    shouldDeps : [
+        'dfp',
+        { block : 'dfp', elem : 'config' }
+    ]
+}]
