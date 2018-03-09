@@ -74,8 +74,8 @@ module.exports = function (config) {
                         bhOptions : BH_OPTIONS
                     },
                     htmlTech : require('enb-bh/techs/bemjson-to-html'),
-                    htmlTechOptionNames : { bemjsonFile : 'bemjsonFile', templateFile : 'bhFile' },
-                },
+                    htmlTechOptionNames : { bemjsonFile : 'bemjsonFile', templateFile : 'bhFile' }
+                }
             });
 
             sets.tmplSpecs.configure({
@@ -83,11 +83,6 @@ module.exports = function (config) {
                 levels : getLibLevels(platform),
                 sourceLevels : getSpecLevels(platform),
                 engines : {
-                    /*'BH.php' : {
-                        tech : 'enb-bh-php/techs/bh-php-test',
-                        async : true,
-                        options : BH_OPTIONS
-                    },*/
                     'BH.js' : {
                         tech : 'enb-bh/techs/bh-commonjs',
                         options : {
@@ -184,19 +179,8 @@ module.exports = function (config) {
                 }]
             ]);
 
-            // Server template engine
-            nodeConfig.addTechs([
-                [techs.engines.bhPhp, {
-                    phpBootstrap : PRODUCTION? false : '../../vendor/bem/bh/index.php',
-                    devMode : false,// !PRODUCTION,
-                    jsAttrName : 'data-bem',
-                    jsAttrScheme : 'json'
-                }],
-                [techs.html.bhPhp]
-            ]);
-
             nodeConfig.addTargets([
-                '?.bh.php', '_?.css', '_?.js'
+                '_?.css', '_?.js'
             ]);
         });
 
@@ -253,14 +237,12 @@ function getSourceLevels(platform) {
         levels = [];
 
     platformNames.forEach(function(name) {
-        levels.push({ path : path.join('libs', 'bem-core', name + '.blocks'), check : false });
-        levels.push({ path : path.join('libs', 'bem-core', 'desktop.blocks'), check : false });
-        // levels.push({ path : path.join('libs', 'bem-core-php', name + '.blocks'), check : false });
-        levels.push({ path : path.join('libs', 'bem-components', name + '.blocks'), check : false });
-        levels.push({ path : path.join('libs', 'bem-components', 'desktop.blocks'), check : false });
-        // levels.push({ path : path.join('libs', 'bem-components-php', name + '.blocks'), check : false });
-        levels.push({ path : path.join('libs', 'bem-scrollspy', name + '.blocks'), check : false });
-        levels.push({ path : path.join('libs', 'bem-forms', name + '.blocks'), check : false });
+        levels.push({ path : path.join('node_modules', 'bem-core', name + '.blocks'), check : false });
+        levels.push({ path : path.join('node_modules', 'bem-core', 'desktop.blocks'), check : false });
+        levels.push({ path : path.join('node_modules', 'bem-components', name + '.blocks'), check : false });
+        levels.push({ path : path.join('node_modules', 'bem-components', 'desktop.blocks'), check : false });
+        levels.push({ path : path.join('node_modules', 'bem-scrollspy', name + '.blocks'), check : false });
+        levels.push({ path : path.join('node_modules', 'bem-forms', name + '.blocks'), check : false });
     });
 
     platformNames.forEach(function(name) {
@@ -278,7 +260,7 @@ function getTestLevels(platform) {
 
 function getSpecLevels(platform) {
     return [].concat(
-        { path : path.join('libs', 'bem-pr', 'spec.blocks'), check : false },
+        { path : path.join('node_modules', 'bem-pr', 'spec.blocks'), check : false },
         getSourceLevels(platform)
     );
 }
