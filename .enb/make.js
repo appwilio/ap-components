@@ -3,6 +3,7 @@ var BEM_TEMPLATE_ENGINE = process.env.BEM_TEMPLATE_ENGINE || 'BH',
     fs = require('fs'),
     path = require('path'),
     techs = require('./techs'),
+    bemConfig  = require('@bem/sdk.config')(),
     PLATFORMS = {
         'desktop' : ['common'],
         // 'mobile' : ['common', 'touch'],
@@ -23,45 +24,16 @@ module.exports = function (config) {
     var platforms = Object.keys(PLATFORMS),
         sets = Object.keys(SETS);
 
-    // config.includeConfig('enb-bem-examples');
-    // config.includeConfig('enb-bem-docs');
     config.includeConfig('enb-bem-specs');
     config.includeConfig('enb-bem-tmpl-specs');
 
     configureSets(sets, {
-        // tests : config.module('enb-bem-examples').createConfigurator('tests'),
-        // examples : config.module('enb-bem-examples').createConfigurator('examples'),
-        // docs : config.module('enb-bem-docs').createConfigurator('docs', 'examples'),
         specs : config.module('enb-bem-specs').createConfigurator('specs'),
         tmplSpecs : config.module('enb-bem-tmpl-specs').createConfigurator('tmpl-specs')
     });
 
     function configureSets(platforms, sets) {
         platforms.forEach(function(platform) {
-        /*    sets.examples.configure({
-                destPath : platform + '.examples',
-                levels : getLibLevels(platform),
-                techSuffixes : ['examples'],
-                fileSuffixes : ['bemjson.js', 'title.txt'],
-                inlineBemjson : true,
-                processInlineBemjson : wrapInPage
-            });
-
-            sets.tests.configure({
-                destPath : platform + '.tests',
-                levels : getLibLevels(platform),
-                techSuffixes : ['tests'],
-                fileSuffixes : ['bemjson.js', 'title.txt']
-            });
-            sets.docs.configure({
-                destPath : platform + '.docs',
-                levels : getLibLevels(platform),
-                exampleSets : [platform + '.examples'],
-                langs : config.getLanguages(),
-                jsdoc : { suffixes : ['vanilla.js', 'browser.js', 'js'] }
-            });
-         */
-
             sets.specs.configure({
                 destPath : platform + '.specs',
                 levels : getLibLevels(platform),
@@ -227,40 +199,13 @@ module.exports = function (config) {
 };
 
 function getLibLevels(platform) {
-    return (PLATFORMS[platform] || SETS[platform]).map(function(level) {
-        return level + '.blocks';
-    });
+    return bemConfig.levelsSync('common');
 }
 
 function getSourceLevels(platform) {
-    var platformNames = (PLATFORMS[platform] || SETS[platform]),
-        levels = [];
-
-    platformNames.forEach(function(name) {
-        levels.push({ path : path.join('node_modules', 'bem-core', name + '.blocks'), check : false });
-        levels.push({ path : path.join('node_modules', 'bem-core', 'desktop.blocks'), check : false });
-        levels.push({ path : path.join('node_modules', 'bem-components', name + '.blocks'), check : false });
-        levels.push({ path : path.join('node_modules', 'bem-components', 'desktop.blocks'), check : false });
-        levels.push({ path : path.join('node_modules', 'bem-scrollspy', name + '.blocks'), check : false });
-        levels.push({ path : path.join('node_modules', 'bem-forms', name + '.blocks'), check : false });
-    });
-
-    platformNames.forEach(function(name) {
-        levels.push({ path : name + '.blocks', check : true });
-    });
-    return levels;
+    return bemConfig.levelsSync(platform);
 }
 
-function getTestLevels(platform) {
-    return [].concat(
-        getSourceLevels(platform),
-        'test.blocks'
-    );
-}
-
-function getSpecLevels(platform) {
-    return [].concat(
-        { path : path.join('node_modules', 'bem-pr', 'spec.blocks'), check : false },
-        getSourceLevels(platform)
-    );
+function getSpecLevels() {
+    return bemConfig.levelsSync('spec');
 }
