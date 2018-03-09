@@ -7,7 +7,7 @@
     "url": "git://github.com/appwilio/ap-components.git"
   },
   "engines": {
-    "node": ">=0.10"
+    "node": ">=6"
   },
   "license": "MIT",
   "dependencies": {},
