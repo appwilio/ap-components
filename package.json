@@ -7,20 +7,22 @@
     "url": "git://github.com/appwilio/ap-components.git"
   },
   "engines": {
-    "node": ">=0.10"
+    "node": ">=6"
   },
+  "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "bem-pr": "github:narqo/bem-pr.git#0.12.0",
+    "@bem/sdk.config": "0.0.6",
     "bem-components": "3.1.3",
     "bem-core": "3.2.0",
-    "bem-forms": "github:bem-contrib/bem-forms.git#master",
-    "bem-scrollspy": "github:bem-contrib/bem-scrollspy.git#v0.2.2",
-    "bem-social": "github:bem-contrib/bem-social.git#master",
+    "bem-forms": "https://github.com/bem-contrib/bem-forms.git#master",
+    "bem-pr": "https://github.com/narqo/bem-pr.git#0.12.0",
+    "bem-scrollspy": "https://github.com/bem-contrib/bem-scrollspy.git#v0.2.2",
+    "bem-social": "https://github.com/bem-contrib/bem-social.git#master",
     "borschik": "1.7.0",
     "borschik-tech-cleancss": "2.1.0",
     "enb": "1.5.1",
-    "enb-bem-specs": "github:kompolom/enb-bem-specs#33@add-template-engine-option",
+    "enb-bem-specs": "https://github.com/kompolom/enb-bem-specs#33@add-template-engine-option",
     "enb-bem-techs": "2.2.2",
     "enb-bem-tmpl-specs": "~0.15.1",
     "enb-bemxjst": "6.4.0",
