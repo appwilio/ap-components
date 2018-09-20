@@ -31,13 +31,9 @@ provide(BEMDOM.decl({ block : this.name, modName : 'progress' }, {
         'process' : {
             'started' : function(){
                 this._startTime = new Date();
-                this.setMod('disabled');
                 this.setText(this._progressText || this._defaultText);
 
                 this._popup && this._popup.delMod('visible');
-            },
-            '' : function(){
-                this.delMod('disabled');
             }
         },
         'status' : {
@@ -116,6 +112,22 @@ provide(BEMDOM.decl({ block : this.name, modName : 'progress' }, {
         this._getPopup().setAnchor(this.domElem);
         this._getPopup().setContent(text);
         this._popup.setMod('visible');
+    },
+
+    /**
+     * @override
+     */
+    _onKeyDown : function() {
+        if(this.hasMod('process', 'started')) return;
+        this.__base.apply(this, arguments);
+    },
+
+    /**
+     * @override
+     */
+    _onPointerPress : function() {
+        if(this.hasMod('process', 'started')) return;
+        this.__base.apply(this, arguments);
     }
 
 }, {
