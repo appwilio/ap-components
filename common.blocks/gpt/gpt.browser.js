@@ -2,7 +2,7 @@ modules.define('gpt',
    ['i-bem-dom', 'dfp__config', 'jquery'],
    function(provide, bemDom, cfg, $) {
 
-provide(bemDom.decl(this.name, {
+provide(bemDom.declBlock(this.name, {
     onSetMod : {
         js : {
             inited : function() {

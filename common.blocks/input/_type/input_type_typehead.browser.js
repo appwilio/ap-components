@@ -1,11 +1,29 @@
 /* global modules:false */
 
-// TODO: bem-core-4
-//
-modules.define('input',
-               ['functions__throttle', 'i-bem', 'i-bem__dom', 'keyboard__codes', 'BEMHTML', 'typehead'],
-               function(provide, throttle, BEM, BEMDOM, keyCodes, BEMHTML, th, Input) {
-Input.decl({ modName : 'type', modVal : 'typehead' }, {
+modules.define('input', [
+    'functions__throttle',
+    'i-bem',
+    'i-bem-dom',
+    'popup',
+    'spin',
+    'menu',
+    'keyboard__codes',
+    'BEMHTML',
+    'typehead'
+], function(provide,
+    throttle,
+    BEM,
+    bemDom,
+    Popup,
+    Spin,
+    Menu,
+    keyCodes,
+    BEMHTML,
+    th,
+    Input
+) {
+
+Input.declMod({ modName : 'type', modVal : 'typehead' }, {
 
     onSetMod : {
         'js' : {
@@ -19,11 +37,11 @@ Input.decl({ modName : 'type', modVal : 'typehead' }, {
                 this._valField = this.params.valField || this._nameField;
                 this._realVal  = this.params.val;
 
-                this._popup = this.findBlockInside('popup');
+                this._popup = this.findChildBlock(Popup);
                 this._popup.setAnchor(this);
 
-                this._spin = this.findBlockInside('spin');
-                this._menu = this._popup.findBlockInside('menu');
+                this._spin = this.findChildBlock(Spin);
+                this._menu = this._popup.findChildBlock(Menu);
 
                 // setup typehead
                 this.typehead = BEM.create({ block : 'typehead', mods : { 'source' : this.getMod('source') } });
@@ -33,7 +51,7 @@ Input.decl({ modName : 'type', modVal : 'typehead' }, {
             },
 
             '' : function(){
-                delete this._typehead;
+                delete this.typehead;
             }
         },
         'progress' : {
@@ -48,18 +66,19 @@ Input.decl({ modName : 'type', modVal : 'typehead' }, {
         'focused' : {
             'true' : function(){
                 this.__base.apply(this, arguments);
-                this.bindTo('keyup', throttle(this._onKeyUp, this._to));
-                this.bindTo('keydown', this._onKeyDown);
-                this._menu.on('item-click', this._onMenuClick, this);
+                this._domEvents()
+                    .on('keyup', throttle(this._onKeyUp, this._to))
+                    .on('keydown', this._onKeyDown);
+                this._events(this._menu).on('item-click', this._onMenuClick, this);
 
                 if(this._hintText){
-                    this.elem('hint').val(this._hintText);
+                    this._elem('hint').domElem.val(this._hintText);
                 }
             },
             '' : function(){
                 this.__base.apply(this, arguments);
-                this.unbindFrom('keyup');
-                this._menu.un('item-click', this._onMenuClick, this);
+                this._domEvents().un('keyup');
+                this._events(this.menu).un('item-click', this._onMenuClick, this);
                 this._clear();
             }
         }
@@ -69,7 +88,7 @@ Input.decl({ modName : 'type', modVal : 'typehead' }, {
         'focused' : {
             '' : function(){
                 var mf = this._menu.hasMod('hovered');
-                this.elem('control').focus();
+                this._elem('control').domElem.focus();
                 return !mf;
             }
         }
@@ -156,7 +175,7 @@ Input.decl({ modName : 'type', modVal : 'typehead' }, {
     _setHint : function(text, val){
         this._hintText = text;
         this._hintVal = val;
-        this.elem('hint').val(this._hintText);
+        this._elem('hint').domElem.val(this._hintText);
     },
 
     _clear : function(){
@@ -176,7 +195,8 @@ Input.decl({ modName : 'type', modVal : 'typehead' }, {
         }
 
         return {
-            block : 'menu-item',
+            block : 'menu',
+            elem : 'item',
             val : item[this._valField],
             content : item[this._nameField]
         };

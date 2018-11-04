@@ -2,9 +2,9 @@
 
 modules.define('sortable',
                ['i-bem-dom', 'jquery', 'dom'],
-               function(provide, BEMDOM, $, dom) {
+               function(provide, bemDom, $, dom) {
 
-provide(BEMDOM.declBlock(this.name, {
+provide(bemDom.declBlock(this.name, {
     onSetMod : {
         'dragging' : {
             'true' : function(){
@@ -20,7 +20,7 @@ provide(BEMDOM.declBlock(this.name, {
      * Set draggable attrs to items
      */
     setAttrs : function() {
-        this.findChildElems('item').map(function(item){
+        this.findChildElems('item').forEach(function(item){
             item.attr('draggable', 'true');
         }, this);
     },
@@ -74,7 +74,7 @@ provide(BEMDOM.declBlock(this.name, {
         var target = this._getRealTarget(e);
         this._sortInsert(this._dragingElem, target);
 
-        this.emit('sortend', { source : this._dragingElem, target : target });
+        this._emit('sortend', { source : this._dragingElem, target : target });
     },
 
     _sortInsert : function(source, target){
@@ -103,7 +103,7 @@ provide(BEMDOM.declBlock(this.name, {
      * @returns {jQuery} sortable__item domElem
      */
     _getRealTarget : function(e){
-        return this.closestElem($(e.target), 'item');
+        return this.findParentElem($(e.target), 'item');
     },
 
     /**
@@ -122,7 +122,7 @@ provide(BEMDOM.declBlock(this.name, {
                 this.domElem.append(source):
                 target.after(source);
         }
-        this.emit('sort', { source : source, dir : this._lastMoveDir });
+        this._emit('sort', { source : source, dir : this._lastMoveDir });
     },
 
     /**
@@ -139,7 +139,7 @@ provide(BEMDOM.declBlock(this.name, {
         }
 
         this.getDragDirection(X, Y);
-        this.emit('move', this._lastMoveDir);
+        this._emit('move', this._lastMoveDir);
         this._dragPos = { x : X, y : Y };
     },
 
@@ -157,7 +157,7 @@ provide(BEMDOM.declBlock(this.name, {
         if(this._dragPos.x === X && this._dragPos.y === Y){
             return;
         }
-        this.emit('over', e, this._lastMoveDir);
+        this._emit('over', e, this._lastMoveDir);
 
         this._moveElem(this._dragingElem, this._getRealTarget(e));
     },
@@ -169,7 +169,7 @@ provide(BEMDOM.declBlock(this.name, {
     _onDragStart : function(e){
         this.setMod('dragging');
         this._initDrag(e);
-        this.emit('start', this._dragingElem);
+        this._emit('start', this._dragingElem);
     },
 
     /**
@@ -197,14 +197,14 @@ provide(BEMDOM.declBlock(this.name, {
     _onDragEnd : function(){
         this.delMod('dragging');
         this._dragPos = null;
-        this.emit('end');
+        this._emit('end');
         this.delMod(this._dragingElem, 'moving');
     },
 
     getSiblings : function(block){
         return {
-            prev : this.findBlockOn(this._dragingElem.next(), block),
-            next : this.findBlockOn(this._dragingElem.prev(), block)
+            prev : this._dragingElem.next().bem(block),
+            next : this._dragingElem.prev().bem(block)
         };
     },
 
