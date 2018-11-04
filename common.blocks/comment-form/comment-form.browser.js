@@ -1,8 +1,26 @@
 /* global modules:false */
 
-modules.define('comment-form',
-               ['i-bem-dom', 'comments-api', 'dom', 'events__channels', 'jquery', 'functions__timeout', 'form', 'button', 'comment-editor'],
-               function(provide, bemDom, Api, dom, Channel, $, timeout, Form, Button, CommentEditor) {
+modules.define('comment-form', [
+    'i-bem-dom',
+    'comments-api',
+    'dom',
+    'events__channels',
+    'jquery',
+    'functions__timeout',
+    'form',
+    'button',
+    'comment-editor'
+], function(provide,
+    bemDom,
+    Api,
+    dom,
+    Channel,
+    $,
+    timeout,
+    Form,
+    Button,
+    CommentEditor
+) {
 
 provide(bemDom.declBlock(this.name, {
     onSetMod : {

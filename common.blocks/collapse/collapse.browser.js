@@ -9,10 +9,10 @@ modules.define('collapse', ['i-bem-dom'], function(provide, bemDom) {
     provide(bemDom.declBlock(this.name, {
         onSetMod : {
             'opened' : function(_, modVal) {
-                this.findChildElem('switcher', true).concat(this.findMixedElem('switcher'))
+                this.findChildElem('switcher', true)
                     .setMod('opened', modVal);
 
-                this.findChildElem('content', true).concat(this.findMixedElem('content'))
+                this.findChildElem('content', true)
                     .setMod('visible', modVal);
             }
         },

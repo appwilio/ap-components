@@ -1,5 +1,3 @@
-/* global modules:false */
-
 // TODO: Рекурсивная зависмость form-field -> form, form -> form-field
 //
 // modules.define('form-field',

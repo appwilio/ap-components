@@ -52,7 +52,7 @@ provide(bemDom.declBlock(this.name, Control, /** @lends comment-editor.prototype
     },
 
     _unbindEvents : function(){
-        this._domEvents('body').un('keyup', this._onBodyChange)
+        this._domEvents('body').un('keyup', this._onBodyChange);
         this._domEvents('clear').un('click', this.clear);
     },
 

@@ -11,7 +11,7 @@ provide(bemDom.declBlock(this.name, {
                 this._scrollto = this.findMixedBlock(Scrollto);
                 this._scrollto.setPosition(0);
                 this._domEvents(bemDom.win)
-                    .on('scroll', throttle(this._onScroll, 300, this));
+                    .on('scroll', throttle(this._onScroll, 300, this))
                     .on('resize', throttle(this._onResize, 300, this));
                 this._onResize();
                 this._onScroll();
@@ -19,7 +19,7 @@ provide(bemDom.declBlock(this.name, {
         }
     },
 
-    _onClick : function(){
+    _onClick : function() {
         this._scrollto.scroll();
     },
 
@@ -35,7 +35,7 @@ provide(bemDom.declBlock(this.name, {
     lazyInit : false,
     onInit : function(){
         this._domEvents()
-            .on('mouseover mouseout', function(){ this.toggleMod('hovered'); });
+            .on('mouseover mouseout', function(){ this.toggleMod('hovered'); })
             .on('click', function(){ this._onClick(); });
     }
 }));
