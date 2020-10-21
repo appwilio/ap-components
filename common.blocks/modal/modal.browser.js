@@ -1,8 +1,10 @@
 /* global modules:false */
 
-modules.define('modal', ['jquery'], function(provide, $, Modal) {
+modules.define('modal',
+    ['i-bem-dom', 'jquery'],
+    function(provide, bemDom, $, Modal) {
 
-provide(Modal.decl({
+provide(bemDom.declBlock(Modal, {
     onSetMod : {
         visible : function(name, val) {
             this.__base.apply(this, arguments);

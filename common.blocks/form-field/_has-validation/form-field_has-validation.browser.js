@@ -2,7 +2,7 @@
 
 modules.define('form-field', function(provide, FormField) {
 
-FormField.decl({ block : this.name, modName : 'has-validation', modVal : true }, {
+provide(FormField.declMod({ modName : 'has-validation' }, {
 
     /**
      * Sets field Status and update validation
@@ -15,9 +15,7 @@ FormField.decl({ block : this.name, modName : 'has-validation', modVal : true },
         this._status = status;
         this._updateStatus();
     }
-});
-
-provide(FormField);
+}));
 
 });
 

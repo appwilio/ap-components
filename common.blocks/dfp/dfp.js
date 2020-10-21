@@ -3,8 +3,7 @@
  * @description Provide Google Double Click For Publishers (load if it does not exist).
  */
 
-modules.define(
-    'dfp',
+modules.define('dfp',
     ['loader_type_js', 'dfp__config'],
     function(provide, loader, cfg) {
 

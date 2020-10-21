@@ -1,8 +1,8 @@
-modules.define('i-bem__dom',
+modules.define('link',
     ['jquery', 'fancybox'],
-    function(provide, $, fancy, DOM) {
+    function(provide, $, fancy, Link) {
 
-provide(DOM.decl({ block : 'link', modName : 'action', modVal : 'lightbox' }, {
+provide(Link.declMod({ modName : 'action', modVal : 'lightbox' }, {
     onSetMod : {
         'js' : {
             'inited' : function() {

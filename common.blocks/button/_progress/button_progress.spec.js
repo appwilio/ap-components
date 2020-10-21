@@ -1,6 +1,6 @@
 modules.define('spec',
-    ['button', 'i-bem__dom', 'jquery', 'BEMHTML'],
-    function(provide, Button, BEMDOM, $, BEMHTML) {
+    ['button', 'i-bem-dom', 'jquery', 'BEMHTML'],
+    function(provide, Button, bemDom, $, BEMHTML) {
 
 describe('button_progress', function() {
     var button;
@@ -12,11 +12,11 @@ describe('button_progress', function() {
             },
             text : 'test'
         };
-        button = BEMDOM.init($(BEMHTML.apply(bemjson)).appendTo('body')).bem('button');
+        button = bemDom.init($(BEMHTML.apply(bemjson)).appendTo('body')).bem(Button);
     });
 
     afterEach(function() {
-        BEMDOM.destruct(button.domElem);
+        bemDom.destruct(button.domElem);
     });
 
     it('should has disabled mod', function() {

@@ -1,17 +1,17 @@
 /* global modules:false */
 
 modules.define('sortable',
-               ['i-bem__dom', 'jquery', 'dom'],
-               function(provide, BEMDOM, $, dom) {
+               ['i-bem-dom', 'jquery', 'dom'],
+               function(provide, bemDom, $, dom) {
 
-provide(BEMDOM.decl('sortable', {
+provide(bemDom.declBlock(this.name, {
     onSetMod : {
         'dragging' : {
             'true' : function(){
-                this.bindTo('dragover', this._onDragOver);
+                this._domEvents().on('dragover', this._onDragOver);
             },
             '' : function(){
-                this.unbindFrom('dragover', this._onDragOver);
+                this._domEvents().on('dragover', this._onDragOver);
             }
         }
     },
@@ -20,7 +20,7 @@ provide(BEMDOM.decl('sortable', {
      * Set draggable attrs to items
      */
     setAttrs : function() {
-        this.findElem('item').map(function(item){
+        this.findChildElems('item').forEach(function(item){
             item.attr('draggable', 'true');
         }, this);
     },
@@ -74,7 +74,7 @@ provide(BEMDOM.decl('sortable', {
         var target = this._getRealTarget(e);
         this._sortInsert(this._dragingElem, target);
 
-        this.emit('sortend', { source : this._dragingElem, target : target });
+        this._emit('sortend', { source : this._dragingElem, target : target });
     },
 
     _sortInsert : function(source, target){
@@ -103,7 +103,7 @@ provide(BEMDOM.decl('sortable', {
      * @returns {jQuery} sortable__item domElem
      */
     _getRealTarget : function(e){
-        return this.closestElem($(e.target), 'item');
+        return this.findParentElem($(e.target), 'item');
     },
 
     /**
@@ -122,7 +122,7 @@ provide(BEMDOM.decl('sortable', {
                 this.domElem.append(source):
                 target.after(source);
         }
-        this.emit('sort', { source : source, dir : this._lastMoveDir });
+        this._emit('sort', { source : source, dir : this._lastMoveDir });
     },
 
     /**
@@ -139,7 +139,7 @@ provide(BEMDOM.decl('sortable', {
         }
 
         this.getDragDirection(X, Y);
-        this.emit('move', this._lastMoveDir);
+        this._emit('move', this._lastMoveDir);
         this._dragPos = { x : X, y : Y };
     },
 
@@ -157,7 +157,7 @@ provide(BEMDOM.decl('sortable', {
         if(this._dragPos.x === X && this._dragPos.y === Y){
             return;
         }
-        this.emit('over', e, this._lastMoveDir);
+        this._emit('over', e, this._lastMoveDir);
 
         this._moveElem(this._dragingElem, this._getRealTarget(e));
     },
@@ -169,7 +169,7 @@ provide(BEMDOM.decl('sortable', {
     _onDragStart : function(e){
         this.setMod('dragging');
         this._initDrag(e);
-        this.emit('start', this._dragingElem);
+        this._emit('start', this._dragingElem);
     },
 
     /**
@@ -197,14 +197,14 @@ provide(BEMDOM.decl('sortable', {
     _onDragEnd : function(){
         this.delMod('dragging');
         this._dragPos = null;
-        this.emit('end');
+        this._emit('end');
         this.delMod(this._dragingElem, 'moving');
     },
 
     getSiblings : function(block){
         return {
-            prev : this.findBlockOn(this._dragingElem.next(), block),
-            next : this.findBlockOn(this._dragingElem.prev(), block)
+            prev : this._dragingElem.next().bem(block),
+            next : this._dragingElem.prev().bem(block)
         };
     },
 
@@ -239,12 +239,13 @@ provide(BEMDOM.decl('sortable', {
     }
 
 }, {
-    live : function() {
-        this
-            .liveBindTo('dragstart', this.prototype._onDragStart)
-            .liveBindTo('drag', this.prototype._onDrag)
-            .liveBindTo('drop', this.prototype._onDrop)
-            .liveBindTo('dragend', this.prototype._onDragEnd);
+    lazyInit : true,
+    onInit : function() {
+        this._domEvents()
+            .on('dragstart', this.prototype._onDragStart)
+            .on('drag', this.prototype._onDrag)
+            .on('drop', this.prototype._onDrop)
+            .on('dragend', this.prototype._onDragEnd);
     }
 }));
 

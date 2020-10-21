@@ -1,8 +1,14 @@
-modules.define('modal', ['i-bem__dom'], function(provide, BEMDOM, Modal) {
+modules.define('modal',
+    ['i-bem-dom'],
+    function(provide, bemDom, Modal) {
 
-provide(Modal.decl({ modName : 'has-header', modVal : true }, {
+provide(Modal.declMod({ modName : 'has-header' }, {
+    /**
+     * @override
+     */
     setContent : function(content){
-        BEMDOM.update(this.elem('container'), content);
+        bemDom.update(this._elem('container').domElem, content);
+        return this;
     }
 }));
 

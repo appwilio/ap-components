@@ -1,8 +1,8 @@
 /* global modules:false */
 
-modules.define('image_load_lazy', ['jquery', 'i-bem__dom'], function(provide, $, BEMDOM) {
+modules.define('image', ['jquery', 'i-bem-dom'], function(provide, $, bemDom, BemImage) {
 
-    provide(BEMDOM.decl({ block : 'image', modName : 'load', modVal : 'lazy' }, {
+    provide(BemImage.declMod({ modName : 'load', modVal : 'lazy' }, {
 
         /**
         * load Image
@@ -27,14 +27,14 @@ modules.define('image_load_lazy', ['jquery', 'i-bem__dom'], function(provide, $,
         * @protected
         */
         _onLoad : function(){
-            this.elem('img').attr('src', this.params.url);
+            this._elem('img').domElem.attr('src', this.params.url);
             this.setMod('state', 'loaded');
             this.detach();
         },
 
         detach : function() {
             this.img = undefined;
-            BEMDOM.detach(this.domElem);
+            bemDom.detach(this.domElem);
         }
     }));
 });

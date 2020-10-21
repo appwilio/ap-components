@@ -1,22 +1,19 @@
 /* global modules:false */
 
 modules.define('scrollto',
-               ['i-bem__dom'],
-               function(provide, BEMDOM, Scrollto) {
+   function(provide, Scrollto) {
 
-Scrollto.decl({ modName : 'target', modVal : 'anchor' }, {
+provide(Scrollto.declMod({ modName : 'target', modVal : 'anchor' }, {
 
     /**
      * Sets target
-     * @param {jQuery|BEMDOM} anchor DOM elem or anchor BEMDOM block
+     * @param {jQuery|bemDom} anchor DOM elem or anchor BEMDOM block
      * @returns {popup} this
      * @public
      */
     setAnchor : function(anchor) {
 
-        this._target = anchor instanceof BEMDOM?
-            anchor.domElem :
-            anchor;
+        this._target = anchor.domElem || anchor;
 
         return this;
     },
@@ -28,9 +25,7 @@ Scrollto.decl({ modName : 'target', modVal : 'anchor' }, {
     _getScrollPos : function(){
         return this._target.offset().top - this.offset;
     }
-});
-
-provide(Scrollto);
+}));
 
 });
 

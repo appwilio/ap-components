@@ -1,7 +1,7 @@
 modules.define(
     'spec',
-    ['collapse', 'i-bem__dom', 'jquery', 'BEMHTML'],
-    function(provide, collapse, BEMDOM, $, BEMHTML) {
+    ['collapse', 'i-bem-dom', 'jquery', 'BEMHTML'],
+    function(provide, Collapse, bemDom, $, BEMHTML) {
 
 describe('collapse', function() {
     var collapse,
@@ -12,14 +12,14 @@ describe('collapse', function() {
     });
 
     afterEach(function() {
-        BEMDOM.destruct(collapse.domElem);
+        bemDom.destruct(collapse.domElem);
     });
 
     describe('show/hide', function(){
         it('should toggle opened mod on switcher click', function(){
             collapse.hasMod('opened').should.be.false;
 
-            sw = $(collapse.elem('switcher')[0]);
+            sw = collapse._elem('switcher').domElem;
             sw.trigger('click');
             collapse.hasMod('opened').should.be.true;
 
@@ -30,31 +30,28 @@ describe('collapse', function() {
         it('should toggle visible mod on content elem', function(){
             collapse.hasMod('opened').should.be.false;
 
-            sw = $(collapse.elem('switcher')[0]);
+            sw = collapse._elem('switcher').domElem;
             sw.trigger('click');
-            collapse.hasMod(
-                collapse.elem('content'),
-                'visible')
+            collapse
+                ._elem('content')
+                .hasMod('visible')
                 .should.be.true;
         });
 
         it('should toggle opened mod on switcher elem', function(){
             collapse.hasMod('opened').should.be.false;
 
-            sw = $(collapse.elem('switcher')[0]);
+            sw = collapse._elem('switcher').domElem;
             sw.trigger('click');
-            collapse.hasMod(
-                collapse.findElem('switcher', true),
-                'opened')
-                .should.be.true;
+            collapse.findChildElem('switcher', true).hasMod('opened').should.be.true;
         });
     });
 
 });
 
 function buildCollapse(bemjson) {
-    return BEMDOM.init($(BEMHTML.apply(bemjson)).appendTo('body'))
-        .bem('collapse');
+    return bemDom.init($(BEMHTML.apply(bemjson)).appendTo('body'))
+        .bem(Collapse);
 }
 
 provide();

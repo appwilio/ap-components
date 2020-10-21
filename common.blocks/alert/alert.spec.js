@@ -1,25 +1,24 @@
 /* global modules:false */
 
 modules.define('spec',
-               ['alert', 'i-bem__dom', 'jquery', 'BEMHTML'],
-               function(provide, Alert, BEMDOM, $, BEMHTML) {
+               ['alert', 'i-bem-dom', 'jquery', 'BEMHTML'],
+               function(provide, Alert, bemDom, $, BEMHTML) {
 
 describe('alert', function(){
     var alert;
 
     beforeEach(function() {
-        alert = BEMDOM.init($(BEMHTML.apply({
+        alert = bemDom.init($(BEMHTML.apply({
             block : 'alert',
             mods : {
                 dismissible : true
             },
             content : 'some text'
-        })).appendTo('body'))
-                    .bem('alert');
+        })).appendTo('body')).bem(Alert);
     });
 
     afterEach(function() {
-        BEMDOM.destruct(alert.domElem);
+        bemDom.destruct(alert.domElem);
     });
 
     it('Should hide by dismiss method', function(){
@@ -39,7 +38,7 @@ describe('alert', function(){
 
     it('Should hide on dismiss button', function(){
         alert.hasMod('hidden').should.be.false;
-        alert.elem('dismiss').trigger('click');
+        alert._elem('dismiss').domElem.trigger('click');
         alert.hasMod('hidden').should.be.true;
     });
 

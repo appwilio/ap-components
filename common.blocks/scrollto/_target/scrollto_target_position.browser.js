@@ -1,10 +1,9 @@
 /* global modules:false */
 
 modules.define('scrollto',
-               ['i-bem__dom'],
-               function(provide, BEMDOM, Scrollto) {
+   function(provide, Scrollto) {
 
-Scrollto.decl({ block : 'scrollto', modName : 'target', modVal : 'position' }, {
+provide(Scrollto.declMod({ modName : 'target', modVal : 'position' }, {
 
     /**
      * Sets position
@@ -20,9 +19,7 @@ Scrollto.decl({ block : 'scrollto', modName : 'target', modVal : 'position' }, {
     _getScrollPos : function(){
         return this._target - this.offset;
     }
-});
-
-provide(Scrollto);
+}));
 
 });
 

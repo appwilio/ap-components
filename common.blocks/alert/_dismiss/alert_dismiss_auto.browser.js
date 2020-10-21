@@ -1,14 +1,15 @@
 /* global modules:false */
 
 modules.define('alert',
-               ['functions__timeout', 'i-bem__dom'], function(provide, timeout, BEMDOM) {
+   ['functions__timeout'], function(provide, timeout, Alert) {
 
-BEMDOM.decl({ block : 'alert', modName : 'dismiss', modVal : 'auto' }, {
+provide(Alert.declMod({ modName : 'dismiss', modVal : 'auto' }, {
     beforeSetMod : {
         'hidden' : {
             'true' : function(){
                 if(this.hasMod('hovered')){
                     var event = { modName : 'hovered', modVal :false };
+                    // TODO: возможно this._events().on, проверить!
                     this.on(event, function(){
                         this.un(event);
                         this.dismiss();
@@ -28,9 +29,7 @@ BEMDOM.decl({ block : 'alert', modName : 'dismiss', modVal : 'auto' }, {
             }
         }
     }
-});
-
-provide(BEMDOM);
+}));
 
 });
 

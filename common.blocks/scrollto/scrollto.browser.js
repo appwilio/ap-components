@@ -1,10 +1,10 @@
 /* global modules:false */
 
 modules.define('scrollto',
-               ['i-bem__dom', 'jquery'],
-               function(provide, BEMDOM, $) {
+   ['i-bem-dom', 'jquery'],
+   function(provide, bemDom, $) {
 
-provide(BEMDOM.decl('scrollto', {
+provide(bemDom.declBlock(this.name, {
     onSetMod : {
         'js' : {
             inited : function(){

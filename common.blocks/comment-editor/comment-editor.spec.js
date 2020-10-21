@@ -1,7 +1,7 @@
 modules.define(
     'spec',
-    ['comment-editor', 'i-bem__dom', 'jquery', 'BEMHTML', 'sinon'],
-  function(provide, ce, BEMDOM, $, BEMHTML, sinon){
+    ['comment-editor', 'i-bem-dom', 'jquery', 'BEMHTML', 'sinon'],
+  function(provide, CommentEditor, bemDom, $, BEMHTML, sinon){
 
 describe('comment-editor', function(){
     var editor;
@@ -13,7 +13,7 @@ describe('comment-editor', function(){
     });
 
     afterEach(function() {
-        BEMDOM.destruct(editor.domElem);
+        bemDom.destruct(editor.domElem);
     });
 
     describe('value', function(){
@@ -35,23 +35,23 @@ describe('comment-editor', function(){
             var val = 'my custom val',
                 val2 = 'new value';
 
-            editor.elem('body').html().should.be.equal('');
+            editor._elem('body').domElem.html().should.be.equal('');
             editor.setVal(val);
-            editor.elem('body').html().should.be.equal(val);
+            editor._elem('body').domElem.html().should.be.equal(val);
 
-            editor.elem('body').html(val2);
-            editor.elem('body').trigger('keyup');
+            editor._elem('body').domElem.html(val2);
+            editor._elem('body').domElem.trigger('keyup');
             editor.getVal().should.equals(val2);
         });
         it('should filter change events', function(){
             var val = 'my custom val',
                 spy = sinon.spy();
-            editor.on('change', spy);
+            editor._events().on('change', spy);
 
-            editor.elem('body').html(val);
-            editor.elem('body').trigger('keyup');
-            editor.elem('body').trigger('keyup');
-            editor.elem('body').trigger('keyup');
+            editor._elem('body').domElem.html(val);
+            editor._elem('body').domElem.trigger('keyup');
+            editor._elem('body').domElem.trigger('keyup');
+            editor._elem('body').domElem.trigger('keyup');
             spy.should.be.calledOnce;
 
             editor.setVal('newval');
@@ -62,14 +62,14 @@ describe('comment-editor', function(){
         it('should reset comment val', function(){
             var val = 'my custom val';
             editor.setVal(val);
-            editor.elem('clear').trigger('click');
+            editor._elem('clear').domElem.trigger('click');
             editor.getVal().should.be.equal('');
         });
 
         it('should emit `clear` event', function(){
             var spy = sinon.spy();
-            editor.on('clear', spy);
-            editor.elem('clear').trigger('click');
+            editor._events().on('clear', spy);
+            editor._elem('clear').domElem.trigger('click');
             spy.should.have.been.calledOnce;
         });
     });
@@ -130,8 +130,8 @@ describe('comment-editor', function(){
 });
 
 function build(bemjson) {
-    return BEMDOM.init($(BEMHTML.apply(bemjson)).appendTo('body'))
-        .bem('comment-editor');
+    return bemDom.init($(BEMHTML.apply(bemjson)).appendTo('body'))
+        .bem(CommentEditor);
 }
 
 provide();

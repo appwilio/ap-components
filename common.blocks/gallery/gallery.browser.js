@@ -1,12 +1,14 @@
-modules.define('i-bem__dom', ['jquery', 'fancybox'], function(provide, $, fancy, DOM) {
+modules.define('gallery',
+    ['fancybox'],
+    function(provide, fancy, bemDom) {
 
-provide(DOM.decl('gallery', {
+provide(bemDom.declBlock(this.name, {
     onSetMod : {
         'js' : {
             'inited' : function() {
                 this.config = this.params.config;
                 this.rel = this.domElem.attr('rel');
-                $('.gallery').attr('rel', this.rel).fancybox(this.params.config);
+                this.domElem.attr('rel', this.rel).fancybox(this.params.config);
             }
         }
 

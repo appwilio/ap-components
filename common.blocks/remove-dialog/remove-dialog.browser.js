@@ -1,7 +1,8 @@
-modules.define('remove-dialog', ['i-bem__dom', 'BEMHTML', 'objects'],
-               function(provide, BEMDOM, BEMHTML, Objects) {
+modules.define('remove-dialog',
+    ['i-bem-dom', 'BEMHTML', 'objects', 'confirm'],
+    function(provide, bemDom, BEMHTML, Objects, Confirm) {
 
-provide(BEMDOM.declMix(this.name, {
+provide(bemDom.declMixin(this.name, {
 
     /**
      * call remove dialog
@@ -13,18 +14,17 @@ provide(BEMDOM.declMix(this.name, {
             return this._remove();
         }
 
-        var removeConfirm = this.findBlockOn(
-            BEMDOM.after(this.domElem, BEMHTML.apply(this._getConfirmBemjson())),
-            'confirm'
-        );
+        var removeConfirm = bemDom
+            .after(this.domElem, BEMHTML.apply(this._getConfirmBemjson()))
+            .bem(Confirm);
 
-        removeConfirm.on('yes', function(){
-            BEMDOM.destruct(removeConfirm.domElem);
+        removeConfirm.on('yes', function() {
+            bemDom.destruct(removeConfirm.domElem);
             this._remove();
         }, this);
 
-        removeConfirm.on('no', function(){
-            BEMDOM.destruct(this.domElem); // destruct confirm
+        removeConfirm.on('no', function() {
+            bemDom.destruct(this.domElem); // destruct confirm
         });
     },
 
@@ -46,4 +46,5 @@ provide(BEMDOM.declMix(this.name, {
         }, this._confirmParams || {});
     }
 }));
+
 });

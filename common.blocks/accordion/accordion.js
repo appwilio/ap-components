@@ -1,8 +1,8 @@
 modules.define('accordion',
-               ['i-bem__dom'],
-               function(provide, BEMDOM) {
+               ['i-bem-dom', 'collapse'],
+               function(provide, bemDom, Collapse) {
 
-provide(BEMDOM.decl(this.name, {
+provide(bemDom.declBlock(this.name, {
 
     /**
      * Закрывает все блоки кроме того что только что открыли
@@ -12,19 +12,17 @@ provide(BEMDOM.decl(this.name, {
     collapseOther : function(e){
         var keepOpen = e.target;
         this
-            .findBlocksInside({ block : 'collapse', modName : 'opened', modVal : true })
-            .map(function(collapse){
+            .findChildBlocks({ block : Collapse, modName : 'opened', modVal : true })
+            .forEach(function(collapse){
                 collapse === keepOpen || collapse.delMod('opened');
             });
-    },
+    }
 
 }, {
-    live : function(){
-        this.liveInitOnBlockInsideEvent(
-            { modName : 'opened', modVal : true },
-            'collapse',
-            this.prototype.collapseOther
-        );
+    lazyInit : true,
+    onInit : function() {
+        this._events(Collapse)
+            .on({ modName : 'opened', modVal : true }, this.prototype.collapseOther);
     }
 }));
 

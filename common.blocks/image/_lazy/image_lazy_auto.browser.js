@@ -1,15 +1,15 @@
 /* global modules:false */
 
-modules.define('image_lazy_auto', ['i-bem__dom'], function(provide, BEMDOM) {
+modules.define('image', function(provide, BemImage) {
 
-provide(BEMDOM.decl({ block : 'image', modName : 'lazy', modVal : 'auto' }, {
-  onSetMod : {
-    'js' : {
-      'inited' : function(){
-        this.load();
-      }
+provide(BemImage.declMod({ modName : 'lazy', modVal : 'auto' }, {
+    onSetMod : {
+        js : {
+            inited : function(){
+                this.load();
+            }
+        }
     }
-  }
 }));
 
 });

@@ -1,6 +1,8 @@
-modules.define('lightbox', ['jquery', 'fancybox', 'i-bem__dom'], function(provide, $, fancy, DOM) {
+modules.define('lightbox',
+    ['jquery', 'fancybox', 'i-bem-dom'],
+    function(provide, $, fancy, bemDom) {
 
-provide(DOM.decl('lightbox', {
+provide(bemDom.declBlock(this.name, {
     onSetMod : {
         'js' : {
             'inited' : function() {
@@ -11,26 +13,26 @@ provide(DOM.decl('lightbox', {
         }
     },
     _open : function(){
-      if(this.group) {
-        $.fancybox.open($('[rel=' + this.group + ']'), this.config);
-      } else {
-        $.fancybox.open(this.url, this.config);
-      }
-      this.emit('opened');
-      return false;
+        if(this.group) {
+            $.fancybox.open($('[rel=' + this.group + ']'), this.config);
+        } else {
+            $.fancybox.open(this.url, this.config);
+        }
+        this._emit('opened');
+        return false;
     },
     _close : function(){
-      $.fancybox.close();
-      this.emit('closed');
+        $.fancybox.close();
+        this._emit('closed');
     }
 
-  }, {
-        live : function(){
-          this.liveBindTo('click', function(){
+}, {
+    onInit : function(){
+        this._domEvents().on('click', function(){
             this._open();
             return false;
-          });
-        }
+        });
     }
-  ));
+}));
+
 });

@@ -1,8 +1,8 @@
 modules.define('date',
-    ['i-bem__dom', 'moment', 'moment__range', 'functions__timeout'],
-    function(provide, BEMDOM, moment, Mrange, timeout) {
+    ['i-bem-dom', 'moment', 'moment__range', 'functions__timeout'],
+    function(provide, bemDom, moment, Mrange, timeout, BemDate) {
 
-provide(BEMDOM.decl({ block : this.name, modName : 'relative', modVal : true }, {
+provide(BemDate.declMod({ modName : 'relative', modVal : true }, {
     onSetMod : {
         js : {
             inited : function() {
@@ -38,14 +38,14 @@ provide(BEMDOM.decl({ block : this.name, modName : 'relative', modVal : true }, 
     },
 
     showRelTime : function(){
-        BEMDOM.update(this.domElem, this._getRelTime());
+        bemDom.update(this.domElem, this._getRelTime());
     },
 
     _getRelTime : function(){
         return moment(this._date).fromNow();
     }
 }, {
-    live : false
+    lazyInit : false
 }));
 
 });

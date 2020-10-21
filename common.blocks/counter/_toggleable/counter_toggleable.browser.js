@@ -1,14 +1,15 @@
 /* global modules:false */
 
 modules.define('counter',
-               ['i-bem__dom'], function(provide, BEMDOM) {
+    ['button'],
+    function(provide, Button, Counter) {
 
-BEMDOM.decl({ block : 'counter', modName : 'toggleable', modVal : true }, {
+provide(Counter.declMod({ modName : 'toggleable' }, {
 
     onSetMod : {
         'toggled' : function(modName, modVal) {
             this
-                .findBlockInside('button')
+                .findChildBlock(Button)
                 .setMod('hovered', modVal);
         }
     },
@@ -23,9 +24,7 @@ BEMDOM.decl({ block : 'counter', modName : 'toggleable', modVal : true }, {
         this.setMod('toggled', !!state);
         this.__base.apply(this, arguments);
     }
-});
-
-provide(BEMDOM);
+}));
 
 });
 

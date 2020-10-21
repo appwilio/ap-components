@@ -1,9 +1,9 @@
 /* global modules:false */
 modules.define('typehead',
-               ['vow', 'api'],
-               function(provide, Vow, Api, Typehead){
+   ['vow', 'api'],
+   function(provide, Vow, Api, Typehead){
 
-Typehead.decl({ block : 'typehead', modName : 'source', modVal :'api' }, {
+provide(Typehead.declMod({ modName : 'source', modVal :'api' }, {
 
     // jshint unused: false
     search : function(val){
@@ -38,8 +38,6 @@ Typehead.decl({ block : 'typehead', modName : 'source', modVal :'api' }, {
             );
         return promise;
     }
-}, {
-});
+}));
 
-provide(Typehead);
 });

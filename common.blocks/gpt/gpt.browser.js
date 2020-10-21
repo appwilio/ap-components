@@ -1,8 +1,8 @@
 modules.define('gpt',
-               ['i-bem__dom', 'dfp__config', 'jquery'],
-               function(provide, BEMDOM, cfg, $) {
+   ['i-bem-dom', 'dfp__config', 'jquery'],
+   function(provide, bemDom, cfg, $) {
 
-provide(BEMDOM.decl(this.name, {
+provide(bemDom.declBlock(this.name, {
     onSetMod : {
         js : {
             inited : function() {

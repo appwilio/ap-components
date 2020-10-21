@@ -1,17 +1,17 @@
 /* global modules:false */
 
-modules.define('alert', ['i-bem__dom'], function(provide, BEMDOM) {
-provide(BEMDOM.decl('alert', {
+modules.define('alert', ['i-bem-dom'], function(provide, bemDom) {
+provide(bemDom.declBlock(this.name, {
     dismiss : function(){
         this.setMod('hidden', true);
     }
 
 }, {
-    live : function(){
-        this.liveBindTo('pointerover pointerout', function(){
+    lazyInit : false,
+    onInit : function(){
+        this._domEvents().on('pointerover pointerout', function(){
             this.toggleMod('hovered');
         });
-        return false;
     }
 }));
 

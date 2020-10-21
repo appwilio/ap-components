@@ -1,21 +1,22 @@
-modules.define('popup', ['objects'], function (provide, objects, Popup) {
+modules.define('popup',
+    ['i-bem-dom', 'objects'],
+    function(provide, bemDom, objects, Popup) {
 
-    provide(Popup.decl({ modName : 'hastail', modVal : true }, {
-        getDefaultParams : function () {
-            return objects.extend(
-                this.__base(),
-                {
-                    mainOffset : 5,
-                    viewportOffset : 5
-                });
-        },
+provide(Popup.declMod({ modName : 'hastail' }, {
+    getDefaultParams : function () {
+        return objects.extend(
+            this.__base(),
+            {
+                mainOffset : 5,
+                viewportOffset : 5
+            });
+    },
 
-        setContent : function(content){
-            Popup.update(this.elem('content'), content);
-            return this;
-        },
-    }
-  ));
+    setContent : function(content) {
+        bemDom.update(this._elem('content').domElem, content);
+        return this;
+    },
+}));
 
 });
 

@@ -1,10 +1,10 @@
 /* global modules:false */
 
 modules.define('counter',
-               ['i-bem__dom', 'button'],
-               function(provide, BEMDOM) {
+               ['i-bem-dom', 'button'],
+               function(provide, bemDom, Button) {
 
-provide(BEMDOM.decl('counter', {
+provide(bemDom.declBlock(this.name, {
 
     onSetMod : {
         'js' : {
@@ -26,8 +26,8 @@ provide(BEMDOM.decl('counter', {
         }
 
         this._val = parseInt(val, 10);
-        this.elem('val').text(this._val);
-        this.emit('update');
+        this._elem('val').domElem.text(this._val);
+        this._emit('update');
     },
 
     /**
@@ -43,15 +43,14 @@ provide(BEMDOM.decl('counter', {
      * onclick callback
      */
     _onButtonClick : function() {
-        this.emit(this._action);
+        this._emit(this._action);
     }
 
 }, { /** @lends counter */
-    live : function () {
-        this
-            .liveInitOnBlockInsideEvent('click', 'button', function(){
-                this._onButtonClick();
-            });
+    onInit : function () {
+        this._events(Button).on('click', function() {
+            this._onButtonClick();
+        });
     }
 }));
 
