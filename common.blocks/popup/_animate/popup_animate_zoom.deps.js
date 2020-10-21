@@ -1,9 +1,9 @@
 ({
     mustDeps : [
         {
-            block : 'animate',
-            mods : { zoom : ['in', 'out'] }
+            block : 'animation',
+            mods : { type : ['zoom-in', 'zoom-out'] },
+            tech : 'css'
         }
-    ],
-    shouldDeps : []
+    ]
 });
