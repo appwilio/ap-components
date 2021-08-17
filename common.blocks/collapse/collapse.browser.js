@@ -19,11 +19,12 @@ modules.define('collapse', ['i-bem-dom'], function(provide, bemDom) {
 
         /**
          * On BEM click event handler
-         * @param {events:Event} e
+         * @param {Event} e
          * @callback
          * @protected
          */
         _onSwitcherClick : function(e) {
+            if(e.isDefaultPrevented()) return
             e.preventDefault();
             this.toggleMod('opened');
         }
