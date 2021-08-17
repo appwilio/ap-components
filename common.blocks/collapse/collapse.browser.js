@@ -1,33 +1,37 @@
 
-modules.define('collapse', ['i-bem__dom'], function(provide, BEMDOM) {
+modules.define('collapse', ['i-bem-dom'], function(provide, bemDom) {
 
     /**
      * @exports
      * @class collapse
      * @bem
      */
-    provide(BEMDOM.decl(this.name, {
+    provide(bemDom.declBlock(this.name, {
         onSetMod : {
             'opened' : function(_, modVal) {
-                this.setMod(this.findElem('switcher', true), 'opened',  modVal);
-                this.setMod(this.findElem('content', true), 'visible', modVal);
+                this.findChildElem('switcher', true)
+                    .setMod('opened', modVal);
+
+                this.findChildElem('content', true)
+                    .setMod('visible', modVal);
             }
         },
 
         /**
          * On BEM click event handler
-         * @param {events:Event} e
+         * @param {Event} e
          * @callback
          * @protected
          */
         _onSwitcherClick : function(e) {
+            if(e.isDefaultPrevented()) return
             e.preventDefault();
             this.toggleMod('opened');
         }
 
     }, {
-        live : function() {
-            this.liveBindTo('switcher', 'click', this.prototype._onSwitcherClick);
+        onInit : function() {
+            this._domEvents('switcher').on('click', this.prototype._onSwitcherClick);
         }
     }));
 

@@ -1,7 +1,7 @@
 /* global modules:false */
-modules.define('typehead', ['vow', 'i-bem'], function(provide, Vow, BEM){
+modules.define('typehead', ['vow', 'i-bem'], function(provide, Vow, bem){
 
-provide(BEM.decl('typehead', {
+provide(bem.declBlock(this.name, {
 
     /**
      * Variants source
@@ -32,11 +32,11 @@ provide(BEM.decl('typehead', {
         this._getVariants(val).then(
             function(variants){
                 defer.resolve(variants);
-                this.emit('found', variants);
+                this._emit('found', variants);
             },
             function(){
                 defer.reject();
-                this.emit('nofound');
+                this._emit('nofound');
             },
             this
         );

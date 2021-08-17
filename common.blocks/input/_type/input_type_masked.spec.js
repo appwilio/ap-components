@@ -1,23 +1,22 @@
 modules.define('spec',
-    ['input', 'jslib__maskedinput', 'BEMHTML', 'i-bem__dom'],
-    function(provide, Input, $, BEMHTML, BEMDOM) {
+    ['input', 'jslib__maskedinput', 'BEMHTML', 'i-bem-dom'],
+    function(provide, Input, $, BEMHTML, bemDom) {
 
     describe('input_type_masked', function(){
         var block;
         beforeEach(function(){
-            block = BEMDOM.init($(BEMHTML.apply({
+            block = bemDom.init($(BEMHTML.apply({
                 block : 'input',
                 mods : { type : 'masked' },
                 js : { mask : '99.99.9999' },
                 name : 'date'
-            })).appendTo('body')).bem('input');
+            })).appendTo('body')).bem(Input);
         });
         afterEach(function(){
-            // BEMDOM.destruct(block.domElem);
+            // bemDom.destruct(block.domElem);
         });
 
-        it('just stub', function(){
-        });
+        it('just stub');
     });
 
     provide();

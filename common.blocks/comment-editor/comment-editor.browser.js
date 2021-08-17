@@ -1,7 +1,7 @@
 /**
  * @module comment-editor
  */
-modules.define('comment-editor', ['i-bem__dom', 'control'], function(provide, BEMDOM, Control) {
+modules.define('comment-editor', ['i-bem-dom', 'control'], function(provide, bemDom, Control) {
 
 /**
  * @exports
@@ -9,7 +9,7 @@ modules.define('comment-editor', ['i-bem__dom', 'control'], function(provide, BE
  * @abstract
  * @bem
  */
-provide(BEMDOM.decl({ block : this.name, baseBlock : Control }, /** @lends comment-editor.prototype */ {
+provide(bemDom.declBlock(this.name, Control, /** @lends comment-editor.prototype */ {
     onSetMod : {
         js : {
             inited : function() {
@@ -26,11 +26,11 @@ provide(BEMDOM.decl({ block : this.name, baseBlock : Control }, /** @lends comme
         'disabled' : {
             'true' : function(){
                 this._unbindEvents();
-                this.elem('control').attr('contenteditable', null);
+                this._elem('control').domElem.attr('contenteditable', null);
             },
             '' : function(){
                 this._bindEvents();
-                this.elem('control').attr('contenteditable', '');
+                this._elem('control').domElem.attr('contenteditable', '');
             }
         }
     },
@@ -39,7 +39,7 @@ provide(BEMDOM.decl({ block : this.name, baseBlock : Control }, /** @lends comme
      * Перемещает каретку в конец текста
      */
     setCaretToEnd : function(){
-        var el = this.elem('body')[0],
+        var el = this._elem('body').domElem[0],
             len = el.childNodes.length;
         if(!len) return;
 
@@ -52,13 +52,13 @@ provide(BEMDOM.decl({ block : this.name, baseBlock : Control }, /** @lends comme
     },
 
     _unbindEvents : function(){
-        this.unbindFrom('body', 'keyup', this._onBodyChange);
-        this.unbindFrom('clear', 'click', this.clear);
+        this._domEvents('body').un('keyup', this._onBodyChange);
+        this._domEvents('clear').un('click', this.clear);
     },
 
     _bindEvents : function(){
-        this.bindTo('body', 'keyup', this._onBodyChange);
-        this.bindTo('clear', 'click', this.clear);
+        this._domEvents('body').on('keyup', this._onBodyChange);
+        this._domEvents('clear').on('click', this.clear);
     },
 
     /**
@@ -83,8 +83,8 @@ provide(BEMDOM.decl({ block : this.name, baseBlock : Control }, /** @lends comme
      */
     clear : function(){
         this.setVal('');
-        this.emit('clear');
-        this.emit('change', '');
+        this._emit('clear');
+        this._emit('change', '');
     },
 
     /**
@@ -93,14 +93,14 @@ provide(BEMDOM.decl({ block : this.name, baseBlock : Control }, /** @lends comme
      * @emits change
      */
     _onBodyChange : function(){
-        var html = this.filterContent(this.elem('body').html()),
-            old = this.elem('control').val();
+        var html = this.filterContent(this._elem('body').domElem.html()),
+            old = this._elem('control').domElem.val();
 
         if(html === old){
             return false;
         }
-        this.elem('control').val(html);
-        this.emit('change', html);
+        this._elem('control').domElem.val(html);
+        this._emit('change', html);
     },
 
     /**
@@ -112,17 +112,17 @@ provide(BEMDOM.decl({ block : this.name, baseBlock : Control }, /** @lends comme
         if(val === this.getVal()) return;
 
         var filteredVal = this.filterContent(val);
-        this.elem('control').val(filteredVal);
-        this.elem('body').html(filteredVal);
-        this.emit('change', filteredVal);
+        this._elem('control').domElem.val(filteredVal);
+        this._elem('body').domElem.html(filteredVal);
+        this._emit('change', filteredVal);
     }
 
 }, {
-    live : function(){
-        this.liveBindTo('body', 'pointerclick', function(){
+    onInit : function(){
+        this._domEvents('body').on('pointerclick', function(){
             this.setMod('focused');
         });
-        return this.__base.apply(this, arguments);
+        this.__base.apply(this, arguments);
     }
 }));
 

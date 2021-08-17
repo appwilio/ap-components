@@ -1,15 +1,16 @@
 /* global modules:false */
 
 modules.define('float',
-               ['i-bem__dom', 'scrollspy', 'functions__throttle'],
-               function(provide, BEMDOM, Scrollspy, throttle) {
-provide(BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
+   ['i-bem-dom', 'scrollspy', 'functions__throttle'],
+   function(provide, bemDom, Scrollspy, throttle) {
+
+provide(bemDom.declBlock(this.name, Scrollspy, {
     onSetMod : {
         'js' : {
             'inited' : function(){
                 this.__base.apply(this, arguments);
 
-                this.fixable = this.elem('content'); // фиксируемый элемент
+                this.fixable = this._elem('content'); // фиксируемый элемент
                 this._offset = this.params.offset || 0; // отступ сверху и снизу от края экрана
 
                 this._parent = this.domElem.parent(); // Элемент внутри которого все скроллится
@@ -30,7 +31,7 @@ provide(BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
                     this._observer = observer;
                 } else {
                     // Периодически проверяем, не изменилась ли высота блоков
-                    this._fixableHeight = this.fixable.height(); // Высота контента
+                    this._fixableHeight = this.fixable.domElem.height(); // Высота контента
                     this._timer = setInterval(this._checkValues.bind(this), 2000);
                 }
             },
@@ -41,18 +42,18 @@ provide(BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
 
         state : {
             default : function(){
-                this.fixable.css({
+                this.fixable.domElem.css({
                     'width' : '',
                     'position' : ''
                 });
             },
             fixed : function(){
-                this.fixable.css({
+                this.fixable.domElem.css({
                     'position' : 'fixed'
                 });
             },
             paused : function(){
-                this.fixable.css({
+                this.fixable.domElem.css({
                     'top' : this._ofbottom - this._oftop - this.height,
                     'position' : 'absolute'
                 });
@@ -68,7 +69,7 @@ provide(BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
      */
     _checkValues : function(){
         var currentHeight = this._parent.height(),
-            currentFixableHeight = this.fixable.height();
+            currentFixableHeight = this.fixable.domElem.height();
 
         if(this._parentHeight === currentHeight && currentFixableHeight === this._fixableHeight) {
             return this;
@@ -89,14 +90,14 @@ provide(BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
     beforeSetMod : {
         state : {
             fixed : function(){
-                this.fixable.css({
+                this.fixable.domElem.css({
                     'top' : this._fixPosTop,
                     'left' : this._fixPosLeft,
                     'width' : this.domElem.css('width')
                 });
             },
             paused : function(){
-                this.fixable.css({
+                this.fixable.domElem.css({
                     'left' : this._fixPosLeft,
                     'width' : this.domElem.css('width')
                 });
@@ -105,7 +106,7 @@ provide(BEMDOM.decl({ block : 'float', baseBlock : Scrollspy }, {
     },
 
     _updateDomHeight : function(){
-        this.domElem.height(this.fixable.height());
+        this.domElem.height(this.fixable.domElem.height());
 
         return this;
     },

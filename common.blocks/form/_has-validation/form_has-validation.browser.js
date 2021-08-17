@@ -1,6 +1,6 @@
-modules.define('form', ['i-bem__dom'], function(provide, Form) {
+modules.define('form', function(provide, Form) {
 
-provide(Form.decl({ block : this.name, modName : 'has-validation', modVal : true }, {
+provide(Form.declMod({ modName : 'has-validation' }, {
 
     /**
      * Sets form-field error message & status

@@ -1,34 +1,34 @@
-modules.define('sortable', ['i-bem__dom', 'jquery'], function(provide, BEMDOM, $) {
+modules.define('sortable', ['i-bem-dom', 'jquery'], function(provide, bemDom, $, Sortable) {
 
-provide(BEMDOM.decl({ block : 'sortable', modName : 'pattern', modVal : 'menu' }, {
+provide(Sortable.declMod({ modName : 'pattern', modVal : 'menu' }, {
     onSetMod : {
         js : {
             inited : function(){
                 this.__base.apply(this, arguments);
-                this.on('sort', this.resetDistance);
+                this._events().on('sort', this.resetDistance);
             }
         }
     },
 
     getPlaceholder : function(){
-        return this.elem('placeholder');
+        return this._elem('placeholder');
     },
 
     _buildPlaceholder : function(){
-        BEMDOM.before(this._dragingElem, '<div class="sortable__placeholder"></div>');
+        bemDom.before(this._dragingElem, '<div class="sortable__placeholder"></div>');
         var w = this._dragingElem.width(),
             h = this._dragingElem.height();
 
-        this.elem('placeholder').css({ width : w, height : h });
+        this._elem('placeholder').domElem.css({ width : w, height : h });
         this._movePlaceholder(this._dragingElem.offset());
     },
 
     _movePlaceholder : function(offset){
-        this.elem('placeholder').css(offset);
+        this._elem('placeholder').domElem.css(offset);
     },
 
     _sortInsert : function(source){
-        BEMDOM.replace(this.elem('placeholder'), source);
+        bemDom.replace(this._elem('placeholder').domElem, source);
     },
 
     /**
@@ -45,12 +45,12 @@ provide(BEMDOM.decl({ block : 'sortable', modName : 'pattern', modVal : 'menu' }
             return;
         }
 
-        this.emit('over', this._lastMoveDir);
+        this._emit('over', this._lastMoveDir);
 
-        this._moveElem(this.elem('placeholder'), this._getRealTarget(e));
-        var isPlaceholder = this.elem('placeholder').is($(e.target));
+        this._moveElem(this._elem('placeholder').domElem, this._getRealTarget(e));
+        var isPlaceholder = this._elem('placeholder').domElem.is($(e.target));
         if(!isPlaceholder) {
-            this.elem('placeholder').css('position', 'static');
+            this._elem('placeholder').domElem.css('position', 'static');
         }
 
     },
@@ -72,14 +72,14 @@ provide(BEMDOM.decl({ block : 'sortable', modName : 'pattern', modVal : 'menu' }
         this._initDrag(e);
         this.resetDistance(e.originalEvent.screenX, e.originalEvent.screenY);
         this._buildPlaceholder();
-        this.emit('start', this._dragingElem);
+        this._emit('start', this._dragingElem);
     },
 
     getSiblings : function(block, placeholder){
         if(placeholder) {
             return {
-                prev : this.findBlockOn(this.elem('placeholder').prev(), block),
-                next : this.findBlockOn(this.elem('placeholder').next(), block)
+                prev : this._elem('placeholder').prev().bem(block),
+                next : this._elem('placeholder').next().bem(block)
             };
         }
         return this.__base.apply(this, arguments);
@@ -91,7 +91,7 @@ provide(BEMDOM.decl({ block : 'sortable', modName : 'pattern', modVal : 'menu' }
      */
     _onDragEnd : function(){
         this.__base.apply(this, arguments);
-        this.nextTick(function(){BEMDOM.destruct(this.findElem('placeholder'));});
+        this._nextTick(function(){ bemDom.destruct(this.findChildElem('placeholder')); });
     }
 
 }));

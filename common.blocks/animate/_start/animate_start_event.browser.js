@@ -1,7 +1,8 @@
 /* global modules:false */
 
 modules.define('animate', function(provide, Animate) {
-Animate.decl({ block : 'animate', modName : 'start', modVal : 'event' }, {
+
+Animate.declMod({ modName : 'start', modVal : 'event' }, {
     onSetMod : {
         'js' : {
             'inited' : function(){
@@ -11,12 +12,12 @@ Animate.decl({ block : 'animate', modName : 'start', modVal : 'event' }, {
 
                 var event = this.params.event.name,
                     block = this.params.event.block;
+
                 if(block) {
-                    this
-                        .findBlockOn(block)
+                    this._events(this.findMixedBlock(block))
                         .on(event, this.start, this);
                 } else {
-                    this.bindTo(this.domElem, event, this.start);
+                    this._domEvents().on(event, this.start);
                 }
             }
         }

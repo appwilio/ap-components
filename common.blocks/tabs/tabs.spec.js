@@ -1,14 +1,14 @@
 modules.define(
     'spec',
-    ['tabs', 'i-bem__dom', 'jquery', 'BEMHTML', 'radio-group', 'chai'],
-    function(provide, Tabs, BEMDOM, $, BEMHTML) {
+    ['tabs', 'i-bem-dom', 'jquery', 'BEMHTML', 'radio-group', 'chai'],
+    function(provide, Tabs, bemDom, $, BEMHTML) {
 
         describe('tabs', function() {
             var tabs;
 
             function buildTabs(bemjson) {
-                return BEMDOM.init($(BEMHTML.apply(bemjson)).appendTo('body'))
-                    .bem('tabs');
+                return bemDom.init($(BEMHTML.apply(bemjson)).appendTo('body'))
+                    .bem(Tabs);
             }
 
             beforeEach(function() {
@@ -29,7 +29,7 @@ modules.define(
             });
 
             afterEach(function() {
-                BEMDOM.destruct(tabs.domElem);
+                bemDom.destruct(tabs.domElem);
             });
 
             it('should return current tab index', function(){
@@ -39,7 +39,7 @@ modules.define(
             describe('changeTab', function() {
                 it('should show the right tab on changeTab call', function() {
                     var currentVal = tabs.getVal(),
-                        id = tabs.elemParams(tabs.elem('box', 'selected', true)).id;
+                        id = tabs._elem('box', 'selected', true).params.id;
 
                     id.should.eq(currentVal);
 
