@@ -59,7 +59,7 @@ provide(bemDom.declBlock(this.name, {
     /**
      * Обрабатывает drop событие.
      * @callback
-     * @param {object} e Event
+     * @param {Event} e Event
      * @private
      * @returns void
      */
@@ -72,6 +72,7 @@ provide(bemDom.declBlock(this.name, {
         e.stopPropagation();
 
         var target = this._getRealTarget(e);
+        if(!target) return;
         this._sortInsert(this._dragingElem, target);
 
         this._emit('sortend', { source : this._dragingElem, target : target });
@@ -100,10 +101,11 @@ provide(bemDom.declBlock(this.name, {
      * Search for 'sortable__item' parent of event target. Useful if drag
      * handler inside `sortable__item` dom
      * @param {Event} e drag event
-     * @returns {jQuery} sortable__item domElem
+     * @returns {jQuery|null} sortable__item domElem
      */
     _getRealTarget : function(e){
-        return this.findParentElem($(e.target), 'item');
+        var el = $(e.target).parents('.sortable__item');
+        return el.length? el : null;
     },
 
     /**
