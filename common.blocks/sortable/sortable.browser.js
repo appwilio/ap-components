@@ -1,17 +1,63 @@
 /* global modules:false */
+// @ts-check
 
 modules.define('sortable',
                ['i-bem-dom', 'jquery', 'dom'],
                function(provide, bemDom, $, dom) {
 
+/**
+* @typedef {Event} BemDomEvent
+* @property {DragEvent} originalEvent
+*/
+
 provide(bemDom.declBlock(this.name, {
     onSetMod : {
+        'js' : {
+            'inited' : function() {
+                /**
+                 * Текущая позиция перемещаемого элемента
+                 * @type {{x: number, y: number}}
+                 * @private
+                 */
+                this._dragPos = { x : NaN, y : NaN };
+                /**
+                 * Ссылка на перемещаемый элемент
+                 * @type {jQuery|null}
+                 * @private
+                 */
+                this._dragingElem = null;
+                /**
+                 * Исходные данные перемещаемого элемента
+                 * @type {{parent: (jQuery|null), index: number}}
+                 * @property {jQuery|null} parent родительский элемент
+                 * @property {number} index исходный индекс перемещаемого элемента
+                 * @private
+                 */
+                this._dragSourcePos = {
+                    parent : null,
+                    index : NaN
+                };
+                /**
+                 * Основное направление перемещения элемента
+                 * @type {'left'|'right'|'bottom'|'top'}
+                 * @private
+                 */
+                this._lastMoveDir = 'left';
+
+                /**
+                 * Целевой DOM элемент
+                 * @type {jQuery|null}
+                 * @private
+                 */
+                this._lastTarget = null;
+            },
+        },
         'dragging' : {
             'true' : function(){
                 this._domEvents().on('dragover', this._onDragOver);
             },
             '' : function(){
-                this._domEvents().on('dragover', this._onDragOver);
+                this._domEvents().un('dragover', this._onDragOver);
             }
         }
     },
@@ -59,7 +105,7 @@ provide(bemDom.declBlock(this.name, {
     /**
      * Обрабатывает drop событие.
      * @callback
-     * @param {Event} e Event
+     * @param {BemDomEvent} e Event
      * @private
      * @returns void
      */
@@ -73,11 +119,17 @@ provide(bemDom.declBlock(this.name, {
 
         var target = this._getRealTarget(e);
         if(!target) return;
-        this._sortInsert(this._dragingElem, target);
+        this._moveElem(this._getDraggingElem(), target);
 
         this._emit('sortend', { source : this._dragingElem, target : target });
     },
 
+    /**
+     * @param {jQuery} source
+     * @param {jQuery} target
+     * @private
+     * @deprecated
+     */
     _sortInsert : function(source, target){
         return this._moveElem(source, target);
     },
@@ -85,7 +137,7 @@ provide(bemDom.declBlock(this.name, {
     /**
      * Проверяет нужно ли обрабатывать drop событие.
      * Возвращает false если был сброшен файл или событие прошло на другом DOM узле
-     * @param {object} e Event
+     * @param {BemDomEvent} e Event
      * @returns {boolean}
      * @private
      */
@@ -100,11 +152,15 @@ provide(bemDom.declBlock(this.name, {
     /**
      * Search for 'sortable__item' parent of event target. Useful if drag
      * handler inside `sortable__item` dom
-     * @param {Event} e drag event
+     * @param {BemDomEvent} e drag event
      * @returns {jQuery|null} sortable__item domElem
      */
     _getRealTarget : function(e){
-        var el = $(e.target).parents('.sortable__item');
+        var el = $(e.target)
+            .parentsUntil('.sortable__item')
+            .last()
+            .parent();
+        if(el.is(bemDom.doc)) return null;
         return el.length? el : null;
     },
 
@@ -128,40 +184,56 @@ provide(bemDom.declBlock(this.name, {
     },
 
     /**
+     * Вызывается периодически пока перемещаемый элемент не брошен
+     * @url https://developer.mozilla.org/en-US/docs/Web/API/Document/drag_event
      * @callback
      * @emits move
+     * @param {BemDomEvent} e
      */
     _onDrag : function(e){
         var X = e.originalEvent.screenX,
-            Y = e.originalEvent.screenY;
+            Y = e.originalEvent.screenY,
+            savedPosition = this._getDragPosition();
 
-        // Object not moved?
-        if(this._dragPos.x === X && this._dragPos.y === Y){
-            return;
-        }
+        if(!this._isMoved(X, Y)) return;
 
-        this.getDragDirection(X, Y);
+        this._lastMoveDir = this.getMainDragDirection(
+            this.getDragDirection(X, Y, savedPosition),
+            savedPosition
+        );
         this._emit('move', this._lastMoveDir);
-        this._dragPos = { x : X, y : Y };
+        this._setDragPosition(X, Y);
     },
 
     /**
+     * Проверяет изменилась ли позиция элемента со времени прошлого события
+     * @param {number} x current x position
+     * @param {number} y current y position
+     * @return {boolean}
+     * @protected
+     */
+    _isMoved : function(x, y) {
+        var savedPosition = this._getDragPosition();
+        return savedPosition.x !== x || savedPosition.y !== y;
+    },
+
+    /**
+     * Вызывается когда перетаскиваемый элемент находится над Sortable
+     * @protected
+     * @url https://developer.mozilla.org/en-US/docs/Web/API/Document/dragover_event
      * @callback
+     * @param {BemDomEvent} e
      * @emits over
      */
     _onDragOver : function(e){
-
         e.preventDefault();
         var X = e.originalEvent.screenX,
             Y = e.originalEvent.screenY;
 
-        // Object not moved?
-        if(this._dragPos.x === X && this._dragPos.y === Y){
-            return;
-        }
-        this._emit('over', e, this._lastMoveDir);
+        if(!this._isMoved(X, Y)) return;
 
-        this._moveElem(this._dragingElem, this._getRealTarget(e));
+        this._emit('over', e, this._lastMoveDir);
+        this._moveElem(this._getDraggingElem(), this._getRealTarget(e));
     },
 
     /**
@@ -176,33 +248,71 @@ provide(bemDom.declBlock(this.name, {
 
     /**
      * Устанавливает необходимые свойства блока во время сортировки.
-     * @param e
      * @private
      */
     _initDrag : function(e){
-        this._dragPos = { x : e.originalEvent.screenX, y : e.originalEvent.screenY };
-        this._dragingElem = $(e.target);
-        this._dragSourcePos = {
-            parent : $(e.target).parent(),
-            index : $(e.target).index()
-        };
-        this.setMod(this._dragingElem, 'moving', true);
+        var elem = $(e.target);
+        this._setDragPosition(e.originalEvent.screenX, e.originalEvent.screenY);
+        this._setDraggingElem(elem);
+        this._setInitialPosition(elem.parent(), elem.index());
 
         e.originalEvent.dataTransfer.effectAllowed = 'move';
         e.originalEvent.dataTransfer.setData('text', e.target.id);
     },
 
     /**
+     * Сохраняет исходную позицию перемещаемого элемента
+     * @param {jQuery} parent
+     * @param {number} index
+     * @protected
+     */
+    _setInitialPosition : function(parent, index) {
+        this._dragSourcePos = { parent : parent, index : index };
+    },
+
+    /**
+     * Получает перемещаемый элемент
+     * @return {jQuery|null}
+     * @protected
+     */
+    _getDraggingElem : function() {
+        return this._dragingElem;
+    },
+
+    /**
+     * Обновляет ссылку на перемещаемый элемент
+     * @param {jQuery} elem
+     * @protected
+     */
+    _setDraggingElem : function(elem) {
+        if(!elem) return new Error('Empty element');
+        this._dragingElem = elem;
+    },
+
+    /**
+     * Сбрасывает ссылку на перемещаемый элемент
+     * @private
+     */
+    _resetDraggingElem : function() {
+        this._dragingElem = null;
+    },
+
+    /**
+     * Вызывается когда пользователь отпускает клавишу мыши
+     * @url https://developer.mozilla.org/en-US/docs/Web/API/Document/dragend_event
      * @callback
-     * @emits end
+     * @emits 'end'
      */
     _onDragEnd : function(){
         this.delMod('dragging');
-        this._dragPos = null;
+        this._resetDragPosition();
         this._emit('end');
-        this.delMod(this._dragingElem, 'moving');
     },
 
+    /**
+     * @param {Function} block
+     * @return {{next, prev}}
+     */
     getSiblings : function(block){
         return {
             prev : this._dragingElem.next().bem(block),
@@ -214,31 +324,51 @@ provide(bemDom.declBlock(this.name, {
      * detect drag direction
      * @param {int} x current X
      * @param {int} y current y
-     * @param {bool} asObj return result as object {x, y}
+     * @param {{x: Number, y: Number}} prevPosition previous dragging elem position
+     * @return {{x: 'right'|'left', y: 'bottom'|'top'}}
      */
-    getDragDirection : function(x, y, asObj){
-        var direction,
-            dirX = false, // 'left',
-            dirY = false, // 'top',
-            mainX,
-            mainDir,
-            old = this._dragPos;
+    getDragDirection : function(x, y, prevPosition){
+        if(prevPosition === true) throw new Error('Call deprecated asObj param');
 
-        dirX = x > old.x; // right
-        dirY = y > old.y; // bottom
+        return {
+            x : x > prevPosition.x? 'right' : 'left',
+            y : y > prevPosition.y? 'bottom': 'top'
+        };
+    },
 
-        direction =  {
-                x : dirX? 'right' : 'left',
-                y : dirY? 'bottom': 'top'
-            };
+    /**
+     * Detect main move direction
+     * @param {{x: 'right'|'left', y: 'bottom'|'top'}} direction dragging directions
+     * @param {{x: Number, y: Number}} prevPosition previous dragging element position
+     * @return {'right'|'left'|'bottom'|'top'}
+     */
+    getMainDragDirection : function(direction, prevPosition) {
+        return Math.abs(direction.x - prevPosition.x) > Math.abs(direction.y - prevPosition.y)?
+            direction.x : direction.y;
+    },
 
-        mainX = Math.abs(x - old.x) > Math.abs(y - old.y);
-        mainDir = mainX? direction.x : direction.y;
+    /**
+     * Получает сохраненную позицию перемещаемого элемента
+     * @return {{x: number, y: number}}
+     * @private
+     */
+    _getDragPosition : function() {
+        return this._dragPos;
+    },
 
-        this._lastMoveDir = mainDir;
+    /**
+     * Обновляет позицию перемещаемого элемента
+     * @param {number} x
+     * @param {number} y
+     * @private
+     */
+    _setDragPosition : function(x, y) {
+        this._dragPos = { x : x, y : y };
+    },
 
-        return asObj? direction : mainDir;
-    }
+    _resetDragPosition : function() {
+        this._setDragPosition(NaN, NaN);
+    },
 
 }, {
     lazyInit : true,

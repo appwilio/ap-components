@@ -24,7 +24,7 @@ modules.define('collapse', ['i-bem-dom'], function(provide, bemDom) {
          * @protected
          */
         _onSwitcherClick : function(e) {
-            if(e.isDefaultPrevented()) return
+            if(e.isDefaultPrevented()) return;
             e.preventDefault();
             this.toggleMod('opened');
         }
