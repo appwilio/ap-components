@@ -8,12 +8,7 @@ provide(Alert.declMod({ modName : 'dismiss', modVal : 'auto' }, {
         'hidden' : {
             'true' : function(){
                 if(this.hasMod('hovered')){
-                    var event = { modName : 'hovered', modVal :false };
-                    // TODO: возможно this._events().on, проверить!
-                    this.on(event, function(){
-                        this.un(event);
-                        this.dismiss();
-                    }, this);
+                    this._events().once({ modName : 'hovered', modVal : '' }, this.dismiss);
                     return false;
                 }
                 return true;
