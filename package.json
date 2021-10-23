@@ -1,7 +1,7 @@
 {
   "author": "Evgeniy Baranov <master@kompolom.ru>",
   "name": "ap-components",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "repository": {
     "type": "git",
     "url": "git://github.com/appwilio/ap-components.git"
